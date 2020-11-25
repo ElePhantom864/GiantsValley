@@ -219,12 +219,16 @@ class TextBox(pg.sprite.Sprite):
 
 
 class Enemy(pg.sprite.Sprite):
-    def __init__(self, game, pos, image):
-        self._layer = 1
+    def __init__(self, game, x, y, image):
+        self._layer = -2
         self.groups = game.all_sprites, game.enemies
         pg.sprite.Sprite.__init__(self, self.groups)
         self.game = game
-        self.image = image
+        self.facing = s.Direction.DOWN
+        self.image = self.game.cobra_images[self.facing][1]
         self.rect = self.image.get_rect()
-        self.pos = pos
+        self.pos = vec(x, y)
         self.rect.center = self.pos
+
+    def update(self):
+        pass

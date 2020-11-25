@@ -39,6 +39,10 @@ class Game:
         for direction, images in s.PLAYER_IMAGES.items():
             self.player_images[direction] = list(map(lambda img: pg.image.load(
                 path.join(img_folder, img)).convert_alpha(), images))
+        self.cobra_images = {}
+        for direction, images in s.COBRA_IMAGES.items():
+            self.cobra_images[direction] = list(map(lambda img: pg.image.load(
+                path.join(img_folder, img)).convert_alpha(), images))
 
         loader = IncrementalThreadedResourceLoader()
         self.ui_manager = UIManager((s.WIDTH, s.HEIGHT), path.join(game_folder, 'data/themes/theme_1.json'),
@@ -77,6 +81,7 @@ class Game:
         self.all_sprites = pg.sprite.Group()
         self.walls = pg.sprite.Group()
         self.teleports = pg.sprite.Group()
+        self.enemies = pg.sprite.Group()
         self.interactables = pg.sprite.Group()
         self.map = TiledMap(path.join(self.map_folder, map_name))
         self.map_img = self.map.make_map()
@@ -91,6 +96,9 @@ class Game:
                 spr.Obstacle(
                     self, tile_object.x, tile_object.y, tile_object.width,
                     tile_object.height)
+            if tile_object.name == 'cobra':
+                spr.Enemy(
+                    self, tile_object.x, tile_object.y, self.cobra_images)
             if tile_object.type == 'Teleport':
                 spr.Teleport(
                     self, tile_object.x, tile_object.y,

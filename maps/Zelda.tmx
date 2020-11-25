@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="13" nextobjectid="61">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="13" nextobjectid="62">
  <tileset firstgid="1" name="[A]WaterFall_pipo" tilewidth="32" tileheight="32" tilecount="576" columns="32">
   <image source="[A]WaterFall_pipo.png" width="1024" height="576"/>
  </tileset>
@@ -278,5 +278,6 @@
   <object id="58" name="wall" x="640" y="344" width="64" height="40"/>
   <object id="59" name="wall" x="736" y="464" width="8" height="48"/>
   <object id="60" name="wall" x="784" y="464" width="16" height="48"/>
+  <object id="61" name="cobra" x="488" y="776" width="16" height="16"/>
  </objectgroup>
 </map>
