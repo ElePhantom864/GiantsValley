@@ -229,6 +229,17 @@ class Enemy(pg.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.pos = vec(x, y)
         self.rect.center = self.pos
+        self.next_animation_tick = 0
+        self.animation_phase = 0
+
+    def animate_movement(self):
+        if pg.time.get_ticks() < self.next_animation_tick:
+            return
+        self.image = self.game.cobra_images[self.facing][self.animation_phase]
+        self.animation_phase += 1
+        if self.animation_phase > 1:
+            self.animation_phase = 0
+        self.next_animation_tick = pg.time.get_ticks() + 150
 
     def update(self):
-        pass
+        self.animate_movement()

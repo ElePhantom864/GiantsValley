@@ -97,6 +97,7 @@ class Game:
                     self, tile_object.x, tile_object.y, tile_object.width,
                     tile_object.height)
             if tile_object.name == 'cobra':
+                print(tile_object.properties)
                 spr.Enemy(
                     self, tile_object.x, tile_object.y, self.cobra_images)
             if tile_object.type == 'Teleport':
@@ -154,6 +155,7 @@ class Game:
                          (0, y), (s.WIDTH, y))
 
     def draw(self):
+        pg.display.set_caption("{:.2f}".format(self.clock.get_fps()))
         self.screen.blit(self.map_img, self.camera.apply_rect(self.map_rect))
         sprites = sorted(self.all_sprites, key=lambda spr: spr._layer)
         for sprite in sprites:
