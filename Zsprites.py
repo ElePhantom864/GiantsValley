@@ -211,6 +211,7 @@ class Sword(pg.sprite.Sprite):
         self.rect.center = pos
         self.rot = rot
         self.angle = -5
+        self.enemies_hit = set()
 
     def update(self):
         self.angle += 15
@@ -220,9 +221,11 @@ class Sword(pg.sprite.Sprite):
         if self.angle >= 180:
             self.kill()
             self.game.player.is_sword = False
-        hits = pg.sprite.spritecollide(self.sword, self.enemies, False)
+        hits = pg.sprite.spritecollide(self, self.game.enemies, False)
         for hit in hits:
-            print('hit')
+            if hit not in self.enemies_hit:
+                self.enemies_hit.add(hit)
+                hit.hit(self.game.player.facing)
 
 
 class TextBox(pg.sprite.Sprite):
@@ -239,7 +242,7 @@ class TextBox(pg.sprite.Sprite):
 
 
 class Enemy(pg.sprite.Sprite):
-    def __init__(self, game, x, y, image, routes):
+    def __init__(self, game, x, y, image, health, routes):
         self._layer = -2
         self.groups = game.all_sprites, game.enemies
         pg.sprite.Sprite.__init__(self, self.groups)
@@ -247,15 +250,14 @@ class Enemy(pg.sprite.Sprite):
         self.facing = s.Direction.DOWN
         self.image = self.game.cobra_images[self.facing][1]
         self.rect = self.image.get_rect()
-        self.hit_rect = self.rect
-        self.hit_rect.center = self.rect.center
         self.pos = vec(x, y)
         self.rect.center = self.pos
         self.next_animation_tick = 0
         self.animation_phase = 0
         self.routes = routes + [vec(x, y)]
-        self.vel = vec(0, 0)
+        self.vel = 1
         self.target = 0
+        self.health = health
 
     def animate_movement(self):
         if pg.time.get_ticks() < self.next_animation_tick:
@@ -266,36 +268,36 @@ class Enemy(pg.sprite.Sprite):
             self.animation_phase = 0
         self.next_animation_tick = pg.time.get_ticks() + 150
 
+    def hit(self, facing):
+        self.health -= 1
+        if self.health <= 0:
+            self.kill()
+        if facing == s.Direction.RIGHT:
+            self.pos.x += s.COBRA_KNOCKBACK
+        if facing == s.Direction.LEFT:
+            self.pos.x -= s.COBRA_KNOCKBACK
+        if facing == s.Direction.UP:
+            self.pos.y -= s.COBRA_KNOCKBACK
+        if facing == s.Direction.DOWN:
+            self.pos.y += s.COBRA_KNOCKBACK
+
     def update(self):
-        target_dist = vec(self.routes[self.target].x, self.routes[self.target].y) - self.pos
-        if target_dist.length_squared() > 5**2:
+        if self.pos != self.routes[self.target]:
             if self.pos.x < self.routes[self.target].x:
-                self.vel.x = s.COBRA_SPEED
+                self.pos.x += self.vel
                 self.facing = s.Direction.RIGHT
             elif self.pos.x > self.routes[self.target].x:
-                self.vel.x = -s.COBRA_SPEED
+                self.pos.x -= self.vel
                 self.facing = s.Direction.LEFT
             if self.pos.y < self.routes[self.target].y:
-                self.vel.y = s.COBRA_SPEED
+                self.pos.y += self.vel
                 self.facing = s.Direction.DOWN
-                if -2 < self.pos.y - self.routes[self.target].y < 2:
-                    self.pos.y = self.routes[self.target].y
             elif self.pos.y > self.routes[self.target].y:
-                self.vel.y = -s.COBRA_SPEED
+                self.pos.y -= self.vel
                 self.facing = s.Direction.UP
-                if -2 < self.pos.y - self.routes[self.target].y < 2:
-                    self.pos.y = self.routes[self.target].y
-            if self.vel.y != 0 and self.vel.x != 0:
-                self.vel *= 0.7071
         else:
             self.target += 1
             if self.target == len(self.routes):
                 self.target = 0
-        self.pos += self.vel * self.game.dt
         self.rect.center = self.pos
-        self.hit_rect.centerx = self.pos.x
-        collide_with_walls(self, self.game.walls, 'x')
-        self.hit_rect.centery = self.pos.y
-        collide_with_walls(self, self.game.walls, 'y')
-        self.rect.center = self.hit_rect.center
         self.animate_movement()

@@ -106,7 +106,7 @@ class Game:
                     route = self.map.tmxdata.get_object_by_id(tile_object.properties[route_name])
                     routes.append(vec(route.x, route.y))
                 spr.Enemy(
-                    self, obj_center.x, obj_center.y, self.cobra_images, routes)
+                    self, obj_center.x, obj_center.y, self.cobra_images, 3, routes)
             if tile_object.type == 'Teleport':
                 spr.Teleport(
                     self, tile_object.x, tile_object.y,
@@ -140,6 +140,9 @@ class Game:
         hits = pg.sprite.spritecollide(self.player, self.teleports, False)
         for hit in hits:
             self.load_map(hit.destination, hit.location)
+        hits = pg.sprite.spritecollide(self.player, self.enemies, False)
+        for hit in hits:
+            self.player.hit()
         hits = pg.sprite.spritecollide(self.player, self.interactables, False)
         if not hits and self.current_interactable:
             self.current_interactable.text.kill()
@@ -185,8 +188,6 @@ class Game:
                                                                         s.HEIGHT - 75), (s.WIDTH - 20, 55)),
                                                                manager=self.ui_manager, object_id='#text_box_2')
                     # self.wait_for_key()
-                if event.key == pg.K_q:
-                    self.player.hit()
             self.player.handle_event(event)
             self.ui_manager.process_events(event)
 
