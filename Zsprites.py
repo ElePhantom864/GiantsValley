@@ -2,6 +2,7 @@ import time
 import pygame as pg
 import Zsettings as s
 from Ztilemap import collide_hit_rect
+from itertools import chain
 vec = pg.math.Vector2
 
 
@@ -31,7 +32,7 @@ def collide_with_walls(sprite, group, dir):
 
 class Player(pg.sprite.Sprite):
     def __init__(self, game, x, y):
-        self._layer = 0
+        self._layer = s.PLAYER_LAYER
         self.groups = game.all_sprites
         pg.sprite.Sprite.__init__(self, self.groups)
         self.game = game
@@ -48,25 +49,31 @@ class Player(pg.sprite.Sprite):
         self.next_animation_tick = 0
         self.animation_phase = 0
         self.is_sword = False
+        self.health = s.PLAYER_HEALTH
+        self.damaged = False
+
+    def hit(self):
+        self.damaged = True
+        self.damage_alpha = chain(s.DAMAGE_ALPHA * 2)
 
     def sword(self):
         self.is_sword = True
         if self.facing == s.Direction.DOWN:
             pos = vec(self.rect.centerx, self.rect.bottom - 10)
             rot = 90
-            Sword(self.game, pos, rot, 1)
+            Sword(self.game, pos, rot, (self._layer + 1))
         if self.facing == s.Direction.UP:
             pos = vec(self.rect.centerx, self.rect.top + 10)
             rot = -90
-            Sword(self.game, pos, rot, -1)
+            Sword(self.game, pos, rot, (self._layer - 1))
         if self.facing == s.Direction.RIGHT:
             pos = vec(self.rect.right - 10, self.rect.centery)
             rot = 180
-            Sword(self.game, pos, rot, -1)
+            Sword(self.game, pos, rot, (self._layer - 1))
         if self.facing == s.Direction.LEFT:
             pos = vec(self.rect.left + 10, self.rect.centery)
             rot = 0
-            Sword(self.game, pos, rot, -1)
+            Sword(self.game, pos, rot, (self._layer - 1))
 
     def animate_movement(self):
         if pg.time.get_ticks() < self.next_animation_tick:
@@ -144,7 +151,18 @@ class Player(pg.sprite.Sprite):
             self.is_moving = True
             self.facing = s.Direction.DOWN
 
-        if not self.is_sword:
+        if self.damaged:
+            try:
+                opacity = next(self.damage_alpha)
+                new_image = self.game.player_images[self.facing][self.animation_phase].copy()
+                new_image.fill((255, 0, 0, opacity),
+                               special_flags=pg.BLEND_RGBA_MULT)
+                self.image = new_image
+            except StopIteration:
+                self.damaged = False
+                self.image = self.game.player_images[self.facing][self.animation_phase]
+
+        if not self.is_sword and not self.damaged:
             self.animate_movement()
             self.pos += self.vel * self.game.dt
         self.rect.center = self.pos
@@ -184,7 +202,7 @@ class Teleport(pg.sprite.Sprite):
 class Sword(pg.sprite.Sprite):
     def __init__(self, game, pos, rot, layer):
         self._layer = layer
-        self.groups = game.all_sprites
+        self.groups = game.all_sprites, game.sword
         pg.sprite.Sprite.__init__(self, self.groups)
         self.game = game
         self.image = game.sword_img
@@ -202,7 +220,9 @@ class Sword(pg.sprite.Sprite):
         if self.angle >= 180:
             self.kill()
             self.game.player.is_sword = False
-        # time.sleep(0.05)
+        hits = pg.sprite.spritecollide(self.sword, self.enemies, False)
+        for hit in hits:
+            print('hit')
 
 
 class TextBox(pg.sprite.Sprite):
@@ -219,7 +239,7 @@ class TextBox(pg.sprite.Sprite):
 
 
 class Enemy(pg.sprite.Sprite):
-    def __init__(self, game, x, y, image):
+    def __init__(self, game, x, y, image, routes):
         self._layer = -2
         self.groups = game.all_sprites, game.enemies
         pg.sprite.Sprite.__init__(self, self.groups)
@@ -227,10 +247,15 @@ class Enemy(pg.sprite.Sprite):
         self.facing = s.Direction.DOWN
         self.image = self.game.cobra_images[self.facing][1]
         self.rect = self.image.get_rect()
+        self.hit_rect = self.rect
+        self.hit_rect.center = self.rect.center
         self.pos = vec(x, y)
         self.rect.center = self.pos
         self.next_animation_tick = 0
         self.animation_phase = 0
+        self.routes = routes + [vec(x, y)]
+        self.vel = vec(0, 0)
+        self.target = 0
 
     def animate_movement(self):
         if pg.time.get_ticks() < self.next_animation_tick:
@@ -242,4 +267,35 @@ class Enemy(pg.sprite.Sprite):
         self.next_animation_tick = pg.time.get_ticks() + 150
 
     def update(self):
+        target_dist = vec(self.routes[self.target].x, self.routes[self.target].y) - self.pos
+        if target_dist.length_squared() > 5**2:
+            if self.pos.x < self.routes[self.target].x:
+                self.vel.x = s.COBRA_SPEED
+                self.facing = s.Direction.RIGHT
+            elif self.pos.x > self.routes[self.target].x:
+                self.vel.x = -s.COBRA_SPEED
+                self.facing = s.Direction.LEFT
+            if self.pos.y < self.routes[self.target].y:
+                self.vel.y = s.COBRA_SPEED
+                self.facing = s.Direction.DOWN
+                if -2 < self.pos.y - self.routes[self.target].y < 2:
+                    self.pos.y = self.routes[self.target].y
+            elif self.pos.y > self.routes[self.target].y:
+                self.vel.y = -s.COBRA_SPEED
+                self.facing = s.Direction.UP
+                if -2 < self.pos.y - self.routes[self.target].y < 2:
+                    self.pos.y = self.routes[self.target].y
+            if self.vel.y != 0 and self.vel.x != 0:
+                self.vel *= 0.7071
+        else:
+            self.target += 1
+            if self.target == len(self.routes):
+                self.target = 0
+        self.pos += self.vel * self.game.dt
+        self.rect.center = self.pos
+        self.hit_rect.centerx = self.pos.x
+        collide_with_walls(self, self.game.walls, 'x')
+        self.hit_rect.centery = self.pos.y
+        collide_with_walls(self, self.game.walls, 'y')
+        self.rect.center = self.hit_rect.center
         self.animate_movement()

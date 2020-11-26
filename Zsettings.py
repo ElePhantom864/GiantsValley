@@ -30,6 +30,8 @@ TILESIZE = 32
 # player settings
 PLAYER_SPEED = 150
 PLAYER_HIT_RECT = pg.Rect(0, 0, 21, 23)
+PLAYER_HEALTH = 3
+DAMAGE_ALPHA = [i for i in range(0, 255, 25)]
 PLAYER_IMAGES = {
     Direction.UP: [
         'LinkUp1.png',
@@ -54,6 +56,7 @@ PLAYER_IMAGES = {
 }
 
 # mob settings
+COBRA_SPEED = 100
 COBRA_IMAGES = {
     Direction.UP: [
         'CobraUp1.png',
@@ -72,3 +75,6 @@ COBRA_IMAGES = {
         'CobraRight2.png'
     ],
 }
+
+# layers
+PLAYER_LAYER = 0
