@@ -51,10 +51,40 @@ class Player(pg.sprite.Sprite):
         self.is_sword = False
         self.health = s.PLAYER_HEALTH
         self.damaged = False
+        self.health = 6
 
-    def hit(self):
+    def hit(self, enemy):
+        if self.damaged:
+            return
+        if self.rect.left < enemy.rect.right and self.rect.right > enemy.rect.right:
+            self.pos.x += s.PLAYER_KNOCKBACK
+        if self.rect.right > enemy.rect.left and self.rect.left < enemy.rect.left:
+            self.pos.x -= s.PLAYER_KNOCKBACK
+        if self.rect.top < enemy.rect.bottom and self.rect.bottom > enemy.rect.bottom:
+            self.pos.y += s.PLAYER_KNOCKBACK
+        if self.rect.bottom > enemy.rect.top and self.rect.top < enemy.rect.top:
+            self.pos.y -= s.PLAYER_KNOCKBACK
+
         self.damaged = True
         self.damage_alpha = chain(s.DAMAGE_ALPHA * 2)
+        self.health -= 1
+        if self.health <= 0:
+            self.kill()
+
+    def draw_health(self, surface):
+        if (self.health % 2) == 0:
+            x = 2
+            ran = self.health // 2
+            for i in range(ran):
+                surface.blit(self.game.heart_img, (x, 2))
+                x += 37
+        else:
+            x = 2
+            ran = self.health // 2
+            for i in range(ran):
+                surface.blit(self.game.heart_img, (x, 2))
+                x += 37
+            surface.blit(self.game.half_heart_img, (x, 2))
 
     def sword(self):
         self.is_sword = True
@@ -269,6 +299,7 @@ class Enemy(pg.sprite.Sprite):
         self.next_animation_tick = pg.time.get_ticks() + 150
 
     def hit(self, facing):
+        self.routes = [self.game.player.pos]
         self.health -= 1
         if self.health <= 0:
             self.kill()
