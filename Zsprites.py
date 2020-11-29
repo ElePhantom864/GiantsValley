@@ -49,9 +49,9 @@ class Player(pg.sprite.Sprite):
         self.next_animation_tick = 0
         self.animation_phase = 0
         self.is_sword = False
+        self.max_health = s.PLAYER_HEALTH
         self.health = s.PLAYER_HEALTH
         self.damaged = False
-        self.health = 6
 
     def hit(self, enemy):
         if self.damaged:
@@ -78,6 +78,10 @@ class Player(pg.sprite.Sprite):
             for i in range(ran):
                 surface.blit(self.game.heart_img, (x, 2))
                 x += 37
+            ran1 = (self.max_health - self.health) // 2
+            for i in range(ran1):
+                surface.blit(self.game.empty_heart_img, (x, 2))
+                x += 37
         else:
             x = 2
             ran = self.health // 2
@@ -85,6 +89,11 @@ class Player(pg.sprite.Sprite):
                 surface.blit(self.game.heart_img, (x, 2))
                 x += 37
             surface.blit(self.game.half_heart_img, (x, 2))
+            x += 37
+            ran1 = (self.max_health - self.health) // 2
+            for i in range(ran1):
+                surface.blit(self.game.empty_heart_img, (x, 2))
+                x += 37
 
     def sword(self):
         self.is_sword = True
@@ -313,6 +322,8 @@ class Enemy(pg.sprite.Sprite):
             self.pos.y += s.COBRA_KNOCKBACK
 
     def update(self):
+        if self.target > len(self.routes) - 1:
+            self.target = len(self.routes) - 1
         if self.pos != self.routes[self.target]:
             if self.pos.x < self.routes[self.target].x:
                 self.pos.x += self.vel

@@ -37,6 +37,7 @@ class Game:
         self.sword_img = pg.image.load(path.join(img_folder, 'TempSword.png')).convert_alpha()
         self.heart_img = pg.image.load(path.join(img_folder, 'Heart.png')).convert_alpha()
         self.half_heart_img = pg.image.load(path.join(img_folder, 'Half_Heart.png')).convert_alpha()
+        self.empty_heart_img = pg.image.load(path.join(img_folder, 'Empty_Heart.png')).convert_alpha()
         self.player_images = {}
         for direction, images in s.PLAYER_IMAGES.items():
             self.player_images[direction] = list(map(lambda img: pg.image.load(
@@ -76,7 +77,7 @@ class Game:
 
     def new(self):
         # initialize all variables and do all the setup for a new game
-        self.load_map('Zelda.tmx', 'playerCenter')
+        self.load_map('Canyon1.tmx', 'playerRight')
 
     def load_map(self, map_name, playerLocation):
         self.current_interactable = None
