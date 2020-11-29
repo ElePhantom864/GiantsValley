@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="36">
  <tileset firstgid="1" source="Base.tsx"/>
- <tileset firstgid="1065" source="../../../../../Downloads/Pipoya RPG Tileset 32x32/Pipoya RPG Tileset 32x32/SampleMap/[A]WaterFall_pipo.tsx"/>
+ <tileset firstgid="1065" source="[A]WaterFall_pipo.tsx"/>
  <tileset firstgid="1641" source="[A]Water_pipo.tsx"/>
  <layer id="1" name="Ground" width="30" height="30">
   <data encoding="csv">
