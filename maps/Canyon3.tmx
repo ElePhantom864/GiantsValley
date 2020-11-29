@@ -190,7 +190,7 @@
   </object>
   <object id="32" name="wall" x="704" y="0" width="64" height="96"/>
   <object id="33" name="wall" x="704" y="0" width="64" height="96"/>
-  <object id="34" name="Canyon2.tmx" type="Teleport" x="288" y="0" width="32" height="32">
+  <object id="34" name="Canyon1.tmx" type="Teleport" x="288" y="0" width="32" height="32">
    <properties>
     <property name="playerLocation" value="ExitG1"/>
    </properties>
