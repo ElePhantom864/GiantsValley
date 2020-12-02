@@ -245,14 +245,20 @@ class Obstacle(pg.sprite.Sprite):
         if not self.pushable:
             return
         self.vel = self.game.player.vel
+        direction = None
         if self.rect.left < self.game.player.rect.right and self.rect.right > self.game.player.rect.right:
-            self.pos.x += self.vel.x * self.game.dt
+            direction = "x"
         if self.rect.right > self.game.player.rect.left and self.rect.left < self.game.player.rect.left:
-            self.pos.x -= self.vel.x * self.game.dt
+            direction = "x"
         if self.rect.top < self.game.player.rect.bottom and self.rect.bottom > self.game.player.rect.bottom:
-            self.pos.y += self.vel.y * self.game.dt
+            direction = "y"
         if self.rect.bottom > self.game.player.rect.top and self.rect.top < self.game.player.rect.top:
-            self.pos.y -= self.vel.y * self.game.dt
+            direction = "y"
+        if direction == "x":
+            self.pos.x += self.vel.x
+        if direction == "y":
+            self.pos.y += self.vel.y
+
         self.rect.center = self.pos
         self.hit_rect.centerx = self.pos.x
         self.hit_rect.centerx = self.pos.x
@@ -364,16 +370,16 @@ class Enemy(pg.sprite.Sprite):
             self.target = len(self.routes) - 1
         if self.pos != self.routes[self.target]:
             if self.pos.x < self.routes[self.target].x:
-                self.pos.x += self.vel * self.game.dt
+                self.pos.x += self.vel
                 self.facing = s.Direction.RIGHT
             elif self.pos.x > self.routes[self.target].x:
-                self.pos.x -= self.vel * self.game.dt
+                self.pos.x -= self.vel
                 self.facing = s.Direction.LEFT
             if self.pos.y < self.routes[self.target].y:
-                self.pos.y += self.vel * self.game.dt
+                self.pos.y += self.vel
                 self.facing = s.Direction.DOWN
             elif self.pos.y > self.routes[self.target].y:
-                self.pos.y -= self.vel * self.game.dt
+                self.pos.y -= self.vel
                 self.facing = s.Direction.UP
         else:
             self.target += 1
