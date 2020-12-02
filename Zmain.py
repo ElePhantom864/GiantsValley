@@ -77,7 +77,7 @@ class Game:
 
     def new(self):
         # initialize all variables and do all the setup for a new game
-        self.load_map('Canyon1.tmx', 'playerRight')
+        self.load_map('Zelda.tmx', 'playerCenter')
 
     def load_map(self, map_name, playerLocation):
         self.current_interactable = None
@@ -99,7 +99,11 @@ class Game:
             if tile_object.name == 'wall':
                 spr.Obstacle(
                     self, tile_object.x, tile_object.y, tile_object.width,
-                    tile_object.height)
+                    tile_object.height, False)
+            if tile_object.name == 'pushable':
+                spr.Obstacle(
+                    self, tile_object.x, tile_object.y, tile_object.width,
+                    tile_object.height, True, tile_object.image)
             if tile_object.name == 'cobra':
                 routes = []
                 for i in range(1, 100):

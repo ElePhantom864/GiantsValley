@@ -3,6 +3,7 @@ import pygame as pg
 import Zsettings as s
 from Ztilemap import collide_hit_rect
 from itertools import chain
+from os import path
 vec = pg.math.Vector2
 
 
@@ -15,6 +16,9 @@ def collide_with_walls(sprite, group, dir):
                 sprite.pos.x = hits[0].rect.left - sprite.hit_rect.width / 2
             if hits[0].rect.centerx < sprite.hit_rect.centerx:
                 sprite.pos.x = hits[0].rect.right + sprite.hit_rect.width / 2
+            for hit in hits:
+                if sprite.__class__ == Player:
+                    hit.push()
             sprite.vel.x = 0
             sprite.hit_rect.centerx = sprite.pos.x
     if dir == 'y':
@@ -26,6 +30,9 @@ def collide_with_walls(sprite, group, dir):
             if hits[0].rect.centery < sprite.hit_rect.centery:
                 sprite.pos.y = hits[0].rect.bottom + \
                     sprite.hit_rect.height / 2
+            for hit in hits:
+                if sprite.__class__ == Player:
+                    hit.push()
             sprite.vel.y = 0
             sprite.hit_rect.centery = sprite.pos.y
 
@@ -204,6 +211,7 @@ class Player(pg.sprite.Sprite):
         if not self.is_sword and not self.damaged:
             self.animate_movement()
             self.pos += self.vel * self.game.dt
+
         self.rect.center = self.pos
         self.hit_rect.centerx = self.pos.x
         collide_with_walls(self, self.game.walls, 'x')
@@ -213,15 +221,45 @@ class Player(pg.sprite.Sprite):
 
 
 class Obstacle(pg.sprite.Sprite):
-    def __init__(self, game, x, y, w, h):
+    def __init__(self, game, x, y, w, h, pushable, image=None):
         self.groups = game.walls
-        pg.sprite.Sprite.__init__(self, self.groups)
         self.game = game
         self.rect = pg.Rect(x, y, w, h)
         self.x = x
         self.y = y
         self.rect.x = x
         self.rect.y = y
+        self.pushable = pushable
+        if pushable:
+            self.image = image
+            self.rect = self.image.get_rect()
+            self.groups = game.walls, game.all_sprites
+            self._layer = -2
+            self.pos = vec(x, y)
+            self.rect.center = self.pos
+            self.hit_rect = self.rect
+            self.hit_rect.center = self.rect.center
+        pg.sprite.Sprite.__init__(self, self.groups)
+
+    def push(self):
+        if not self.pushable:
+            return
+        self.vel = self.game.player.vel
+        if self.rect.left < self.game.player.rect.right and self.rect.right > self.game.player.rect.right:
+            self.pos.x += self.vel.x * self.game.dt
+        if self.rect.right > self.game.player.rect.left and self.rect.left < self.game.player.rect.left:
+            self.pos.x -= self.vel.x * self.game.dt
+        if self.rect.top < self.game.player.rect.bottom and self.rect.bottom > self.game.player.rect.bottom:
+            self.pos.y += self.vel.y * self.game.dt
+        if self.rect.bottom > self.game.player.rect.top and self.rect.top < self.game.player.rect.top:
+            self.pos.y -= self.vel.y * self.game.dt
+        self.rect.center = self.pos
+        self.hit_rect.centerx = self.pos.x
+        self.hit_rect.centerx = self.pos.x
+        collide_with_walls(self, self.game.walls, 'x')
+        self.hit_rect.centery = self.pos.y
+        collide_with_walls(self, self.game.walls, 'y')
+        self.rect.center = self.hit_rect.center
 
 
 class Teleport(pg.sprite.Sprite):
@@ -326,16 +364,16 @@ class Enemy(pg.sprite.Sprite):
             self.target = len(self.routes) - 1
         if self.pos != self.routes[self.target]:
             if self.pos.x < self.routes[self.target].x:
-                self.pos.x += self.vel
+                self.pos.x += self.vel * self.game.dt
                 self.facing = s.Direction.RIGHT
             elif self.pos.x > self.routes[self.target].x:
-                self.pos.x -= self.vel
+                self.pos.x -= self.vel * self.game.dt
                 self.facing = s.Direction.LEFT
             if self.pos.y < self.routes[self.target].y:
-                self.pos.y += self.vel
+                self.pos.y += self.vel * self.game.dt
                 self.facing = s.Direction.DOWN
             elif self.pos.y > self.routes[self.target].y:
-                self.pos.y -= self.vel
+                self.pos.y -= self.vel * self.game.dt
                 self.facing = s.Direction.UP
         else:
             self.target += 1
