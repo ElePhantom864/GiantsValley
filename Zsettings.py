@@ -3,10 +3,10 @@ from enum import Enum
 
 
 class Direction(Enum):
-    UP = 0
-    DOWN = 1
-    LEFT = 2
-    RIGHT = 3
+    UP = 'Up'
+    DOWN = 'Down'
+    LEFT = 'Left'
+    RIGHT = 'Right'
 
 
 # define some colors (R, G, B)

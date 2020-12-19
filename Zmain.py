@@ -13,7 +13,8 @@ from pygame_gui.ui_manager import UIManager
 from pygame_gui.elements.ui_text_box import UITextBox
 from pygame_gui.core import IncrementalThreadedResourceLoader
 from pygame_gui import UI_TEXT_BOX_LINK_CLICKED
-
+from itertools import chain
+import time
 
 vec = pg.math.Vector2
 
@@ -25,6 +26,8 @@ class Game:
             (s.WIDTH, s.HEIGHT), flags=pg.RESIZABLE | pg.SCALED)
         pg.display.set_caption(s.TITLE)
         self.clock = pg.time.Clock()
+        self.pause_game = False
+        self.dialog_text_chunks = None
         pg.key.set_repeat(100, 100)
         self.load_data()
 
@@ -32,20 +35,17 @@ class Game:
         game_folder = path.dirname(__file__)
         snd_folder = path.join(game_folder, 'snd')
         music_folder = path.join(game_folder, 'music')
-        img_folder = path.join(game_folder, 'img')
+        self.img_folder = path.join(game_folder, 'img')
         self.map_folder = path.join(game_folder, 'maps')
-        self.sword_img = pg.image.load(path.join(img_folder, 'TempSword.png')).convert_alpha()
-        self.heart_img = pg.image.load(path.join(img_folder, 'Heart.png')).convert_alpha()
-        self.half_heart_img = pg.image.load(path.join(img_folder, 'Half_Heart.png')).convert_alpha()
-        self.empty_heart_img = pg.image.load(path.join(img_folder, 'Empty_Heart.png')).convert_alpha()
+        self.sword_img = pg.image.load(path.join(self.img_folder, 'TempSword.png')).convert_alpha()
+        self.heart_img = pg.image.load(path.join(self.img_folder, 'Heart.png')).convert_alpha()
+        self.half_heart_img = pg.image.load(path.join(self.img_folder, 'Half_Heart.png')).convert_alpha()
+        self.empty_heart_img = pg.image.load(path.join(self.img_folder, 'Empty_Heart.png')).convert_alpha()
         self.player_images = {}
         for direction, images in s.PLAYER_IMAGES.items():
             self.player_images[direction] = list(map(lambda img: pg.image.load(
-                path.join(img_folder, img)).convert_alpha(), images))
-        self.cobra_images = {}
-        for direction, images in s.COBRA_IMAGES.items():
-            self.cobra_images[direction] = list(map(lambda img: pg.image.load(
-                path.join(img_folder, img)).convert_alpha(), images))
+                path.join(self.img_folder, img)).convert_alpha(), images))
+        self.mob_images = {}
 
         loader = IncrementalThreadedResourceLoader()
         self.ui_manager = UIManager((s.WIDTH, s.HEIGHT), path.join(game_folder, 'data/themes/theme_1.json'),
@@ -87,9 +87,13 @@ class Game:
         self.enemies = pg.sprite.Group()
         self.sword = pg.sprite.Group()
         self.interactables = pg.sprite.Group()
+        self.activators = pg.sprite.Group()
+        self.pushers = pg.sprite.Group()
         self.map = TiledMap(path.join(self.map_folder, map_name))
         self.map_img = self.map.make_map()
         self.map_rect = self.map_img.get_rect()
+        self.objects_by_id = {}
+
         for tile_object in self.map.tmxdata.objects:
             obj_center = vec(tile_object.x + tile_object.width / 2,
                              tile_object.y + tile_object.height / 2)
@@ -97,14 +101,26 @@ class Game:
                 self.player = spr.Player(
                     self, obj_center.x, obj_center.y)
             if tile_object.name == 'wall':
-                spr.Obstacle(
+                obstacle = spr.Obstacle(
                     self, tile_object.x, tile_object.y, tile_object.width,
                     tile_object.height, False)
+                self.objects_by_id[tile_object.id] = obstacle
+            if tile_object.name == 'activator':
+                activator = spr.Activator(
+                    self, tile_object.x, tile_object.y, tile_object.width,
+                    tile_object.height, tile_object.image)
+                self.objects_by_id[tile_object.id] = activator
             if tile_object.name == 'pushable':
                 spr.Obstacle(
                     self, tile_object.x, tile_object.y, tile_object.width,
                     tile_object.height, True, tile_object.image)
-            if tile_object.name == 'cobra':
+            if tile_object.name == 'door':
+                activator_id = tile_object.properties['activator']
+                door = spr.Door(
+                    self, tile_object.x, tile_object.y, tile_object.width,
+                    tile_object.height, activator_id, tile_object.image)
+                self.objects_by_id[tile_object.id] = door
+            if tile_object.type == 'mob':
                 routes = []
                 for i in range(1, 100):
                     route_name = 'route' + str(i)
@@ -112,17 +128,19 @@ class Game:
                         break
                     route = self.map.tmxdata.get_object_by_id(tile_object.properties[route_name])
                     routes.append(vec(route.x, route.y))
+                self.load_mob_images(tile_object.name)
                 spr.Enemy(
-                    self, obj_center.x, obj_center.y, self.cobra_images, 3, routes)
+                    self, obj_center.x, obj_center.y, self.mob_images[tile_object.name], 3, 60, routes)
             if tile_object.type == 'Teleport':
                 spr.Teleport(
                     self, tile_object.x, tile_object.y,
                     tile_object.width, tile_object.height,
                     tile_object.name, tile_object.properties['playerLocation'])
             if tile_object.type == 'Interact':
+                txt: str = tile_object.properties["text"]
                 spr.TextBox(
                     self, tile_object.x, tile_object.y, tile_object.width,
-                    tile_object.height, tile_object)
+                    tile_object.height, txt)
 
         self.camera = Camera(self.map.width, self.map.height)
 
@@ -142,7 +160,8 @@ class Game:
 
     def update(self):
         # update portion of the game loop
-        self.all_sprites.update()
+        if not self.pause_game:
+            self.all_sprites.update()
         self.camera.update(self.player)
         hits = pg.sprite.spritecollide(self.player, self.teleports, False)
         for hit in hits:
@@ -181,22 +200,44 @@ class Game:
         self.player.draw_health(self.screen)
         pg.display.flip()
 
+    def start_presenting_text(self):
+        self.pause_game = True
+        self.dialog_text_chunks = chain(self.current_interactable.texts.split("\n"))
+
+    def present_text(self):
+        if not self.dialog_text_chunks:
+            return
+        try:
+            text = next(self.dialog_text_chunks)
+            self.current_interactable.text.kill()
+            self.current_interactable.text = UITextBox(
+                '<font face=Montserrat size=4 color=#000000>' + text,
+                pg.Rect((10,
+                         s.HEIGHT - 75), (s.WIDTH - 20, 55)),
+                manager=self.ui_manager, object_id='#text_box_2')
+        except StopIteration:
+            self.stop_presenting_text()
+
+    def stop_presenting_text(self):
+        self.current_interactable.text.kill()
+        self.dialog_text_chunks = None
+        self.pause_game = False
+
     def events(self):
         # catch all events here
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 self.quit()
+            if event.type == pg.KEYUP and event.key != pg and self.current_interactable:
+                self.present_text()
             if event.type == pg.KEYDOWN:
                 if event.key == pg.K_ESCAPE:
                     self.quit()
                 if event.key == pg.K_e and self.current_interactable:
-                    self.current_interactable.text.kill()
-                    self.current_interactable.text = UITextBox('<font face=Montserrat size=4 color=#000000>Test',
-                                                               pg.Rect((10,
-                                                                        s.HEIGHT - 75), (s.WIDTH - 20, 55)),
-                                                               manager=self.ui_manager, object_id='#text_box_2')
-                    # self.wait_for_key()
-            self.player.handle_event(event)
+                    self.start_presenting_text()
+                    # self.present_text()
+            if not self.pause_game:
+                self.player.handle_event(event)
             self.ui_manager.process_events(event)
 
     def show_start_screen(self):
@@ -216,6 +257,17 @@ class Game:
                     self.quit()
                 if event.type == pg.KEYUP:
                     waiting = False
+
+    def load_mob_images(self, mob_name):
+        if mob_name not in self.mob_images:
+            self.mob_images[mob_name] = {}
+            for direction in [s.Direction.UP, s.Direction.DOWN, s.Direction.LEFT, s.Direction.RIGHT]:
+                self.mob_images[mob_name][direction] = []
+                for i in [1, 2]:
+                    img = mob_name + direction.value + str(i) + ".png"
+                    loaded_image = pg.image.load(
+                        path.join(self.img_folder, img)).convert_alpha()
+                    self.mob_images[mob_name][direction].append(loaded_image)
 
 
 # create the game object

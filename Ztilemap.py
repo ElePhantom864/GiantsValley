@@ -45,8 +45,8 @@ class Camera:
         return rect.move(self.camera.topleft)
 
     def apply_point(self, point):
-        return vec(point[0] + abs(self.camera.topleft[0]),
-                   point[1] + abs(self.camera.topleft[1]))
+        return vec(point[0] - abs(self.camera.topleft[0]),
+                   point[1] - abs(self.camera.topleft[1]))
 
     def update(self, target):
         x = -target.rect.centerx + int(WIDTH / 2)

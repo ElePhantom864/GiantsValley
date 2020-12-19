@@ -3,7 +3,7 @@
  <tileset firstgid="1" source="Base.tsx"/>
  <tileset firstgid="1065" source="[A]Flower_pipo.tsx"/>
  <tileset firstgid="1161" source="[A]Grass_pipo.tsx"/>
- <tileset firstgid="1689" source="../../../../../Downloads/Pipoya RPG Tileset 32x32/Pipoya RPG Tileset 32x32/SampleMap/[A]WaterFall_pipo.tsx"/>
+ <tileset firstgid="1689" source="[A]WaterFall_pipo.tsx"/>
  <tileset firstgid="2265" source="[A]Water_pipo.tsx"/>
  <layer id="1" name="Ground" width="30" height="30">
   <data encoding="csv">
