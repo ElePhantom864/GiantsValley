@@ -4,6 +4,7 @@ import Zsettings as s
 from Ztilemap import collide_hit_rect
 from itertools import chain
 from os import path
+from collections import defaultdict
 import math
 vec = pg.math.Vector2
 
@@ -41,14 +42,13 @@ def collide_with_walls(sprite, group, dir):
 class Player(pg.sprite.Sprite):
     def __init__(self, game, x, y):
         self._layer = s.PLAYER_LAYER
-        self.groups = game.pushers, game.all_sprites
-        pg.sprite.Sprite.__init__(self, self.groups)
+        pg.sprite.Sprite.__init__(self)
         self.game = game
         self.facing = s.Direction.DOWN
         self.is_moving = False
         self.image = self.game.player_images[self.facing][1]
         self.rect = self.image.get_rect()
-        self.pos = vec(x, y)
+        self.set_pos(x, y)
         self.rect.center = self.pos
         self.hit_rect = s.PLAYER_HIT_RECT
         self.hit_rect.center = self.rect.center
@@ -60,6 +60,10 @@ class Player(pg.sprite.Sprite):
         self.max_health = s.PLAYER_HEALTH
         self.health = s.PLAYER_HEALTH
         self.damaged = False
+        self.items = defaultdict(int, {s.Items.HEALTH_POTION: 1})
+
+    def set_pos(self, x, y):
+        self.pos = vec(x, y)
 
     def hit(self, enemy):
         if self.damaged:
@@ -75,7 +79,7 @@ class Player(pg.sprite.Sprite):
 
         self.damaged = True
         self.damage_alpha = chain(s.DAMAGE_ALPHA * 2)
-        self.health -= 1
+        self.health -= enemy.damage
         if self.health <= 0:
             self.kill()
 
@@ -103,24 +107,34 @@ class Player(pg.sprite.Sprite):
                 surface.blit(self.game.empty_heart_img, (x, 2))
                 x += 37
 
+    def add_item(self, item, qty=1):
+        self.items[item] += qty
+
+    def remove_item(self, item, qty=1):
+        self.items[item] -= qty
+
+    def has_item(self, item):
+        return self.items[item] > 0
+
     def sword(self):
-        self.is_sword = True
-        if self.facing == s.Direction.DOWN:
-            pos = vec(self.rect.centerx, self.rect.bottom - 10)
-            rot = 90
-            Sword(self.game, pos, rot, (self._layer + 1))
-        if self.facing == s.Direction.UP:
-            pos = vec(self.rect.centerx, self.rect.top + 10)
-            rot = -90
-            Sword(self.game, pos, rot, (self._layer - 1))
-        if self.facing == s.Direction.RIGHT:
-            pos = vec(self.rect.right - 10, self.rect.centery)
-            rot = 180
-            Sword(self.game, pos, rot, (self._layer - 1))
-        if self.facing == s.Direction.LEFT:
-            pos = vec(self.rect.left + 10, self.rect.centery)
-            rot = 0
-            Sword(self.game, pos, rot, (self._layer - 1))
+        if self.has_item(s.Items.SWORD):
+            self.is_sword = True
+            if self.facing == s.Direction.DOWN:
+                pos = vec(self.rect.centerx, self.rect.bottom - 10)
+                rot = 90
+                Sword(self.game, pos, rot, (self._layer + 1))
+            if self.facing == s.Direction.UP:
+                pos = vec(self.rect.centerx, self.rect.top + 10)
+                rot = -90
+                Sword(self.game, pos, rot, (self._layer - 1))
+            if self.facing == s.Direction.RIGHT:
+                pos = vec(self.rect.right - 10, self.rect.centery)
+                rot = 180
+                Sword(self.game, pos, rot, (self._layer - 1))
+            if self.facing == s.Direction.LEFT:
+                pos = vec(self.rect.left + 10, self.rect.centery)
+                rot = 0
+                Sword(self.game, pos, rot, (self._layer - 1))
 
     def animate_movement(self):
         if pg.time.get_ticks() < self.next_animation_tick:
@@ -222,7 +236,7 @@ class Player(pg.sprite.Sprite):
 
 
 class Obstacle(pg.sprite.Sprite):
-    def __init__(self, game, x, y, w, h, pushable, image=None):
+    def __init__(self, game, x, y, w, h, pushable, image=None, typ=None):
         self.groups = game.walls
         self.game = game
         self.rect = pg.Rect(x, y, w, h)
@@ -231,6 +245,7 @@ class Obstacle(pg.sprite.Sprite):
         self.rect.x = x
         self.rect.y = y
         self.pushable = pushable
+        self.type = typ
         if pushable:
             self.image = image
             self.rect = self.image.get_rect()
@@ -323,7 +338,7 @@ class Sword(pg.sprite.Sprite):
 
 
 class TextBox(pg.sprite.Sprite):
-    def __init__(self, game, x, y, w, h, texts):
+    def __init__(self, game, x, y, w, h, texts, typ=None):
         self.groups = game.interactables
         pg.sprite.Sprite.__init__(self, self.groups)
         self.game = game
@@ -333,10 +348,12 @@ class TextBox(pg.sprite.Sprite):
         self.rect.x = x
         self.rect.y = y
         self.texts = texts
+        self.type = typ
+        self.activated = False
 
 
 class Enemy(pg.sprite.Sprite):
-    def __init__(self, game, x, y, images, health, speed, routes):
+    def __init__(self, game, x, y, images, health, speed, damage, routes):
         self._layer = -2
         self.groups = game.enemies, game.all_sprites
         pg.sprite.Sprite.__init__(self, self.groups)
@@ -358,6 +375,7 @@ class Enemy(pg.sprite.Sprite):
         self.target = 0
         self.health = health
         self.timeLoop = 0
+        self.damage = damage
 
     def animate_movement(self):
         if pg.time.get_ticks() < self.next_animation_tick:
@@ -412,7 +430,7 @@ class Enemy(pg.sprite.Sprite):
 
 
 class Activator(pg.sprite.Sprite):
-    def __init__(self, game, x, y, w, h, image=None):
+    def __init__(self, game, x, y, w, h, image=None, typ=None):
         self.image = image
         self.game = game
         self.rect = self.image.get_rect()
@@ -421,25 +439,32 @@ class Activator(pg.sprite.Sprite):
         self.pos = vec(x, y)
         self.rect.center = self.pos
         self.activated = False
+        self.type = typ
         pg.sprite.Sprite.__init__(self, self.groups)
 
     def update(self):
+        self.activated = False
         hits = pg.sprite.spritecollide(self, self.game.pushers, dokill=False)
         if hits:
-            self.activated = True
-        else:
-            self.activated = False
+            if self.type is None:
+                self.activated = True
+            else:
+                for hit in hits:
+                    if hasattr(hit, "type") and hit.type == self.type:
+                        self.activated = True
 
 
 class Door(pg.sprite.Sprite):
-    def __init__(self, game, x, y, w, h, activator_id, image=None):
+    def __init__(self, game, x, y, w, h, activator_id, image):
+        w = int(w)
+        h = int(h)
         self.game = game
         self.rect = pg.Rect(x, y, w, h)
         self.x = x
         self.y = y
         self.rect.x = x
         self.rect.y = y
-        self.image = image
+        self.image = pg.transform.scale(image, (w, h))
         self.groups = game.walls, game.all_sprites
         self._layer = -2
         self.activator_id = activator_id

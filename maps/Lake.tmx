@@ -162,8 +162,7 @@
   <object id="58" name="playerBottom" x="496" y="936" width="16" height="16"/>
   <object id="59" name="Text" type="Interact" x="296" y="384" width="16" height="14.0909">
    <properties>
-    <property name="part1" value="test"/>
-    <property name="part2" value="test test"/>
+    <property name="text" value="test test"/>
    </properties>
   </object>
   <object id="60" name="wall" x="296" y="352" width="16" height="32"/>

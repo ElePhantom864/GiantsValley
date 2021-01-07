@@ -77,10 +77,6 @@ class Game:
 
     def new(self):
         # initialize all variables and do all the setup for a new game
-        self.load_map('Zelda.tmx', 'playerCenter')
-
-    def load_map(self, map_name, playerLocation):
-        self.current_interactable = None
         self.all_sprites = pg.sprite.Group()
         self.walls = pg.sprite.Group()
         self.teleports = pg.sprite.Group()
@@ -89,6 +85,22 @@ class Game:
         self.interactables = pg.sprite.Group()
         self.activators = pg.sprite.Group()
         self.pushers = pg.sprite.Group()
+        self.player = spr.Player(
+            self, 0, 0)
+        self.load_map('Zelda.tmx', 'playerCenter')
+
+    def load_map(self, map_name, playerLocation):
+        self.all_sprites.empty()
+        self.walls.empty()
+        self.teleports.empty()
+        self.enemies.empty()
+        self.sword.empty()
+        self.interactables.empty()
+        self.activators.empty()
+        self.pushers.empty()
+        self.player.add([self.pushers, self.all_sprites])
+
+        self.current_interactable = None
         self.map = TiledMap(path.join(self.map_folder, map_name))
         self.map_img = self.map.make_map()
         self.map_rect = self.map_img.get_rect()
@@ -108,12 +120,12 @@ class Game:
             if tile_object.name == 'activator':
                 activator = spr.Activator(
                     self, tile_object.x, tile_object.y, tile_object.width,
-                    tile_object.height, tile_object.image)
+                    tile_object.height, tile_object.image, tile_object.type)
                 self.objects_by_id[tile_object.id] = activator
             if tile_object.name == 'pushable':
                 spr.Obstacle(
                     self, tile_object.x, tile_object.y, tile_object.width,
-                    tile_object.height, True, tile_object.image)
+                    tile_object.height, True, tile_object.image, tile_object.type)
             if tile_object.name == 'door':
                 activator_id = tile_object.properties['activator']
                 door = spr.Door(
@@ -129,18 +141,22 @@ class Game:
                     route = self.map.tmxdata.get_object_by_id(tile_object.properties[route_name])
                     routes.append(vec(route.x, route.y))
                 self.load_mob_images(tile_object.name)
+                health = tile_object.properties['health']
+                speed = tile_object.properties['speed']
+                damage = tile_object.properties['damage']
                 spr.Enemy(
-                    self, obj_center.x, obj_center.y, self.mob_images[tile_object.name], 3, 60, routes)
+                    self, obj_center.x, obj_center.y, self.mob_images[tile_object.name], health, speed, damage, routes)
             if tile_object.type == 'Teleport':
                 spr.Teleport(
                     self, tile_object.x, tile_object.y,
                     tile_object.width, tile_object.height,
                     tile_object.name, tile_object.properties['playerLocation'])
-            if tile_object.type == 'Interact':
+            if tile_object.name == 'Interact':
                 txt: str = tile_object.properties["text"]
-                spr.TextBox(
+                text = spr.TextBox(
                     self, tile_object.x, tile_object.y, tile_object.width,
-                    tile_object.height, txt)
+                    tile_object.height, txt, tile_object.type)
+                self.objects_by_id[tile_object.id] = text
 
         self.camera = Camera(self.map.width, self.map.height)
 
@@ -220,6 +236,10 @@ class Game:
 
     def stop_presenting_text(self):
         self.current_interactable.text.kill()
+        if self.current_interactable.type == "Sword":
+            self.player.add_item(s.Items.SWORD)
+        elif self.current_interactable.type == "Lever":
+            self.current_interactable.activated = True
         self.dialog_text_chunks = None
         self.pause_game = False
 
@@ -265,9 +285,12 @@ class Game:
                 self.mob_images[mob_name][direction] = []
                 for i in [1, 2]:
                     img = mob_name + direction.value + str(i) + ".png"
-                    loaded_image = pg.image.load(
-                        path.join(self.img_folder, img)).convert_alpha()
-                    self.mob_images[mob_name][direction].append(loaded_image)
+                    try:
+                        loaded_image = pg.image.load(
+                            path.join(self.img_folder, img)).convert_alpha()
+                        self.mob_images[mob_name][direction].append(loaded_image)
+                    except FileNotFoundError as e:
+                        print("Mob image is missing", e)
 
 
 # create the game object

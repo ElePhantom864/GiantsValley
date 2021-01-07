@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="49">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="50">
  <tileset firstgid="1" source="Base.tsx"/>
  <tileset firstgid="1065" source="[A]Water_pipo.tsx"/>
  <layer id="1" name="Ground" width="30" height="30">
@@ -205,5 +205,10 @@
    </properties>
   </object>
   <object id="48" name="EntranceH" x="776" y="232" width="16" height="16"/>
+  <object id="49" name="Transition2.tmx" type="Teleport" x="960" y="344" width="8" height="256">
+   <properties>
+    <property name="playerLocation" value="playerLeft"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

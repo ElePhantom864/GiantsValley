@@ -9,6 +9,11 @@ class Direction(Enum):
     RIGHT = 'Right'
 
 
+class Items(Enum):
+    SWORD = 'sword'
+    HEALTH_POTION = 'health_potion'
+
+
 # define some colors (R, G, B)
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)

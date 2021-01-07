@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="15" nextobjectid="93">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="16" nextobjectid="105">
  <tileset firstgid="1" name="[A]WaterFall_pipo" tilewidth="32" tileheight="32" tilecount="576" columns="32">
   <image source="[A]WaterFall_pipo.png" width="1024" height="576"/>
  </tileset>
@@ -278,13 +278,17 @@
   <object id="31" name="playerBottom" x="488" y="936" width="16" height="16"/>
   <object id="32" name="playerLeft" x="8" y="520" width="16" height="16"/>
   <object id="33" name="playerTop" x="456" y="8" width="16" height="16"/>
-  <object id="34" name="Lake.tmx" type="Teleport" x="224" y="-8" width="448" height="8">
+  <object id="34" name="Bridge.tmx" type="Teleport" x="224" y="-8" width="448" height="8">
    <properties>
     <property name="playerLocation" value="playerBottom"/>
    </properties>
   </object>
   <object id="35" name="RightTeleport" type="Teleport1" x="960" y="384" width="8" height="248"/>
-  <object id="36" name="LeftTeleport" type="Teleport1" x="-8" y="416" width="8" height="192"/>
+  <object id="36" name="Transition1.tmx" type="Teleport" x="-8" y="416" width="8" height="192">
+   <properties>
+    <property name="playerLocation" value="playerRight"/>
+   </properties>
+  </object>
   <object id="37" name="BottomTeleport" type="Teleport1" x="320" y="960" width="352" height="8"/>
   <object id="38" name="wall" x="192" y="104" width="32" height="16"/>
   <object id="39" name="wall" x="352" y="256" width="64" height="64"/>
@@ -301,7 +305,7 @@
   <object id="50" name="wall" x="360" y="528" width="48" height="16"/>
   <object id="51" name="wall" x="416" y="576" width="32" height="32"/>
   <object id="52" name="wall" x="520" y="384" width="16" height="32"/>
-  <object id="56" name="Text" type="Interact" x="520" y="416" width="16" height="14.0909">
+  <object id="56" name="Interact" x="520" y="416" width="16" height="14.0909">
    <properties>
     <property name="text">You see some mail. It has the royal sealt. Inside it reads:
 From the gracious King Porphyron to his most loyal subject.
@@ -312,7 +316,7 @@ As my vassal, as per your oath, you must answer to my call, to bear, once again,
 and destroy the enemy of our people.
 That which I have written to you is only a few strings of this intricate web we have gotten ourselves stuck in,
 for the task ahead of you is of the utmost importance and secrecy.
-I ask you to come to the royal hall, East of the bridge leading to the wicked castle
+I ask you to come to the mountain hall,North of yout village and East of the bridge leading to the wicked castle
 May your journey here be swift, for we cannot tarry but a moment.
 Signed - Kronus Poryphyron</property>
    </properties>
@@ -323,9 +327,12 @@ Signed - Kronus Poryphyron</property>
   <object id="60" name="wall" x="784" y="464" width="16" height="48"/>
   <object id="61" name="Cobra" type="mob" x="488" y="520" width="16" height="16">
    <properties>
+    <property name="damage" type="int" value="1"/>
+    <property name="health" type="int" value="3"/>
     <property name="route1" type="object" value="62"/>
     <property name="route2" type="object" value="66"/>
     <property name="route3" type="object" value="67"/>
+    <property name="speed" type="int" value="60"/>
    </properties>
   </object>
   <object id="62" name="route1" x="496" y="920">
