@@ -110,8 +110,7 @@ class Game:
             obj_center = vec(tile_object.x + tile_object.width / 2,
                              tile_object.y + tile_object.height / 2)
             if tile_object.name == playerLocation:
-                self.player = spr.Player(
-                    self, obj_center.x, obj_center.y)
+                self.player.set_pos(obj_center.x, obj_center.y)
             if tile_object.name == 'wall':
                 obstacle = spr.Obstacle(
                     self, tile_object.x, tile_object.y, tile_object.width,
