@@ -122,19 +122,19 @@ class Player(pg.sprite.Sprite):
             if self.facing == s.Direction.DOWN:
                 pos = vec(self.rect.centerx, self.rect.bottom - 10)
                 rot = 90
-                Sword(self.game, pos, rot, (self._layer + 1))
+                Sword(self.game, pos, rot, (self._layer + 2))
             if self.facing == s.Direction.UP:
                 pos = vec(self.rect.centerx, self.rect.top + 10)
                 rot = -90
-                Sword(self.game, pos, rot, (self._layer - 1))
+                Sword(self.game, pos, rot, (self._layer - 2))
             if self.facing == s.Direction.RIGHT:
                 pos = vec(self.rect.right - 10, self.rect.centery)
                 rot = 180
-                Sword(self.game, pos, rot, (self._layer - 1))
+                Sword(self.game, pos, rot, (self._layer - 2))
             if self.facing == s.Direction.LEFT:
                 pos = vec(self.rect.left + 10, self.rect.centery)
                 rot = 0
-                Sword(self.game, pos, rot, (self._layer - 1))
+                Sword(self.game, pos, rot, (self._layer - 2))
 
     def animate_movement(self):
         if pg.time.get_ticks() < self.next_animation_tick:
@@ -250,7 +250,7 @@ class Obstacle(pg.sprite.Sprite):
             self.image = image
             self.rect = self.image.get_rect()
             self.groups = game.walls, game.pushers, game.all_sprites
-            self._layer = -2
+            self._layer = s.PUSH_LAYER
             self.pos = vec(x, y)
             self.rect.center = self.pos
             self.hit_rect = self.rect
@@ -354,7 +354,7 @@ class TextBox(pg.sprite.Sprite):
 
 class Enemy(pg.sprite.Sprite):
     def __init__(self, game, x, y, images, health, speed, damage, routes):
-        self._layer = -2
+        self._layer = s.ENEMY_LAYER
         self.groups = game.enemies, game.all_sprites
         pg.sprite.Sprite.__init__(self, self.groups)
         self.game = game
@@ -435,7 +435,7 @@ class Activator(pg.sprite.Sprite):
         self.game = game
         self.rect = self.image.get_rect()
         self.groups = game.activators, game.all_sprites
-        self._layer = -3
+        self._layer = s.ACTIVATOR_LAYER
         self.pos = vec(x, y)
         self.rect.center = self.pos
         self.activated = False
@@ -466,7 +466,7 @@ class Door(pg.sprite.Sprite):
         self.rect.y = y
         self.image = pg.transform.scale(image, (w, h))
         self.groups = game.walls, game.all_sprites
-        self._layer = -2
+        self._layer = s.DOOR_LAYER
         self.activator_id = activator_id
         pg.sprite.Sprite.__init__(self, self.groups)
 

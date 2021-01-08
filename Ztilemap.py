@@ -15,21 +15,27 @@ class TiledMap:
         self.height = tm.height * tm.tileheight
         self.tmxdata = tm
 
-    def render(self, surface):
+    def render(self, top_surface, bottom_surface):
         ti = self.tmxdata.get_tile_image_by_gid
         for layer in self.tmxdata.visible_layers:
             if isinstance(layer, pytmx.TiledTileLayer):
                 for x, y, gid, in layer:
                     tile = ti(gid)
                     if tile:
-                        surface.blit(
-                            tile, (x * self.tmxdata.tilewidth,
-                                   y * self.tmxdata.tileheight))
+                        if 'top' in layer.properties:
+                            top_surface.blit(
+                                tile, (x * self.tmxdata.tilewidth,
+                                       y * self.tmxdata.tileheight))
+                        else:
+                            bottom_surface.blit(
+                                tile, (x * self.tmxdata.tilewidth,
+                                       y * self.tmxdata.tileheight))
 
     def make_map(self):
-        temp_surface = pg.Surface((self.width, self.height))
-        self.render(temp_surface)
-        return temp_surface
+        top_surface = pg.Surface((self.width, self.height), pg.SRCALPHA)
+        bottom_surface = pg.Surface((self.width, self.height))
+        self.render(top_surface, bottom_surface)
+        return top_surface, bottom_surface
 
 
 class Camera:

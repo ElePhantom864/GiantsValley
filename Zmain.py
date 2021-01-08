@@ -102,8 +102,8 @@ class Game:
 
         self.current_interactable = None
         self.map = TiledMap(path.join(self.map_folder, map_name))
-        self.map_img = self.map.make_map()
-        self.map_rect = self.map_img.get_rect()
+        self.map_top_img, self.map_bottom_img = self.map.make_map()
+        self.map_rect = self.map_bottom_img.get_rect()
         self.objects_by_id = {}
 
         for tile_object in self.map.tmxdata.objects:
@@ -207,10 +207,11 @@ class Game:
 
     def draw(self):
         pg.display.set_caption("{:.2f}".format(self.clock.get_fps()))
-        self.screen.blit(self.map_img, self.camera.apply_rect(self.map_rect))
+        self.screen.blit(self.map_bottom_img, self.camera.apply_rect(self.map_rect))
         sprites = sorted(self.all_sprites, key=lambda spr: spr._layer)
         for sprite in sprites:
             self.screen.blit(sprite.image, self.camera.apply(sprite))
+        self.screen.blit(self.map_top_img, self.camera.apply_rect(self.map_rect))
         self.ui_manager.draw_ui(self.screen)
         self.player.draw_health(self.screen)
         pg.display.flip()
