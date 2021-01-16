@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="70">
+ <tileset firstgid="1" source="Base.tsx"/>
+ <tileset firstgid="1065" source="hunter.tsx"/>
+ <tileset firstgid="1069" source="Shadows.tsx"/>
+ <tileset firstgid="1087" source="gradient.tsx"/>
+ <layer id="1" name="Ground" width="30" height="30">
+  <data encoding="csv">
+6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,
+6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,
+6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,
+6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,
+6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,
+6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,
+6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,
+6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,
+6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,
+6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,
+6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,
+6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,
+6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,
+6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,
+6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,
+6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,
+6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,
+6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,
+6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,8,8,8,8,8,8,8,8,8,8,8,8,6,6,6,
+6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,8,6,6,6,6,6,6,6,6,6,6,8,6,6,6,
+6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,8,6,6,6,6,6,6,6,6,6,6,8,6,6,6,
+6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,8,6,6,6,6,6,6,6,6,6,6,8,6,6,6,
+6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,8,6,6,6,6,6,6,6,6,6,6,8,6,6,6,
+6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,8,6,6,6,
+6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,8,6,6,6,6,6,6,6,6,6,6,8,6,6,6,
+6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,8,6,6,6,6,6,6,6,6,6,6,8,6,6,6,
+6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,8,6,6,6,6,6,6,6,6,6,6,8,6,6,6,
+6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,8,6,6,6,6,6,6,6,6,6,6,8,6,6,6,
+6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,8,6,6,6,6,6,6,6,6,6,6,8,6,6,6,
+6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,8,8,8,8,8,8,8,8,8,8,8,8,6,6,6
+</data>
+ </layer>
+ <layer id="3" name="Decor" width="30" height="30">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,66,66,66,66,66,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,66,67,64,0,0,0,66,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,66,0,72,0,0,0,66,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,66,0,0,0,0,0,66,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,66,0,0,0,0,0,66,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,66,66,0,0,0,66,66,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,66,0,0,0,0,66,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,66,66,66,66,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,66,66,66,66,66,66,66,66,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,66,0,0,0,0,68,0,66,0,0,0,0,0,0,0,909,0,0,909,940,941,909,0,0,909,0,0,0,0,
+0,66,0,71,0,0,0,0,66,0,0,0,0,0,0,0,917,0,0,917,948,949,917,0,0,917,0,0,0,0,
+0,66,0,0,0,0,0,0,66,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,66,66,66,66,66,66,66,66,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="5" name="Shadow" width="30" height="30" opacity="0.79">
+  <properties>
+   <property name="top" type="int" value="0"/>
+  </properties>
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1071,1071,1071,1071,1071,1071,1071,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1071,1071,1071,1071,1071,1071,1078,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1071,1071,1071,1071,1071,1078,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1071,1071,1078,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup id="2" name="Objects">
+  <object id="1" name="wall" x="224" y="288" width="32" height="160"/>
+  <object id="2" name="wall" x="256" y="416" width="32" height="64"/>
+  <object id="3" name="wall" x="256" y="256" width="160" height="32"/>
+  <object id="4" name="wall" x="416" y="288" width="32" height="192"/>
+  <object id="5" name="wall" x="288" y="480" width="128" height="32"/>
+  <object id="6" name="wall" x="384" y="416" width="32" height="32"/>
+  <object id="7" name="wall" x="288" y="288" width="32" height="64"/>
+  <object id="9" name="pushable" type="2" gid="68" x="320" y="416" width="32" height="32"/>
+  <object id="14" name="pushable" type="1" gid="68" x="352" y="416" width="32" height="32"/>
+  <object id="15" name="pushable" type="3" gid="68" x="352" y="384" width="32" height="32"/>
+  <object id="16" name="pushable" type="4" gid="68" x="320" y="352" width="32" height="32"/>
+  <object id="17" name="pushable" gid="68" x="384" y="352" width="32" height="32"/>
+  <object id="20" name="activator" type="1" gid="71" x="384" y="480" width="32" height="32"/>
+  <object id="21" name="activator" type="2" gid="71" x="352" y="480" width="32" height="32"/>
+  <object id="22" name="activator" type="3" gid="71" x="320" y="480" width="32" height="32"/>
+  <object id="23" name="activator" type="4" gid="71" x="288" y="480" width="32" height="32"/>
+  <object id="28" name="push_puzzle" x="392" y="392" width="16" height="16"/>
+  <object id="30" name="door" gid="217" x="256" y="352" width="32" height="32">
+   <properties>
+    <property name="activator" type="object" value="23"/>
+   </properties>
+  </object>
+  <object id="31" name="door" gid="217" x="256" y="352" width="32" height="32">
+   <properties>
+    <property name="activator" type="object" value="22"/>
+   </properties>
+  </object>
+  <object id="32" name="door" gid="217" x="256" y="352" width="32" height="32">
+   <properties>
+    <property name="activator" type="object" value="21"/>
+   </properties>
+  </object>
+  <object id="33" name="door" gid="217" x="256" y="352" width="32" height="32">
+   <properties>
+    <property name="activator" type="object" value="20"/>
+   </properties>
+  </object>
+  <object id="34" name="pushable" type="eagle" gid="1065" x="656" y="768" width="32" height="32"/>
+  <object id="35" name="pushable" type="peacock" gid="1066" x="720" y="832" width="32" height="32"/>
+  <object id="36" name="pushable" type="parrot" gid="1067" x="656" y="896" width="32" height="32"/>
+  <object id="37" name="pushable" type="dove" gid="1068" x="592" y="832" width="32" height="32"/>
+  <object id="39" name="activator" type="parrot" gid="71" x="512" y="704" width="32" height="32"/>
+  <object id="40" name="door" gid="217" x="480" y="768" width="32" height="32">
+   <properties>
+    <property name="activator" type="object" value="39"/>
+   </properties>
+  </object>
+  <object id="45" name="activator" type="peacock" gid="71" x="608" y="704" width="32" height="32"/>
+  <object id="46" name="door" gid="217" x="480" y="768" width="32" height="32">
+   <properties>
+    <property name="activator" type="object" value="45"/>
+   </properties>
+  </object>
+  <object id="47" name="activator" type="dove" gid="71" x="704" y="704" width="32" height="32"/>
+  <object id="48" name="door" gid="217" x="480" y="768" width="32" height="32">
+   <properties>
+    <property name="activator" type="object" value="47"/>
+   </properties>
+  </object>
+  <object id="49" name="activator" type="eagle" gid="71" x="800" y="704" width="32" height="32"/>
+  <object id="50" name="door" gid="217" x="480" y="768" width="32" height="32">
+   <properties>
+    <property name="activator" type="object" value="49"/>
+   </properties>
+  </object>
+  <object id="51" name="wall" x="480" y="576" width="32" height="160"/>
+  <object id="52" name="wall" x="512" y="576" width="352" height="32"/>
+  <object id="53" name="wall" x="832" y="608" width="32" height="320"/>
+  <object id="54" name="wall" x="480" y="928" width="384" height="32"/>
+  <object id="55" name="wall" x="480" y="768" width="32" height="160"/>
+  <object id="56" name="hunter_puzzle" x="664" y="808" width="16" height="16"/>
+  <object id="57" name="Interact" x="648" y="672" width="48" height="24">
+   <properties>
+    <property name="text">Four hunters who lived with their own feathery friend until death
+Their wish, to be reunited once again where they rest, to be remembered as one long after the end
+The hunter of North, who does not rest in shadow, seeks the bird with mighty claws and hunter's eye,
+to have him be near on the ground below
+His brother, the hunter of South, lays not near his sibling and not near the hunter of East, 
+his wish to be with the bird he gifted with speech, long deceased
+Hunter of East was laid down in the line neither as the first or the last, the bird of beauty is the bird from his past
+The hunter of West went to rest with the hunters of the North and East, reunite him again with the bird which symbols peace
+Will you help these men find old friend once again? </property>
+   </properties>
+  </object>
+  <object id="58" name="wall" x="512" y="608" width="32" height="64"/>
+  <object id="59" name="wall" x="608" y="608" width="128" height="64"/>
+  <object id="61" name="wall" x="800" y="608" width="32" height="64"/>
+  <object id="63" name="King" type="mob" x="96" y="640" width="32" height="32">
+   <properties>
+    <property name="activator" type="object" value="64"/>
+    <property name="damage" type="int" value="0"/>
+    <property name="health" type="int" value="10000"/>
+    <property name="knockback" type="int" value="0"/>
+    <property name="speed" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="64" name="Interact" type="Lever" x="192" y="640" width="32" height="32">
+   <properties>
+    <property name="text" value="Switch Flicked"/>
+   </properties>
+  </object>
+  <object id="65" name="wall" x="32" y="576" width="32" height="160"/>
+  <object id="66" name="wall" x="256" y="576" width="32" height="160"/>
+  <object id="67" name="wall" x="32" y="576" width="256" height="32"/>
+  <object id="68" name="wall" x="32" y="704" width="256" height="32"/>
+  <object id="69" name="spawner_test" x="232" y="648" width="16" height="16"/>
+ </objectgroup>
+</map>

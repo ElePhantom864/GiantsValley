@@ -63,7 +63,6 @@ PLAYER_IMAGES = {
 
 # mob settings
 COBRA_SPEED = 100
-COBRA_KNOCKBACK = 30
 COBRA_IMAGES = {
     Direction.UP: [
         'CobraUp1.png',
@@ -87,5 +86,5 @@ COBRA_IMAGES = {
 PLAYER_LAYER = 0
 PUSH_LAYER = -2
 ENEMY_LAYER = -2
-ACTIVATOR_LAYER = -2
 DOOR_LAYER = -2
+ACTIVATOR_LAYER = -4

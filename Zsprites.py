@@ -14,11 +14,13 @@ def collide_with_walls(sprite, group, dir):
         hits = pg.sprite.spritecollide(
             sprite, group, False, collide_hit_rect)
         if hits:
-            if hits[0].rect.centerx > sprite.hit_rect.centerx:
-                sprite.pos.x = hits[0].rect.left - sprite.hit_rect.width / 2
-            if hits[0].rect.centerx < sprite.hit_rect.centerx:
-                sprite.pos.x = hits[0].rect.right + sprite.hit_rect.width / 2
             for hit in hits:
+                if hit != sprite:
+                    if hit.rect.centerx > sprite.hit_rect.centerx:
+                        sprite.pos.x = hit.rect.left - sprite.hit_rect.width / 2
+                    if hit.rect.centerx < sprite.hit_rect.centerx:
+                        sprite.pos.x = hit.rect.right + sprite.hit_rect.width / 2
+
                 if sprite.__class__ == Player:
                     hit.push()
             sprite.vel.x = 0
@@ -27,12 +29,14 @@ def collide_with_walls(sprite, group, dir):
         hits = pg.sprite.spritecollide(
             sprite, group, False, collide_hit_rect)
         if hits:
-            if hits[0].rect.centery > sprite.hit_rect.centery:
-                sprite.pos.y = hits[0].rect.top - sprite.hit_rect.height / 2
-            if hits[0].rect.centery < sprite.hit_rect.centery:
-                sprite.pos.y = hits[0].rect.bottom + \
-                    sprite.hit_rect.height / 2
             for hit in hits:
+                if hit != sprite:
+                    if hit.rect.centery > sprite.hit_rect.centery:
+                        sprite.pos.y = hit.rect.top - sprite.hit_rect.height / 2
+                    if hit.rect.centery < sprite.hit_rect.centery:
+                        sprite.pos.y = hit.rect.bottom + \
+                            sprite.hit_rect.height / 2
+
                 if sprite.__class__ == Player:
                     hit.push()
             sprite.vel.y = 0
@@ -279,19 +283,16 @@ class Obstacle(pg.sprite.Sprite):
 
         if direction == "x":
             self.pos.x += self.vel.x * self.game.dt
+            self.rect.center = self.pos
+            self.hit_rect.centerx = self.pos.x
+            collide_with_walls(self, self.game.walls, 'x')
         if direction == "y":
             self.pos.y += self.vel.y * self.game.dt
+            self.rect.center = self.pos
+            self.hit_rect.centery = self.pos.y
+            collide_with_walls(self, self.game.walls, 'y')
 
-        self.rect.center = self.pos
-        self.hit_rect.centerx = self.pos.x
-        self.hit_rect.centerx = self.pos.x
-        collide_with_walls(self, self.game.walls, 'x')
-        self.hit_rect.centery = self.pos.y
-        collide_with_walls(self, self.game.walls, 'y')
         self.rect.center = self.hit_rect.center
-
-    def activate(self):
-        self.kill()
 
 
 class Teleport(pg.sprite.Sprite):
@@ -353,7 +354,7 @@ class TextBox(pg.sprite.Sprite):
 
 
 class Enemy(pg.sprite.Sprite):
-    def __init__(self, game, x, y, images, health, speed, damage, routes):
+    def __init__(self, game, x, y, images, health, speed, damage, knockback, routes):
         self._layer = s.ENEMY_LAYER
         self.groups = game.enemies, game.all_sprites
         pg.sprite.Sprite.__init__(self, self.groups)
@@ -367,8 +368,8 @@ class Enemy(pg.sprite.Sprite):
         self.next_animation_tick = 0
         self.animation_phase = 0
         self.routes = routes + [vec(x, y)]
-        self.vel = 1
-        self.delay = 60 // speed
+        self.vel = min(1, speed)
+        self.delay = 60 // max(speed, 1)
         if speed > 60:
             self.vel = speed // 60
             self.delay = 1
@@ -376,6 +377,7 @@ class Enemy(pg.sprite.Sprite):
         self.health = health
         self.timeLoop = 0
         self.damage = damage
+        self.knockback = knockback
 
     def animate_movement(self):
         if pg.time.get_ticks() < self.next_animation_tick:
@@ -392,13 +394,13 @@ class Enemy(pg.sprite.Sprite):
         if self.health <= 0:
             self.kill()
         if facing == s.Direction.RIGHT:
-            self.pos.x += s.COBRA_KNOCKBACK
+            self.pos.x += self.knockback
         if facing == s.Direction.LEFT:
-            self.pos.x -= s.COBRA_KNOCKBACK
+            self.pos.x -= self.knockback
         if facing == s.Direction.UP:
-            self.pos.y -= s.COBRA_KNOCKBACK
+            self.pos.y -= self.knockback
         if facing == s.Direction.DOWN:
-            self.pos.y += s.COBRA_KNOCKBACK
+            self.pos.y += self.knockback
 
     def update(self):
         self.timeLoop += 1
@@ -455,7 +457,7 @@ class Activator(pg.sprite.Sprite):
 
 
 class Door(pg.sprite.Sprite):
-    def __init__(self, game, x, y, w, h, activator_id, image):
+    def __init__(self, game, x, y, w, h, activator_id, typ, image):
         w = int(w)
         h = int(h)
         self.game = game
@@ -468,6 +470,7 @@ class Door(pg.sprite.Sprite):
         self.groups = game.walls, game.all_sprites
         self._layer = s.DOOR_LAYER
         self.activator_id = activator_id
+        self.type = typ
         pg.sprite.Sprite.__init__(self, self.groups)
 
     def activate(self):
@@ -480,10 +483,47 @@ class Door(pg.sprite.Sprite):
 
     def update(self):
         activator = self.game.objects_by_id[self.activator_id]
-        if activator.activated:
-            self.activate()
+        if self.type == 'Opposite':
+            if not activator.activated:
+                self.activate()
+            else:
+                self.deactivate()
         else:
-            self.deactivate()
+            if activator.activated:
+                self.activate()
+            else:
+                self.deactivate()
 
     def push(self):
         pass
+
+
+class Spawner(pg.sprite.Sprite):
+    def __init__(self, game, x, y, images, health, speed, damage, knockback, routes, activator_id):
+        self.groups = game.all_sprites
+        self._layer = 0
+        self.x = x
+        self.y = y
+        self.game = game
+        self.images = images
+        self.image = pg.Surface((0, 0))
+        self.rect = self.image.get_rect()
+        self.health = health
+        self.speed = speed
+        self.damage = damage
+        self.knockback = knockback
+        self.routes = routes
+        self.activator_id = activator_id
+        pg.sprite.Sprite.__init__(self, self.groups)
+
+    def update(self):
+        activator = self.game.objects_by_id[self.activator_id]
+        print(activator.activated)
+        if activator.activated:
+            self.activate()
+
+    def activate(self):
+        Enemy(
+            self.game, self.x, self.y, self.images, self.health, self.speed, self.damage,
+            self.knockback, self.routes)
+        self.kill()
