@@ -87,7 +87,7 @@ class Game:
         self.pushers = pg.sprite.Group()
         self.player = spr.Player(
             self, 0, 0)
-        self.load_map('Zelda.tmx', 'playerCenter')
+        self.load_map('Test.tmx', 'spawner_test')
 
     def load_map(self, map_name, playerLocation):
         self.all_sprites.empty()
@@ -118,18 +118,18 @@ class Game:
                 self.objects_by_id[tile_object.id] = obstacle
             if tile_object.name == 'activator':
                 activator = spr.Activator(
-                    self, tile_object.x, tile_object.y, tile_object.width,
+                    self, obj_center.x, obj_center.y, tile_object.width,
                     tile_object.height, tile_object.image, tile_object.type)
                 self.objects_by_id[tile_object.id] = activator
             if tile_object.name == 'pushable':
                 spr.Obstacle(
-                    self, tile_object.x, tile_object.y, tile_object.width,
+                    self, obj_center.x, obj_center.y, tile_object.width,
                     tile_object.height, True, tile_object.image, tile_object.type)
             if tile_object.name == 'door':
                 activator_id = tile_object.properties['activator']
                 door = spr.Door(
                     self, tile_object.x, tile_object.y, tile_object.width,
-                    tile_object.height, activator_id, tile_object.image)
+                    tile_object.height, activator_id, tile_object.type, tile_object.image)
                 self.objects_by_id[tile_object.id] = door
             if tile_object.type == 'mob':
                 routes = []
@@ -143,8 +143,16 @@ class Game:
                 health = tile_object.properties['health']
                 speed = tile_object.properties['speed']
                 damage = tile_object.properties['damage']
-                spr.Enemy(
-                    self, obj_center.x, obj_center.y, self.mob_images[tile_object.name], health, speed, damage, routes)
+                knockback = tile_object.properties['knockback']
+                if 'activator' in tile_object.properties:
+                    activator_id = tile_object.properties['activator']
+                    spr.Spawner(
+                        self, obj_center.x, obj_center.y, self.mob_images[tile_object.name], health, speed, damage,
+                        knockback, routes, activator_id)
+                else:
+                    spr.Enemy(
+                        self, obj_center.x, obj_center.y, self.mob_images[tile_object.name], health, speed, damage,
+                        knockback, routes)
             if tile_object.type == 'Teleport':
                 spr.Teleport(
                     self, tile_object.x, tile_object.y,
@@ -239,7 +247,7 @@ class Game:
         if self.current_interactable.type == "Sword":
             self.player.add_item(s.Items.SWORD)
         elif self.current_interactable.type == "Lever":
-            self.current_interactable.activated = True
+            self.current_interactable.activated = not self.current_interactable.activated
         self.dialog_text_chunks = None
         self.pause_game = False
 
