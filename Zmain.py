@@ -87,7 +87,7 @@ class Game:
         self.pushers = pg.sprite.Group()
         self.player = spr.Player(
             self, 0, 0)
-        self.load_map('Test.tmx', 'spawner_test')
+        self.load_map('Zelda.tmx', 'playerCenter')
 
     def load_map(self, map_name, playerLocation):
         self.all_sprites.empty()
@@ -102,6 +102,7 @@ class Game:
 
         self.current_interactable = None
         self.map = TiledMap(path.join(self.map_folder, map_name))
+        self.camera = Camera(self.map.width, self.map.height)
         self.map_top_img, self.map_bottom_img = self.map.make_map()
         self.map_rect = self.map_bottom_img.get_rect()
         self.objects_by_id = {}
@@ -160,12 +161,13 @@ class Game:
                     tile_object.name, tile_object.properties['playerLocation'])
             if tile_object.name == 'Interact':
                 txt: str = tile_object.properties["text"]
+                activator_id = 0
+                if 'activator' in tile_object.properties:
+                    activator_id = tile_object.properties['activator']
                 text = spr.TextBox(
                     self, tile_object.x, tile_object.y, tile_object.width,
-                    tile_object.height, txt, tile_object.type)
+                    tile_object.height, txt, tile_object.type, activator_id)
                 self.objects_by_id[tile_object.id] = text
-
-        self.camera = Camera(self.map.width, self.map.height)
 
     def run(self):
         # game loop - set self.playing = False to end the game
@@ -189,6 +191,7 @@ class Game:
         hits = pg.sprite.spritecollide(self.player, self.teleports, False)
         for hit in hits:
             self.load_map(hit.destination, hit.location)
+            return
         hits = pg.sprite.spritecollide(self.player, self.enemies, False)
         for enemy in hits:
             self.player.hit(enemy)
@@ -248,6 +251,9 @@ class Game:
             self.player.add_item(s.Items.SWORD)
         elif self.current_interactable.type == "Lever":
             self.current_interactable.activated = not self.current_interactable.activated
+        elif self.current_interactable.type == "Activator":
+            self.objects_by_id[self.current_interactable.activator_id].activated\
+                = not self.objects_by_id[self.current_interactable.activator_id].activated
         self.dialog_text_chunks = None
         self.pause_game = False
 

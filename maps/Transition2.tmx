@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="127">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="161">
  <tileset firstgid="1" source="Base.tsx"/>
  <tileset firstgid="1065" source="[A]Grass_pipo.tsx"/>
  <layer id="1" name="Ground" width="30" height="30">
@@ -112,11 +112,11 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,51,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,44,0,0,0,0,0,0,0,0,0,
+0,0,51,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,65,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,867,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,45,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,165,0,0,0,65,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,52,0,0,
@@ -125,17 +125,54 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,52,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,65,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,867,0,0,0,0,0,0,0,0,0,0,0,0,165,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,165,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,51,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,65,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,44,0,0,0,0,0,0,0,0,51,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,51,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,124,0,0,0,0,
 0,52,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,51,0,0,0,929,930,931,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,52,0,0,0,0,0,0,0,0,0,0,0,937,938,939,
-0,0,0,0,51,0,0,0,0,0,0,867,0,0,0,0,0,0,0,0,52,0,0,0,0,0,0,945,946,947,
+0,0,0,0,51,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,52,0,0,0,0,0,0,945,946,947,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,875
+</data>
+ </layer>
+ <layer id="6" name="Decor(top)" width="30" height="30">
+  <properties>
+   <property name="top" type="object" value="0"/>
+  </properties>
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,44,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,867,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,867,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,44,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,867,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
  <objectgroup id="5" name="Objects">
@@ -184,11 +221,146 @@
    </properties>
   </object>
   <object id="124" name="playerRight" x="920" y="440" width="16" height="16"/>
-  <object id="125" name="playerLeft" x="24" y="472" width="16" height="16"/>
+  <object id="125" name="playerLeft" x="16" y="472" width="16" height="16"/>
   <object id="126" name="Canyon1.tmx" type="Teleport" x="-8" y="344" width="8" height="264">
    <properties>
     <property name="playerLocation" value="playerRight"/>
    </properties>
+  </object>
+  <object id="127" name="wall" x="480" y="616" width="32" height="24"/>
+  <object id="128" name="wall" x="352" y="904" width="32" height="24"/>
+  <object id="129" name="wall" x="264" y="792" width="16" height="8"/>
+  <object id="130" name="wall" x="224" y="328" width="32" height="24"/>
+  <object id="131" name="wall" x="648" y="216" width="16" height="8"/>
+  <object id="132" name="playerLeftUp" x="24" y="216" width="16" height="16"/>
+  <object id="134" name="playerLeftDown" x="24" y="680" width="16" height="16"/>
+  <object id="135" name="playerLeftBottom" x="24" y="864" width="16" height="16"/>
+  <object id="136" name="Canyon1.tmx" type="Teleport" x="-8" y="152" width="8" height="136">
+   <properties>
+    <property name="playerLocation" value="playerRightUp"/>
+   </properties>
+  </object>
+  <object id="137" name="Canyon1.tmx" type="Teleport" x="-8" y="624" width="8" height="136">
+   <properties>
+    <property name="playerLocation" value="playerRightDown"/>
+   </properties>
+  </object>
+  <object id="138" name="Canyon1.tmx" type="Teleport" x="-8" y="784" width="8" height="176">
+   <properties>
+    <property name="playerLocation" value="playerRightBottom"/>
+   </properties>
+  </object>
+  <object id="139" name="Cobra" type="mob" x="808" y="232" width="16" height="16">
+   <properties>
+    <property name="damage" type="int" value="1"/>
+    <property name="health" type="int" value="3"/>
+    <property name="knockback" type="int" value="30"/>
+    <property name="route1" type="object" value="147"/>
+    <property name="route2" type="object" value="148"/>
+    <property name="speed" type="int" value="50"/>
+   </properties>
+  </object>
+  <object id="140" name="Cobra" type="mob" x="616" y="520" width="16" height="16">
+   <properties>
+    <property name="damage" type="int" value="1"/>
+    <property name="health" type="int" value="3"/>
+    <property name="knockback" type="int" value="30"/>
+    <property name="route1" type="object" value="149"/>
+    <property name="route2" type="object" value="150"/>
+    <property name="speed" type="int" value="50"/>
+   </properties>
+  </object>
+  <object id="141" name="Cobra" type="mob" x="360" y="360" width="16" height="16">
+   <properties>
+    <property name="damage" type="int" value="1"/>
+    <property name="health" type="int" value="3"/>
+    <property name="knockback" type="int" value="30"/>
+    <property name="route1" type="object" value="145"/>
+    <property name="route2" type="object" value="146"/>
+    <property name="speed" type="int" value="50"/>
+   </properties>
+  </object>
+  <object id="143" name="Golem" type="mob" x="88" y="360" width="16" height="16">
+   <properties>
+    <property name="damage" type="int" value="3"/>
+    <property name="health" type="int" value="10"/>
+    <property name="knockback" type="int" value="5"/>
+    <property name="route1" type="object" value="152"/>
+    <property name="route2" type="object" value="151"/>
+    <property name="speed" type="int" value="20"/>
+   </properties>
+  </object>
+  <object id="144" name="Golem" type="mob" x="40" y="552" width="16" height="16">
+   <properties>
+    <property name="damage" type="int" value="3"/>
+    <property name="health" type="int" value="10"/>
+    <property name="knockback" type="int" value="5"/>
+    <property name="route1" type="object" value="153"/>
+    <property name="route2" type="object" value="154"/>
+    <property name="speed" type="int" value="20"/>
+   </properties>
+  </object>
+  <object id="145" x="400" y="272">
+   <point/>
+  </object>
+  <object id="146" x="496" y="400">
+   <point/>
+  </object>
+  <object id="147" x="592" y="304">
+   <point/>
+  </object>
+  <object id="148" x="848" y="400">
+   <point/>
+  </object>
+  <object id="149" x="784" y="528">
+   <point/>
+  </object>
+  <object id="150" x="720" y="688">
+   <point/>
+  </object>
+  <object id="151" x="176" y="336">
+   <point/>
+  </object>
+  <object id="152" x="240" y="464">
+   <point/>
+  </object>
+  <object id="153" x="176" y="496">
+   <point/>
+  </object>
+  <object id="154" x="240" y="560">
+   <point/>
+  </object>
+  <object id="155" name="Golem" type="mob" x="296" y="16" width="16" height="16">
+   <properties>
+    <property name="damage" type="int" value="3"/>
+    <property name="health" type="int" value="10"/>
+    <property name="knockback" type="int" value="5"/>
+    <property name="route1" type="object" value="159"/>
+    <property name="route2" type="object" value="160"/>
+    <property name="speed" type="int" value="20"/>
+   </properties>
+  </object>
+  <object id="156" name="Golem" type="mob" x="448" y="880" width="16" height="16">
+   <properties>
+    <property name="damage" type="int" value="3"/>
+    <property name="health" type="int" value="10"/>
+    <property name="knockback" type="int" value="5"/>
+    <property name="route1" type="object" value="157"/>
+    <property name="route2" type="object" value="158"/>
+    <property name="speed" type="int" value="20"/>
+   </properties>
+  </object>
+  <object id="157" x="496" y="784">
+   <point/>
+  </object>
+  <object id="158" x="752" y="912">
+   <point/>
+  </object>
+  <object id="159" x="432" y="48">
+   <point/>
+  </object>
+  <object id="160" x="176" y="144">
+   <point/>
   </object>
  </objectgroup>
 </map>

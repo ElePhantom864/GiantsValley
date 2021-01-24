@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="17" nextobjectid="249">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="17" nextobjectid="435">
  <tileset firstgid="1" name="[A]WaterFall_pipo" tilewidth="32" tileheight="32" tilecount="576" columns="32">
   <image source="[A]WaterFall_pipo.png" width="1024" height="576"/>
  </tileset>
@@ -231,7 +231,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,1194,1196,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,1450,0,0,0,0,0,0,0,1186,1196,855,856,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1186,1196,855,856,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,0,863,864,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,1194,1196,805,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,1194,1196,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -357,12 +357,12 @@ May your journey here be swift, for we cannot tarry but a moment.
 Signed - Kronus Poryphyron</property>
    </properties>
   </object>
-  <object id="58" name="wall" x="640" y="352" width="8" height="32"/>
-  <object id="107" name="wall" x="694" y="352" width="8" height="32"/>
-  <object id="108" name="wall" x="736" y="480" width="8" height="32"/>
-  <object id="109" name="wall" x="790" y="479" width="8" height="32"/>
-  <object id="110" name="wall" x="288" y="576" width="8" height="32"/>
-  <object id="111" name="wall" x="342" y="576" width="8" height="32"/>
+  <object id="58" name="wall" x="640" y="368" width="8" height="16"/>
+  <object id="107" name="wall" x="694" y="368" width="8" height="16"/>
+  <object id="108" name="wall" x="736" y="496" width="8" height="16"/>
+  <object id="109" name="wall" x="790" y="496" width="8" height="15"/>
+  <object id="110" name="wall" x="288" y="592" width="8" height="16"/>
+  <object id="111" name="wall" x="342" y="592" width="8" height="16"/>
   <object id="223" name="wall" x="416" y="504" width="32" height="8"/>
   <object id="224" name="wall" x="512" y="536" width="32" height="8"/>
   <object id="225" name="wall" x="608" y="600" width="32" height="8"/>
@@ -371,8 +371,55 @@ Signed - Kronus Poryphyron</property>
   <object id="228" name="wall" x="416" y="760" width="32" height="8"/>
   <object id="229" name="wall" x="416" y="184" width="32" height="8"/>
   <object id="230" name="wall" x="288" y="120" width="32" height="8"/>
-  <object id="231" name="wall" x="320" y="344" width="32" height="8"/>
   <object id="232" name="wall" x="576" y="152" width="32" height="8"/>
   <object id="233" name="wall" x="576" y="376" width="32" height="8"/>
+  <object id="425" name="Mouse" type="mob" x="600" y="304" width="16" height="16">
+   <properties>
+    <property name="damage" type="int" value="0"/>
+    <property name="health" type="int" value="1"/>
+    <property name="knockback" type="int" value="0"/>
+    <property name="route1" type="object" value="426"/>
+    <property name="route2" type="object" value="427"/>
+    <property name="speed" type="int" value="80"/>
+   </properties>
+  </object>
+  <object id="426" x="384" y="296">
+   <point/>
+  </object>
+  <object id="427" x="592" y="152">
+   <point/>
+  </object>
+  <object id="428" name="Mouse" type="mob" x="424" y="584" width="16" height="16">
+   <properties>
+    <property name="damage" type="int" value="0"/>
+    <property name="health" type="int" value="1"/>
+    <property name="knockback" type="int" value="0"/>
+    <property name="route1" type="object" value="429"/>
+    <property name="route2" type="object" value="430"/>
+    <property name="speed" type="int" value="60"/>
+   </properties>
+  </object>
+  <object id="429" x="704" y="480">
+   <point/>
+  </object>
+  <object id="430" x="720" y="832">
+   <point/>
+  </object>
+  <object id="431" name="Mouse" type="mob" x="312" y="400" width="16" height="16">
+   <properties>
+    <property name="damage" type="int" value="0"/>
+    <property name="health" type="int" value="1"/>
+    <property name="knockback" type="int" value="0"/>
+    <property name="route1" type="object" value="432"/>
+    <property name="route2" type="object" value="434"/>
+    <property name="speed" type="int" value="60"/>
+   </properties>
+  </object>
+  <object id="432" x="480" y="368">
+   <point/>
+  </object>
+  <object id="434" x="592" y="376">
+   <point/>
+  </object>
  </objectgroup>
 </map>

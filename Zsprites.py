@@ -53,9 +53,6 @@ class Player(pg.sprite.Sprite):
         self.image = self.game.player_images[self.facing][1]
         self.rect = self.image.get_rect()
         self.set_pos(x, y)
-        self.rect.center = self.pos
-        self.hit_rect = s.PLAYER_HIT_RECT
-        self.hit_rect.center = self.rect.center
         self.animation = True
         self.vel = vec(0, 0)
         self.next_animation_tick = 0
@@ -64,10 +61,13 @@ class Player(pg.sprite.Sprite):
         self.max_health = s.PLAYER_HEALTH
         self.health = s.PLAYER_HEALTH
         self.damaged = False
-        self.items = defaultdict(int, {s.Items.HEALTH_POTION: 1})
+        self.items = defaultdict(int)
 
     def set_pos(self, x, y):
         self.pos = vec(x, y)
+        self.rect.center = self.pos
+        self.hit_rect = s.PLAYER_HIT_RECT
+        self.hit_rect.center = self.rect.center
 
     def hit(self, enemy):
         if self.damaged:
@@ -125,19 +125,19 @@ class Player(pg.sprite.Sprite):
             self.is_sword = True
             if self.facing == s.Direction.DOWN:
                 pos = vec(self.rect.centerx, self.rect.bottom - 10)
-                rot = 90
+                rot = 45
                 Sword(self.game, pos, rot, (self._layer + 2))
             if self.facing == s.Direction.UP:
                 pos = vec(self.rect.centerx, self.rect.top + 10)
-                rot = -90
+                rot = -135
                 Sword(self.game, pos, rot, (self._layer - 2))
             if self.facing == s.Direction.RIGHT:
                 pos = vec(self.rect.right - 10, self.rect.centery)
-                rot = 180
+                rot = 135
                 Sword(self.game, pos, rot, (self._layer - 2))
             if self.facing == s.Direction.LEFT:
                 pos = vec(self.rect.left + 10, self.rect.centery)
-                rot = 0
+                rot = -45
                 Sword(self.game, pos, rot, (self._layer - 2))
 
     def animate_movement(self):
@@ -226,7 +226,6 @@ class Player(pg.sprite.Sprite):
             except StopIteration:
                 self.damaged = False
                 self.image = self.game.player_images[self.facing][self.animation_phase]
-
         if not self.is_sword and not self.damaged:
             self.animate_movement()
             self.pos += self.vel * self.game.dt
@@ -301,8 +300,6 @@ class Teleport(pg.sprite.Sprite):
         pg.sprite.Sprite.__init__(self, self.groups)
         self.game = game
         self.rect = pg.Rect(x, y, w, h)
-        self.x = x
-        self.y = y
         self.rect.x = x
         self.rect.y = y
         self.destination = playerDestination
@@ -324,11 +321,11 @@ class Sword(pg.sprite.Sprite):
         self.enemies_hit = set()
 
     def update(self):
-        self.angle += 15
+        self.angle += 10
         self.image = pg.transform.rotate(self.game.sword_img, self.rot - self.angle)
         self.rect = self.image.get_rect()
         self.rect.center = self.pos
-        if self.angle >= 180:
+        if self.angle >= 90:
             self.kill()
             self.game.player.is_sword = False
         hits = pg.sprite.spritecollide(self, self.game.enemies, False)
@@ -339,7 +336,7 @@ class Sword(pg.sprite.Sprite):
 
 
 class TextBox(pg.sprite.Sprite):
-    def __init__(self, game, x, y, w, h, texts, typ=None):
+    def __init__(self, game, x, y, w, h, texts, typ=None, activator_id=None):
         self.groups = game.interactables
         pg.sprite.Sprite.__init__(self, self.groups)
         self.game = game
@@ -350,6 +347,7 @@ class TextBox(pg.sprite.Sprite):
         self.rect.y = y
         self.texts = texts
         self.type = typ
+        self.activator_id = activator_id
         self.activated = False
 
 
@@ -372,7 +370,7 @@ class Enemy(pg.sprite.Sprite):
         self.delay = 60 // max(speed, 1)
         if speed > 60:
             self.vel = speed // 60
-            self.delay = 1
+            self.delay = 0
         self.target = 0
         self.health = health
         self.timeLoop = 0
@@ -518,7 +516,6 @@ class Spawner(pg.sprite.Sprite):
 
     def update(self):
         activator = self.game.objects_by_id[self.activator_id]
-        print(activator.activated)
         if activator.activated:
             self.activate()
 
