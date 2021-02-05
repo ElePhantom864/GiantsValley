@@ -194,15 +194,18 @@
   <object id="44" name="Interact" type="Sword" x="408" y="256" width="16" height="14.0909">
    <properties>
     <property name="text">Oh old friend I knew you would arrive sooner or later. It is in your nature to respond to someone in need. 
-But as you know our kingdom is in danger of the skeleton king. But you cannot go yet, my most loyal subject, you need a weapon and something to defend yourself. 
-I will give you the best sword and shield in this castle. Now go and slay the skeleton king who has brought this nightmare upon us. 
-To accomplish this grand task you will need to make your way to the infested castle, which I have been forced to leave as a result of the skeleton king’s invasion.
+But as you know our kingdom is in danger of the skeleton king. But you cannot go yet, my most loyal subject, 
+you need a weapon to defend yourself. 
+I will give you the best sword and shield in this castle
+To accomplish this grand task you will need to make your way to the infested castle,
+which I have been forced to leave as a result of the skeleton king’s invasion.
 His army no doubt swarms the castle, and they have already built a great barricade.
- I cannot think of any weapon that can break through such a wall, but I have heard of the magma boots, an ancient relic 
+I cannot think of any weapon that can break through such a wall, but I have heard of the magma boots, an ancient relic 
 which the great giants of the west have kept for generations. 
 However, the last western giant to have had possession of this relic has been captured and corrupted by the skeleton king. 
-I would advise you to head through the abandoned canyon west of your village, where you shall find the remnant of the ancient portals which used to take us to lands far away,
- although they have fallen into disrepair during the last era. 
+I would advise you to head through the abandoned canyon west of your village,
+where you shall find the remnant of the ancient portals
+which used to take us to lands far away, although they have fallen into disrepair during the last era. 
 However, I do believe that this portal might yet function just well enough for another trip to the lands of the western giants.
  I wish you the best of luck, hero.</property>
    </properties>

@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="87">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="95">
  <tileset firstgid="1" source="Base.tsx"/>
  <tileset firstgid="1065" source="Shadows.tsx"/>
  <tileset firstgid="1083" source="exit.tsx"/>
  <tileset firstgid="1084" source="Wires.tsx"/>
+ <tileset firstgid="1126" source="Door.tsx"/>
+ <tileset firstgid="1135" source="Buttons-1.png.tsx"/>
+ <tileset firstgid="1144" source="Boxes.tsx"/>
  <layer id="1" name="Ground" width="30" height="30">
   <data encoding="csv">
 6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,
@@ -52,7 +55,7 @@
 0,0,0,0,0,105,106,106,106,106,106,106,106,107,0,0,0,113,125,0,0,0,123,99,0,97,98,98,121,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,148,141,125,0,0,0,0,123,107,0,105,106,106,121,0,
 0,0,0,0,0,0,148,149,114,149,149,150,0,0,0,97,121,0,0,0,0,0,123,0,0,0,0,0,121,0,
-114,114,115,0,0,0,97,98,144,98,98,99,0,0,0,105,121,0,0,0,0,0,123,0,0,0,0,0,121,0,
+114,114,115,0,0,0,97,98,144,98,98,99,0,1103,0,105,121,0,0,0,0,0,123,0,0,0,0,0,121,0,
 0,0,123,0,0,0,105,106,152,106,106,107,0,0,0,113,125,0,0,0,0,0,118,149,150,0,0,0,121,0,
 0,0,124,115,0,0,0,0,96,0,0,0,0,0,113,125,0,0,0,0,0,0,123,98,99,0,0,0,121,0,
 130,130,130,0,115,0,0,0,104,0,0,0,0,0,121,0,0,0,0,0,0,0,123,106,107,0,0,0,121,0,
@@ -109,7 +112,7 @@
 1065,1065,1065,1065,1065,1065,1065,1065,1065,1065,1065,1065,1065,1065,1065,1065,1065,1065,1065,1065,1065,1065,1065,1065,1065,1065,1065,1065,1065,1065
 </data>
  </layer>
- <layer id="4" name="Decor" width="30" height="30">
+ <layer id="4" name="Decor" width="30" height="30" opacity="0.9">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,58,0,0,0,0,0,58,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -121,9 +124,9 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,142,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,58,0,0,0,0,0,0,0,122,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,57,0,0,0,0,0,0,0,0,0,0,51,0,1099,0,0,0,0,0,0,52,0,0,0,0,0,0,0,0,
+0,57,0,0,0,0,0,0,0,0,0,0,51,0,1133,0,0,0,0,0,0,52,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,52,0,0,0,0,0,1087,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,1103,1115,0,0,0,165,0,0,0,0,0,0,0,0,0,0,165,
+0,0,0,0,0,0,0,0,0,0,0,0,0,1136,1115,0,0,0,165,0,0,0,0,0,0,0,0,0,0,165,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,58,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,56,56,56,0,0,
 0,0,0,0,0,165,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -240,25 +243,43 @@
     <property name="health" type="int" value="2"/>
     <property name="knockback" type="int" value="20"/>
     <property name="route1" type="object" value="56"/>
-    <property name="speed" type="int" value="30"/>
+    <property name="speed" type="int" value="50"/>
    </properties>
   </object>
   <object id="56" x="816" y="528">
+   <properties>
+    <property name="speed" type="int" value="50"/>
+   </properties>
    <point/>
   </object>
   <object id="57" x="848" y="400">
+   <properties>
+    <property name="speed" type="int" value="50"/>
+   </properties>
    <point/>
   </object>
   <object id="58" x="816" y="400">
+   <properties>
+    <property name="speed" type="int" value="50"/>
+   </properties>
    <point/>
   </object>
   <object id="59" x="848" y="528">
+   <properties>
+    <property name="speed" type="int" value="50"/>
+   </properties>
    <point/>
   </object>
   <object id="60" x="880" y="400">
+   <properties>
+    <property name="speed" type="int" value="50"/>
+   </properties>
    <point/>
   </object>
   <object id="61" x="880" y="528">
+   <properties>
+    <property name="speed" type="int" value="50"/>
+   </properties>
    <point/>
   </object>
   <object id="62" name="Fire" type="mob" x="840" y="392" width="16" height="16">
@@ -268,7 +289,7 @@
     <property name="health" type="int" value="2"/>
     <property name="knockback" type="int" value="20"/>
     <property name="route1" type="object" value="59"/>
-    <property name="speed" type="int" value="30"/>
+    <property name="speed" type="int" value="50"/>
    </properties>
   </object>
   <object id="63" name="Fire" type="mob" x="872" y="392" width="16" height="16">
@@ -278,10 +299,14 @@
     <property name="health" type="int" value="2"/>
     <property name="knockback" type="int" value="20"/>
     <property name="route1" type="object" value="61"/>
-    <property name="speed" type="int" value="30"/>
+    <property name="speed" type="int" value="50"/>
    </properties>
   </object>
-  <object id="64" name="activator" gid="52" x="800" y="480" width="96" height="32"/>
+  <object id="64" name="activator" gid="52" x="800" y="480" width="96" height="32">
+   <properties>
+    <property name="speed" type="int" value="50"/>
+   </properties>
+  </object>
   <object id="65" name="Fire" type="mob" x="808" y="520" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="64"/>
@@ -289,7 +314,7 @@
     <property name="health" type="int" value="2"/>
     <property name="knockback" type="int" value="20"/>
     <property name="route1" type="object" value="58"/>
-    <property name="speed" type="int" value="30"/>
+    <property name="speed" type="int" value="50"/>
    </properties>
   </object>
   <object id="66" name="Fire" type="mob" x="840" y="520" width="16" height="16">
@@ -299,7 +324,7 @@
     <property name="health" type="int" value="2"/>
     <property name="knockback" type="int" value="20"/>
     <property name="route1" type="object" value="57"/>
-    <property name="speed" type="int" value="30"/>
+    <property name="speed" type="int" value="50"/>
    </properties>
   </object>
   <object id="67" name="Fire" type="mob" x="872" y="520" width="16" height="16">
@@ -309,16 +334,9 @@
     <property name="health" type="int" value="2"/>
     <property name="knockback" type="int" value="20"/>
     <property name="route1" type="object" value="60"/>
-    <property name="speed" type="int" value="30"/>
+    <property name="speed" type="int" value="50"/>
    </properties>
   </object>
-  <object id="69" name="door" gid="66" x="448" y="344" width="32" height="32">
-   <properties>
-    <property name="activator" type="object" value="70"/>
-   </properties>
-  </object>
-  <object id="70" name="activator" gid="71" x="416" y="416" width="32" height="32"/>
-  <object id="71" name="pushable" gid="68" x="256" y="544" width="32" height="32"/>
   <object id="72" name="CaveHDown" x="840" y="624" width="16" height="16"/>
   <object id="73" name="CaveAUp" x="520" y="208" width="16" height="16"/>
   <object id="74" name="CaveADown" x="264" y="592" width="16" height="16"/>
@@ -356,5 +374,12 @@
     <property name="playerLocation" value="CaveGRight"/>
    </properties>
   </object>
+  <object id="89" name="door" gid="1132" x="448" y="352" width="31" height="32">
+   <properties>
+    <property name="activator" type="object" value="91"/>
+   </properties>
+  </object>
+  <object id="91" name="activator" gid="1135" x="416" y="404" width="30" height="21"/>
+  <object id="93" name="pushable" gid="1152" x="256" y="544" width="30" height="29"/>
  </objectgroup>
 </map>

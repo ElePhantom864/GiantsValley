@@ -432,6 +432,7 @@ class Enemy(pg.sprite.Sprite):
 class Activator(pg.sprite.Sprite):
     def __init__(self, game, x, y, w, h, image=None, typ=None):
         self.image = image
+        self.og_image = image
         self.game = game
         self.rect = self.image.get_rect()
         self.groups = game.activators, game.all_sprites
@@ -442,16 +443,27 @@ class Activator(pg.sprite.Sprite):
         self.type = typ
         pg.sprite.Sprite.__init__(self, self.groups)
 
+    def activate(self):
+        Blank = pg.Surface((0, 0))
+        self.image = Blank
+
+    def deactivate(self):
+        self.image = self.og_image
+
     def update(self):
         self.activated = False
         hits = pg.sprite.spritecollide(self, self.game.pushers, dokill=False)
         if hits:
             if self.type is None:
                 self.activated = True
+                self.activate()
             else:
                 for hit in hits:
                     if hasattr(hit, "type") and hit.type == self.type:
                         self.activated = True
+                        self.activate()
+        else:
+            self.deactivate()
 
 
 class Door(pg.sprite.Sprite):
@@ -465,6 +477,7 @@ class Door(pg.sprite.Sprite):
         self.rect.x = x
         self.rect.y = y
         self.image = pg.transform.scale(image, (w, h))
+        self.og_image = pg.transform.scale(image, (w, h))
         self.groups = game.walls, game.all_sprites
         self._layer = s.DOOR_LAYER
         self.activator_id = activator_id
@@ -472,11 +485,12 @@ class Door(pg.sprite.Sprite):
         pg.sprite.Sprite.__init__(self, self.groups)
 
     def activate(self):
-        self.image.fill(s.RED)
+        Blank = pg.Surface((0, 0))
+        self.image = Blank
         self.game.walls.remove(self)
 
     def deactivate(self):
-        self.image.fill(s.GREEN)
+        self.image = self.og_image
         self.game.walls.add(self)
 
     def update(self):

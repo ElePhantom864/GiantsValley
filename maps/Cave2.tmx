@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="128">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="149">
  <tileset firstgid="1" source="Base.tsx"/>
  <tileset firstgid="1065" source="Shadows.tsx"/>
  <tileset firstgid="1083" source="Pit.tsx"/>
  <tileset firstgid="1087" source="exit.tsx"/>
  <tileset firstgid="1088" source="Wires.tsx"/>
+ <tileset firstgid="1130" source="Levers.tsx"/>
+ <tileset firstgid="1132" source="Door.tsx"/>
  <layer id="4" name="Below" width="30" height="30">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -77,9 +79,9 @@
   <data encoding="csv">
 1069,1069,1069,1069,1069,1069,1069,1069,1069,1069,1069,1069,1069,1069,1069,1069,1069,1069,1069,1069,1069,1069,1069,1069,1069,1069,1069,1069,6,6,
 1069,1069,1069,113,149,115,1069,1069,1069,1069,1069,113,114,114,114,114,115,1069,1069,113,114,114,114,114,114,149,150,1069,0,6,
-1069,1069,1069,152,1083,144,1069,1069,1069,1069,148,119,6,6,116,130,130,114,114,130,130,130,127,130,131,1083,1086,1069,0,6,
-1069,1069,1069,1084,1069,144,1069,1069,1069,1069,1085,121,6,6,131,1083,1083,129,131,1083,1083,1083,152,1083,1086,1069,113,114,0,6,
-1069,1069,1069,1069,1069,121,114,115,1069,1069,1069,129,130,131,1086,1069,136,1085,1086,1069,1069,1069,1084,1069,113,114,125,6,0,6,
+1069,1069,1069,152,1083,144,1069,1069,1069,1069,148,119,6,6,116,130,130,114,114,130,130,130,130,130,131,1083,1086,1069,0,6,
+1069,1069,1069,1084,1069,144,1069,1069,1069,1069,1085,121,6,6,131,1083,1083,129,131,1083,1083,1083,1083,1083,1086,1069,113,114,0,6,
+1069,1069,1069,1069,1069,121,114,115,1069,1069,1069,129,130,131,1086,1069,136,1085,1086,1069,1069,1069,0,1069,113,114,125,6,0,6,
 1069,1069,1069,1069,1069,129,130,124,114,115,1069,1085,1083,1086,1069,1069,144,1069,1069,1069,1069,1069,1069,148,119,6,6,6,0,6,
 1069,1069,1069,1069,1069,1085,1083,129,130,124,115,1069,1069,1069,1069,113,126,115,1069,1069,1069,1069,1069,1085,121,6,6,6,0,6,
 1069,1069,1069,1069,1069,1069,1069,1085,1083,129,117,115,1069,1069,1069,129,127,131,1069,1069,1069,1069,1069,1069,121,116,130,130,0,6,
@@ -152,10 +154,10 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1126,1094,1094,1118,0,0,0,0,1114,1094,1094,1118,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1090,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1090,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,344,0,0,0,0,51,0,0,0,1110,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,352,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1102,0,0,0,0,0,0,0,57,0,0,0,0,0,
-0,58,0,0,0,0,0,0,57,0,0,0,0,0,0,0,1114,1098,0,0,0,0,0,0,0,0,0,0,1055,0,
+0,0,0,0,0,0,0,344,0,0,0,0,51,0,0,0,1137,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,352,0,0,0,0,0,0,0,1135,0,1135,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1137,0,0,0,0,0,0,0,57,0,0,0,0,0,
+0,58,0,0,0,0,0,0,57,0,0,0,0,0,0,0,1114,1094,1098,0,0,0,0,0,0,0,0,0,1055,0,
 0,0,0,63,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,58,0,0,65,0,0,0,0,0,0,0,165,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -163,25 +165,28 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,58,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,1124,1092,1120,0,0,0,1125,1093,1121,0,1101,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,1124,1092,1120,0,0,0,1125,1093,1121,0,1125,1097,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,1088,0,1088,0,0,0,1089,0,1089,0,1089,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,1088,0,1112,1096,0,0,1089,0,1113,1093,1117,0,0,0,0,0,0,0,0,0,1127,1095,1123,0,0,0,0,0,
+0,0,1088,0,1112,1135,0,0,1089,0,1113,1093,1117,0,0,0,0,0,0,0,0,0,1127,1095,1123,0,0,0,0,0,
 0,0,1088,0,0,0,0,0,1089,0,0,0,0,0,0,0,0,0,0,0,0,0,1091,0,1091,0,0,0,0,0,
-0,0,1088,0,0,0,0,0,1113,1093,1093,1093,1097,0,1126,1094,1122,0,0,0,0,0,1091,0,1115,1099,0,0,0,0,
+0,0,1088,0,0,0,0,0,1113,1093,1093,1093,1133,0,1126,1094,1122,0,0,0,0,0,1091,0,1115,1139,0,0,0,0,
 0,0,1088,0,0,0,0,0,0,0,0,0,0,0,1090,0,1090,0,0,0,0,0,1091,0,0,0,0,0,0,0,
-0,0,1088,0,1124,1096,0,0,0,0,0,0,0,0,1090,0,1114,1098,0,0,1102,0,1091,0,1103,0,0,0,0,0,
+0,0,1088,0,1124,1092,1096,0,0,0,0,0,0,0,1090,0,1114,1137,0,0,1102,0,1091,0,1103,0,0,0,0,0,
 0,0,1088,0,1088,0,0,0,0,0,0,0,0,0,1090,0,0,0,0,0,1090,0,1091,0,1091,0,0,0,0,0,
 0,0,1112,1092,1116,0,0,0,0,0,0,0,0,0,1114,1094,1094,1094,1094,1094,1118,0,1115,1095,1119,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
  <layer id="3" name="Shadows" width="30" height="30">
+  <properties>
+   <property name="top" type="object" value="0"/>
+  </properties>
   <data encoding="csv">
 1067,1067,1067,1067,1067,1067,1067,1067,1067,1067,1067,1067,1067,1067,1067,1067,1067,1067,1067,1067,1067,1067,1067,1067,1067,1067,1067,1067,1065,1065,
 1067,1067,1074,0,1066,1065,1069,1069,1069,1069,1069,1065,1065,1065,1065,1065,1065,1067,1067,1065,1065,1065,1065,1072,0,1066,1065,1067,1065,1065,
 1067,1067,0,0,0,1065,1069,1069,1069,1069,1065,1065,1065,1065,1065,1065,1065,1065,1065,1065,1065,1065,1065,0,0,0,1065,1067,1065,1065,
 1067,1067,1073,0,1079,1065,1069,1069,1069,1069,1065,1065,1065,1065,1065,1072,0,1066,1065,1065,1065,1065,1065,1071,0,1079,1065,1065,1065,1065,
-1067,1067,1067,1067,1067,1065,1065,1065,1069,1069,1069,1065,1065,1065,1065,0,0,0,1065,1067,1067,1067,1065,1067,1065,1065,1065,1065,1065,1065,
+1067,1067,1067,1067,1067,1065,1065,1065,1069,1069,1069,1065,1065,1065,1065,0,0,0,1065,1067,1067,1067,1069,1067,1065,1065,1065,1065,1065,1065,
 1067,1067,1067,1067,1067,1065,1065,1065,1065,1065,1069,1065,1065,1065,1069,1073,0,1079,1069,1069,1069,1069,1069,1065,1065,1065,1065,1065,1065,1065,
 1067,1067,1067,1067,1067,1065,1065,1065,1065,1065,1065,1069,1069,1069,1069,1065,1065,1065,1069,1069,1069,1069,1069,1065,1065,1065,1065,1065,1065,1065,
 1067,1067,1067,1067,1067,1067,1067,1065,1065,1065,1065,1065,1069,1069,1069,1065,1065,1065,1069,1069,1069,1069,1069,1069,1065,1065,1065,1065,1065,1065,
@@ -210,12 +215,15 @@
 </data>
  </layer>
  <layer id="8" name="Shadows(2)" width="30" height="30">
+  <properties>
+   <property name="top" type="object" value="0"/>
+  </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1069,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1067,1067,1067,1067,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1067,1067,0,1067,1067,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -362,42 +370,42 @@
   <object id="80" name="wall" x="480" y="864" width="160" height="32"/>
   <object id="81" name="wall" x="608" y="800" width="32" height="64"/>
   <object id="82" name="wall" x="640" y="800" width="32" height="32"/>
-  <object id="83" name="Interact" type="Lever" x="168" y="840" width="16" height="16">
+  <object id="83" name="Interact" type="Lever" x="176" y="840" width="16" height="16">
    <properties>
     <property name="text" value="You flip the switch"/>
    </properties>
   </object>
-  <object id="93" name="door" gid="66" x="160" y="736" width="32" height="32">
+  <object id="93" name="door" gid="1134" x="160" y="736" width="31" height="32">
    <properties>
     <property name="activator" type="object" value="83"/>
    </properties>
   </object>
-  <object id="94" name="door" gid="66" x="384" y="800" width="32" height="32">
+  <object id="94" name="door" gid="1132" x="384" y="800" width="31" height="32">
    <properties>
     <property name="activator" type="object" value="97"/>
    </properties>
   </object>
-  <object id="95" name="door" gid="66" x="544" y="864" width="32" height="32">
+  <object id="95" name="door" gid="1136" x="544" y="864" width="31" height="32">
    <properties>
     <property name="activator" type="object" value="98"/>
    </properties>
   </object>
-  <object id="96" name="door" gid="66" x="800" y="800" width="32" height="32">
+  <object id="96" name="door" gid="1138" x="800" y="800" width="31" height="32">
    <properties>
     <property name="activator" type="object" value="99"/>
    </properties>
   </object>
-  <object id="97" name="Interact" type="Lever" x="392" y="648" width="16" height="16">
+  <object id="97" name="Interact" type="Lever" x="400" y="648" width="16" height="16">
    <properties>
     <property name="text" value="You flip the switch"/>
    </properties>
   </object>
-  <object id="98" name="Interact" type="Lever" x="648" y="840" width="16" height="16">
+  <object id="98" name="Interact" type="Lever" x="648" y="864" width="16" height="16">
    <properties>
     <property name="text" value="You flip the switch"/>
    </properties>
   </object>
-  <object id="99" name="Interact" type="Lever" x="776" y="840" width="16" height="16">
+  <object id="99" name="Interact" type="Lever" x="776" y="864" width="16" height="16">
    <properties>
     <property name="text" value="You flip the switch"/>
    </properties>
@@ -415,32 +423,32 @@
   <object id="101" x="816" y="800">
    <point/>
   </object>
-  <object id="102" name="door" gid="66" x="512" y="384" width="32" height="32">
+  <object id="102" name="door" gid="1136" x="512" y="384" width="31" height="32">
    <properties>
     <property name="activator" type="object" value="106"/>
    </properties>
   </object>
-  <object id="103" name="door" gid="66" x="512" y="320" width="32" height="32">
+  <object id="103" name="door" gid="1136" x="512" y="320" width="31" height="32">
    <properties>
     <property name="activator" type="object" value="106"/>
    </properties>
   </object>
-  <object id="104" name="door" type="Opposite" gid="66" x="544" y="352" width="32" height="32">
+  <object id="104" name="door" type="Opposite" gid="1134" x="544" y="352" width="31" height="32">
    <properties>
     <property name="activator" type="object" value="106"/>
    </properties>
   </object>
-  <object id="105" name="door" type="Opposite" gid="66" x="480" y="352" width="32" height="32">
+  <object id="105" name="door" type="Opposite" gid="1134" x="480" y="352" width="31" height="32">
    <properties>
     <property name="activator" type="object" value="106"/>
    </properties>
   </object>
-  <object id="106" name="Interact" type="Lever" x="552" y="392" width="16" height="16">
+  <object id="106" name="Interact" type="Lever" x="560" y="392" width="16" height="16">
    <properties>
     <property name="text" value="You flip the switch"/>
    </properties>
   </object>
-  <object id="107" name="Interact" type="Activator" x="872" y="104" width="16" height="16">
+  <object id="107" name="Interact" type="Activator" x="848" y="96" width="48" height="48">
    <properties>
     <property name="activator" type="object" value="106"/>
     <property name="text" value="You flip the switch"/>
@@ -498,6 +506,66 @@
   <object id="126" name="Cave3.tmx" type="Teleport" x="-8" y="704" width="8" height="160">
    <properties>
     <property name="playerLocation" value="CaveGRight"/>
+   </properties>
+  </object>
+  <object id="129" name="door" gid="1131" x="576" y="408" width="32" height="24">
+   <properties>
+    <property name="activator" type="object" value="106"/>
+   </properties>
+  </object>
+  <object id="130" name="door" type="Opposite" gid="1130" x="576" y="408" width="32" height="24">
+   <properties>
+    <property name="activator" type="object" value="106"/>
+   </properties>
+  </object>
+  <object id="132" name="door" gid="1131" x="864" y="128" width="32" height="32">
+   <properties>
+    <property name="activator" type="object" value="106"/>
+   </properties>
+  </object>
+  <object id="133" name="door" type="Opposite" gid="1130" x="864" y="128" width="32" height="32">
+   <properties>
+    <property name="activator" type="object" value="106"/>
+   </properties>
+  </object>
+  <object id="138" name="door" gid="1131" x="192" y="856" width="32" height="24">
+   <properties>
+    <property name="activator" type="object" value="83"/>
+   </properties>
+  </object>
+  <object id="139" name="door" type="Opposite" gid="1130" x="192" y="856" width="32" height="24">
+   <properties>
+    <property name="activator" type="object" value="83"/>
+   </properties>
+  </object>
+  <object id="143" name="door" gid="1131" x="416" y="664" width="32" height="24">
+   <properties>
+    <property name="activator" type="object" value="97"/>
+   </properties>
+  </object>
+  <object id="144" name="door" type="Opposite" gid="1130" x="416" y="664" width="32" height="24">
+   <properties>
+    <property name="activator" type="object" value="97"/>
+   </properties>
+  </object>
+  <object id="145" name="door" gid="1131" x="640" y="856" width="32" height="24">
+   <properties>
+    <property name="activator" type="object" value="98"/>
+   </properties>
+  </object>
+  <object id="146" name="door" type="Opposite" gid="1130" x="640" y="856" width="32" height="24">
+   <properties>
+    <property name="activator" type="object" value="98"/>
+   </properties>
+  </object>
+  <object id="147" name="door" gid="1131" x="768" y="856" width="32" height="24">
+   <properties>
+    <property name="activator" type="object" value="99"/>
+   </properties>
+  </object>
+  <object id="148" name="door" type="Opposite" gid="1130" x="768" y="856" width="32" height="24">
+   <properties>
+    <property name="activator" type="object" value="99"/>
    </properties>
   </object>
  </objectgroup>
