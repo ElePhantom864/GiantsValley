@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="183">
+ <properties>
+  <property name="music" value="Caveworld.mp3"/>
+ </properties>
  <tileset firstgid="1" source="Base.tsx"/>
  <tileset firstgid="1065" source="Shadows.tsx"/>
  <tileset firstgid="1083" source="Pit.tsx"/>

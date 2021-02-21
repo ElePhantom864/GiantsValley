@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="95">
+ <properties>
+  <property name="music" value="Caveworld.mp3"/>
+ </properties>
  <tileset firstgid="1" source="Base.tsx"/>
  <tileset firstgid="1065" source="Shadows.tsx"/>
  <tileset firstgid="1083" source="exit.tsx"/>
@@ -112,7 +115,7 @@
 1065,1065,1065,1065,1065,1065,1065,1065,1065,1065,1065,1065,1065,1065,1065,1065,1065,1065,1065,1065,1065,1065,1065,1065,1065,1065,1065,1065,1065,1065
 </data>
  </layer>
- <layer id="4" name="Decor" width="30" height="30" opacity="0.9">
+ <layer id="4" name="Decor" width="30" height="30">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,58,0,0,0,0,0,58,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -246,7 +249,7 @@
     <property name="speed" type="int" value="50"/>
    </properties>
   </object>
-  <object id="56" x="816" y="528">
+  <object id="56" x="816" y="560">
    <properties>
     <property name="speed" type="int" value="50"/>
    </properties>
@@ -264,7 +267,7 @@
    </properties>
    <point/>
   </object>
-  <object id="59" x="848" y="528">
+  <object id="59" x="848" y="560">
    <properties>
     <property name="speed" type="int" value="50"/>
    </properties>
@@ -304,10 +307,11 @@
   </object>
   <object id="64" name="activator" gid="52" x="800" y="480" width="96" height="32">
    <properties>
+    <property name="sounds" value="fireflower.mp3"/>
     <property name="speed" type="int" value="50"/>
    </properties>
   </object>
-  <object id="65" name="Fire" type="mob" x="808" y="520" width="16" height="16">
+  <object id="65" name="Fire" type="mob" x="808" y="552" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="64"/>
     <property name="damage" type="int" value="1"/>
@@ -317,7 +321,7 @@
     <property name="speed" type="int" value="50"/>
    </properties>
   </object>
-  <object id="66" name="Fire" type="mob" x="840" y="520" width="16" height="16">
+  <object id="66" name="Fire" type="mob" x="840" y="552" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="64"/>
     <property name="damage" type="int" value="1"/>
@@ -379,7 +383,11 @@
     <property name="activator" type="object" value="91"/>
    </properties>
   </object>
-  <object id="91" name="activator" gid="1135" x="416" y="404" width="30" height="21"/>
+  <object id="91" name="activator" gid="1135" x="416" y="404" width="30" height="21">
+   <properties>
+    <property name="sounds" value="fireflower.mp3"/>
+   </properties>
+  </object>
   <object id="93" name="pushable" gid="1152" x="256" y="544" width="30" height="29"/>
  </objectgroup>
 </map>

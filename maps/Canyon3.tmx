@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="173">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="174">
+ <properties>
+  <property name="music" value="Overworld1.mp3"/>
+ </properties>
  <tileset firstgid="1" source="Base.tsx"/>
  <tileset firstgid="1065" source="[A]WaterFall_pipo.tsx"/>
  <tileset firstgid="1641" source="[A]Water_pipo.tsx"/>
@@ -119,7 +122,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,51,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,56,0,0,0,0,0,56,0,0,0,0,0,0,51,56,0,0,
+0,0,0,0,0,56,0,0,0,0,0,0,0,56,0,0,0,0,0,56,0,0,0,0,0,0,51,56,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,51,56,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,65,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,56,51,0,0,64,0,0,0,0,0,0,0,0,
@@ -842,6 +845,12 @@
     <property name="speed" type="int" value="50"/>
    </properties>
    <point/>
+  </object>
+  <object id="173" name="Sound" x="544" y="0" width="384" height="280">
+   <properties>
+    <property name="chance" type="int" value="1"/>
+    <property name="sound" value="water.mp3"/>
+   </properties>
   </object>
  </objectgroup>
 </map>

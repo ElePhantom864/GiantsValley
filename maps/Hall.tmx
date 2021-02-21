@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="48">
+ <properties>
+  <property name="music" value="Overworld1.mp3"/>
+ </properties>
  <tileset firstgid="1" source="Base.tsx"/>
  <layer id="1" name="Ground" width="30" height="30">
   <data encoding="csv">
@@ -191,8 +194,10 @@
     <property name="playerLocation" value="playerRight"/>
    </properties>
   </object>
-  <object id="44" name="Interact" type="Sword" x="408" y="256" width="16" height="14.0909">
+  <object id="44" name="Interact" type="Item" x="408" y="256" width="16" height="14.0909">
    <properties>
+    <property name="item" value="sword"/>
+    <property name="sound" value="talk1.mp3,talk2.mp3,talk3.mp3,talk4.mp3,talk5.mp3"/>
     <property name="text">Oh old friend I knew you would arrive sooner or later. It is in your nature to respond to someone in need. 
 But as you know our kingdom is in danger of the skeleton king. But you cannot go yet, my most loyal subject, 
 you need a weapon to defend yourself. 

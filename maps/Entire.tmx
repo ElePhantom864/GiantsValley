@@ -7196,7 +7196,7 @@
 </chunk>
   </data>
  </layer>
- <layer id="11" name="cave network(temp)" width="30" height="30">
+ <layer id="11" name="cave network(temp)" width="30" height="30" visible="0">
   <data encoding="csv">
    <chunk x="-208" y="-16" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

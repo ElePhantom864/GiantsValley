@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.4" tiledversion="1.4.2" name="New Piskel (3)" tilewidth="32" tileheight="32" tilecount="4" columns="2">
- <image source="../../../../../Downloads/New Piskel (3).png" width="64" height="64"/>
+<tileset version="1.4" tiledversion="1.4.2" name="Pit" tilewidth="32" tileheight="32" tilecount="4" columns="2">
+ <image source="Pit.png" width="64" height="64"/>
 </tileset>

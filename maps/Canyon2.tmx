@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="115">
+ <properties>
+  <property name="music" value="Overworld1.mp3"/>
+ </properties>
  <tileset firstgid="1" source="Base.tsx"/>
  <tileset firstgid="1065" source="[A]Grass_pipo.tsx"/>
  <tileset firstgid="1593" source="[A]Water_pipo.tsx"/>
@@ -85,12 +88,12 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,56,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,56,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,56,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 114,114,114,114,114,114,114,114,114,114,114,114,114,114,114,114,114,114,114,114,114,114,114,114,114,114,114,114,114,114,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -164,7 +167,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,44,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -245,7 +248,6 @@
   </object>
   <object id="41" name="wall" x="936" y="0" width="16" height="64"/>
   <object id="42" name="wall" x="896" y="64" width="32" height="32"/>
-  <object id="46" name="wall" x="104" y="664" width="16" height="8"/>
   <object id="47" name="wall" x="328" y="504" width="16" height="8"/>
   <object id="48" name="wall" x="456" y="472" width="16" height="8"/>
   <object id="49" name="wall" x="264" y="56" width="16" height="8"/>
@@ -364,7 +366,7 @@
     <property name="speed" type="int" value="240"/>
    </properties>
   </object>
-  <object id="90" name="Cobra" type="mob" x="136" y="816" width="16" height="16">
+  <object id="90" name="Cobra" type="mob" x="136" y="872" width="16" height="16">
    <properties>
     <property name="damage" type="int" value="1"/>
     <property name="health" type="int" value="10000000"/>
@@ -373,7 +375,7 @@
     <property name="speed" type="int" value="240"/>
    </properties>
   </object>
-  <object id="91" name="Cobra" type="mob" x="72" y="864" width="16" height="16">
+  <object id="91" name="Cobra" type="mob" x="72" y="936" width="16" height="16">
    <properties>
     <property name="damage" type="int" value="1"/>
     <property name="health" type="int" value="10000000"/>
@@ -450,7 +452,7 @@
     <property name="health" type="int" value="2"/>
     <property name="knockback" type="int" value="20"/>
     <property name="route1" type="object" value="99"/>
-    <property name="speed" type="int" value="30"/>
+    <property name="speed" type="int" value="50"/>
    </properties>
   </object>
   <object id="107" name="Fire" type="mob" x="328" y="552" width="16" height="16">

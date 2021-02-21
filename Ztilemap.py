@@ -22,6 +22,7 @@ class TiledMap:
                 for x, y, gid, in layer:
                     tile = ti(gid)
                     if tile:
+                        tile = tile.convert_alpha()
                         if 'top' in layer.properties:
                             top_surface.blit(
                                 tile, (x * self.tmxdata.tilewidth,

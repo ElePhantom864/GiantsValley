@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="83">
+ <properties>
+  <property name="music" value="Overworld1.mp3"/>
+ </properties>
  <tileset firstgid="1" source="Base.tsx"/>
  <tileset firstgid="1065" source="[A]Grass_pipo.tsx"/>
  <layer id="1" name="Ground" width="30" height="30">

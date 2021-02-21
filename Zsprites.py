@@ -6,6 +6,7 @@ from itertools import chain
 from os import path
 from collections import defaultdict
 import math
+import random
 vec = pg.math.Vector2
 
 
@@ -62,6 +63,7 @@ class Player(pg.sprite.Sprite):
         self.health = s.PLAYER_HEALTH
         self.damaged = False
         self.items = defaultdict(int)
+        self.add_item(s.Items.SWORD)
 
     def set_pos(self, x, y):
         self.pos = vec(x, y)
@@ -73,18 +75,38 @@ class Player(pg.sprite.Sprite):
         if self.damaged:
             return
         if self.rect.left < enemy.rect.right and self.rect.right > enemy.rect.right:
-            self.pos.x += s.PLAYER_KNOCKBACK
-        if self.rect.right > enemy.rect.left and self.rect.left < enemy.rect.left:
-            self.pos.x -= s.PLAYER_KNOCKBACK
-        if self.rect.top < enemy.rect.bottom and self.rect.bottom > enemy.rect.bottom:
-            self.pos.y += s.PLAYER_KNOCKBACK
-        if self.rect.bottom > enemy.rect.top and self.rect.top < enemy.rect.top:
-            self.pos.y -= s.PLAYER_KNOCKBACK
+            self.pos.x += s.PLAYER_KNOCKBACK // 2
+            self.rect.center = self.pos
+            self.hit_rect.centerx = self.pos.x
+            collide_with_walls(self, self.game.walls, 'x')
+        elif self.rect.right > enemy.rect.left and self.rect.left < enemy.rect.left:
+            self.pos.x -= s.PLAYER_KNOCKBACK // 2
+            self.rect.center = self.pos
+            self.hit_rect.centerx = self.pos.x
+            collide_with_walls(self, self.game.walls, 'x')
+        elif self.rect.top < enemy.rect.bottom and self.rect.bottom > enemy.rect.bottom:
+            self.pos.y += s.PLAYER_KNOCKBACK // 2
+            self.rect.center = self.pos
+            self.hit_rect.centery = self.pos.y
+            collide_with_walls(self, self.game.walls, 'y')
+        elif self.rect.bottom > enemy.rect.top and self.rect.top < enemy.rect.top:
+            self.pos.y -= s.PLAYER_KNOCKBACK // 2
+            self.rect.center = self.pos
+            self.hit_rect.centerx = self.pos.x
+            collide_with_walls(self, self.game.walls, 'x')
+
+        self.rect.center = self.pos
+        self.hit_rect.centerx = self.pos.x
+        collide_with_walls(self, self.game.walls, 'x')
+        self.hit_rect.centery = self.pos.y
+        collide_with_walls(self, self.game.walls, 'y')
+        self.rect.center = self.hit_rect.center
 
         self.damaged = True
         self.damage_alpha = chain(s.DAMAGE_ALPHA * 2)
         self.health -= enemy.damage
         if self.health <= 0:
+            self.health = 0
             self.kill()
 
     def draw_health(self, surface):
@@ -114,6 +136,9 @@ class Player(pg.sprite.Sprite):
     def add_item(self, item, qty=1):
         self.items[item] += qty
 
+    def add_item_by_name(self, item_name, qty=1):
+        self.add_item(s.Items.item_by_name(item_name))
+
     def remove_item(self, item, qty=1):
         self.items[item] -= qty
 
@@ -123,6 +148,8 @@ class Player(pg.sprite.Sprite):
     def sword(self):
         if self.has_item(s.Items.SWORD):
             self.is_sword = True
+            snd = self.game.get_sound(random.choice(s.PLAYER_SOUNDS['SWORD']))
+            snd.play()
             if self.facing == s.Direction.DOWN:
                 pos = vec(self.rect.centerx, self.rect.bottom - 10)
                 rot = 45
@@ -143,7 +170,10 @@ class Player(pg.sprite.Sprite):
     def animate_movement(self):
         if pg.time.get_ticks() < self.next_animation_tick:
             return
+        snd = self.game.get_sound(s.PLAYER_SOUNDS['WALK'][0])
         if self.is_moving:
+            if snd.get_num_channels() == 0:
+                snd.play()
             self.image = self.game.player_images[self.facing][self.animation_phase]
             self.animation_phase += 1
             if self.animation_phase == 1:
@@ -153,6 +183,7 @@ class Player(pg.sprite.Sprite):
             self.next_animation_tick = pg.time.get_ticks() + 150
         else:
             self.image = self.game.player_images[self.facing][1]
+            snd.stop()
 
     def handle_event(self, event: pg.event.Event):
         self.vel = vec(0, 0)
@@ -336,7 +367,7 @@ class Sword(pg.sprite.Sprite):
 
 
 class TextBox(pg.sprite.Sprite):
-    def __init__(self, game, x, y, w, h, texts, typ=None, activator_id=None):
+    def __init__(self, game, x, y, w, h, texts, sound, typ=None, activator_id=None, item=None):
         self.groups = game.interactables
         pg.sprite.Sprite.__init__(self, self.groups)
         self.game = game
@@ -349,17 +380,19 @@ class TextBox(pg.sprite.Sprite):
         self.type = typ
         self.activator_id = activator_id
         self.activated = False
+        self.item = item
+        self.sound = sound
 
 
 class Enemy(pg.sprite.Sprite):
-    def __init__(self, game, x, y, images, health, speed, damage, knockback, routes):
+    def __init__(self, game, x, y, images, health, speed, damage, knockback, routes, name):
         self._layer = s.ENEMY_LAYER
         self.groups = game.enemies, game.all_sprites
         pg.sprite.Sprite.__init__(self, self.groups)
         self.game = game
         self.facing = s.Direction.DOWN
         self.images = images
-        self.image = self.images[self.facing][1]
+        self.image = self.images[self.facing][0]
         self.rect = self.image.get_rect()
         self.pos = vec(x, y)
         self.rect.center = self.pos
@@ -376,13 +409,14 @@ class Enemy(pg.sprite.Sprite):
         self.timeLoop = 0
         self.damage = damage
         self.knockback = knockback
+        self.name = name
 
     def animate_movement(self):
         if pg.time.get_ticks() < self.next_animation_tick:
             return
         self.image = self.images[self.facing][self.animation_phase]
         self.animation_phase += 1
-        if self.animation_phase > 1:
+        if self.animation_phase >= len(self.images[self.facing]):
             self.animation_phase = 0
         self.next_animation_tick = pg.time.get_ticks() + 150
 
@@ -390,7 +424,9 @@ class Enemy(pg.sprite.Sprite):
         self.routes = [self.game.player.pos]
         self.health -= 1
         if self.health <= 0:
+            self.play_sound('Hit')
             self.kill()
+        self.play_sound('Death')
         if facing == s.Direction.RIGHT:
             self.pos.x += self.knockback
         if facing == s.Direction.LEFT:
@@ -399,6 +435,10 @@ class Enemy(pg.sprite.Sprite):
             self.pos.y -= self.knockback
         if facing == s.Direction.DOWN:
             self.pos.y += self.knockback
+
+    def play_sound(self, sound):
+        snd = self.game.get_sound(str(self.name) + sound + '.mp3')
+        snd.play()
 
     def update(self):
         self.timeLoop += 1
@@ -427,10 +467,13 @@ class Enemy(pg.sprite.Sprite):
                 self.target = 0
         self.rect.center = self.pos
         self.animate_movement()
+        player_dist = self.game.player.pos - self.pos
+        if player_dist.length_squared() < s.SOUND_RADIUS**2 and random.randrange(0, 300) == 0:
+            self.play_sound('')
 
 
 class Activator(pg.sprite.Sprite):
-    def __init__(self, game, x, y, w, h, image=None, typ=None):
+    def __init__(self, game, x, y, w, h, image=None, typ=None, sounds=None):
         self.image = image
         self.og_image = image
         self.game = game
@@ -441,14 +484,19 @@ class Activator(pg.sprite.Sprite):
         self.rect.center = self.pos
         self.activated = False
         self.type = typ
+        self.sounds = sounds
         pg.sprite.Sprite.__init__(self, self.groups)
 
     def activate(self):
         Blank = pg.Surface((0, 0))
         self.image = Blank
+        sound = self.game.get_sound(self.sounds[0])
+        sound.play()
 
     def deactivate(self):
         self.image = self.og_image
+        # sound = self.game.get_sound(self.sounds[1])
+        # sound.play()
 
     def update(self):
         self.activated = False
@@ -511,7 +559,7 @@ class Door(pg.sprite.Sprite):
 
 
 class Spawner(pg.sprite.Sprite):
-    def __init__(self, game, x, y, images, health, speed, damage, knockback, routes, activator_id):
+    def __init__(self, game, x, y, images, health, speed, damage, knockback, routes, activator_id, name):
         self.groups = game.all_sprites
         self._layer = 0
         self.x = x
@@ -526,6 +574,7 @@ class Spawner(pg.sprite.Sprite):
         self.knockback = knockback
         self.routes = routes
         self.activator_id = activator_id
+        self.name = name
         pg.sprite.Sprite.__init__(self, self.groups)
 
     def update(self):
@@ -534,7 +583,28 @@ class Spawner(pg.sprite.Sprite):
             self.activate()
 
     def activate(self):
+        activator = self.game.objects_by_id[self.activator_id]
         Enemy(
             self.game, self.x, self.y, self.images, self.health, self.speed, self.damage,
-            self.knockback, self.routes)
+            self.knockback, self.routes, self.name)
+        activator.kill()
         self.kill()
+
+
+class SoundBox(pg.sprite.Sprite):
+    def __init__(self, game, x, y, w, h, sound, chance, identity):
+        self.groups = game.sounds
+        pg.sprite.Sprite.__init__(self, self.groups)
+        self.game = game
+        self.rect = pg.Rect(x, y, w, h)
+        self.rect.x = x
+        self.rect.y = y
+        self.sound = game.get_sound(sound)
+        self.chance = chance
+        self.id = identity
+
+    def play(self):
+        self.sound.play(loops=-1, fade_ms=500)
+
+    def stop(self):
+        self.sound.fadeout(500)

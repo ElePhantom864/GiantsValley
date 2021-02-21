@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="149">
+ <properties>
+  <property name="music" value="Caveworld.mp3"/>
+ </properties>
  <tileset firstgid="1" source="Base.tsx"/>
  <tileset firstgid="1065" source="Shadows.tsx"/>
  <tileset firstgid="1083" source="Pit.tsx"/>
@@ -372,6 +375,7 @@
   <object id="82" name="wall" x="640" y="800" width="32" height="32"/>
   <object id="83" name="Interact" type="Lever" x="176" y="840" width="16" height="16">
    <properties>
+    <property name="sound" value="lever.mp3"/>
     <property name="text" value="You flip the switch"/>
    </properties>
   </object>
@@ -397,20 +401,23 @@
   </object>
   <object id="97" name="Interact" type="Lever" x="400" y="648" width="16" height="16">
    <properties>
+    <property name="sound" value="lever.mp3"/>
     <property name="text" value="You flip the switch"/>
    </properties>
   </object>
   <object id="98" name="Interact" type="Lever" x="648" y="864" width="16" height="16">
    <properties>
+    <property name="sound" value="lever.mp3"/>
     <property name="text" value="You flip the switch"/>
    </properties>
   </object>
   <object id="99" name="Interact" type="Lever" x="776" y="864" width="16" height="16">
    <properties>
+    <property name="sound" value="lever.mp3"/>
     <property name="text" value="You flip the switch"/>
    </properties>
   </object>
-  <object id="100" name="Cobra" type="mob" x="-32" y="640" width="32" height="320">
+  <object id="100" name="firewall" type="mob" x="-520" y="584" width="32" height="320">
    <properties>
     <property name="activator" type="object" value="83"/>
     <property name="damage" type="int" value="100"/>
@@ -445,12 +452,14 @@
   </object>
   <object id="106" name="Interact" type="Lever" x="560" y="392" width="16" height="16">
    <properties>
+    <property name="sound" value="lever.mp3"/>
     <property name="text" value="You flip the switch"/>
    </properties>
   </object>
   <object id="107" name="Interact" type="Activator" x="848" y="96" width="48" height="48">
    <properties>
     <property name="activator" type="object" value="106"/>
+    <property name="sound" value="lever.mp3"/>
     <property name="text" value="You flip the switch"/>
    </properties>
   </object>
