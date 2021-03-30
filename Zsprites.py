@@ -3,6 +3,7 @@ import pygame as pg
 import Zsettings as s
 from Ztilemap import collide_hit_rect
 from itertools import chain
+import pytweening as tween
 from os import path
 from collections import defaultdict
 import math
@@ -61,6 +62,7 @@ class Player(pg.sprite.Sprite):
         self.is_sword = False
         self.max_health = s.PLAYER_HEALTH
         self.health = s.PLAYER_HEALTH
+        self.max_lives = 10
         self.damaged = False
         self.items = defaultdict(int)
         self.add_item(s.Items.SWORD)
@@ -107,6 +109,12 @@ class Player(pg.sprite.Sprite):
         self.health -= enemy.damage
         if self.health <= 0:
             self.health = 0
+            if self.items[s.Items.RESPAWN_ORB] > 0:
+                self.items[s.Items.RESPAWN_ORB] -= 1
+                self.add_item(s.Items.SWORD)
+                self.game.load_map(self.game.current_map[0], self.game.current_map[1])
+                self.health = self.max_health
+                return
             self.kill()
 
     def draw_health(self, surface):
@@ -132,6 +140,17 @@ class Player(pg.sprite.Sprite):
             for i in range(ran1):
                 surface.blit(self.game.empty_heart_img, (x, 2))
                 x += 37
+        if self.items[s.Items.RESPAWN_ORB] > self.max_lives:
+            self.items[s.Items.RESPAWN_ORB] -= 1
+        x = 2
+        ran = self.items[s.Items.RESPAWN_ORB]
+        for i in range(ran):
+            surface.blit(self.game.UI_orb_img, (x, 37))
+            x += 12
+        ran1 = self.max_lives - self.items[s.Items.RESPAWN_ORB]
+        for i in range(ran1):
+            surface.blit(self.game.empty_orb_img, (x, 37))
+            x += 12
 
     def add_item(self, item, qty=1):
         self.items[item] += qty
@@ -424,9 +443,13 @@ class Enemy(pg.sprite.Sprite):
         self.routes = [self.game.player.pos]
         self.health -= 1
         if self.health <= 0:
-            self.play_sound('Hit')
+            self.play_sound('Death')
+            if random.randrange(0, 15) == 0:
+                Item(self.game, self.pos, self.game.heart_img, 'Health')
+            elif random.randrange(0, 20) == 0:
+                Item(self.game, self.pos, self.game.orb_img, 'Item', s.Items.RESPAWN_ORB)
             self.kill()
-        self.play_sound('Death')
+        self.play_sound('Hit')
         if facing == s.Direction.RIGHT:
             self.pos.x += self.knockback
         if facing == s.Direction.LEFT:
@@ -561,7 +584,7 @@ class Door(pg.sprite.Sprite):
 class Spawner(pg.sprite.Sprite):
     def __init__(self, game, x, y, images, health, speed, damage, knockback, routes, activator_id, name):
         self.groups = game.all_sprites
-        self._layer = 0
+        self._layer = s.SPAWNER_LAYER
         self.x = x
         self.y = y
         self.game = game
@@ -608,3 +631,38 @@ class SoundBox(pg.sprite.Sprite):
 
     def stop(self):
         self.sound.fadeout(500)
+
+
+class Item(pg.sprite.Sprite):
+    def __init__(self, game, pos, image, Type, item=None):
+        self._layer = s.ITEMS_LAYER
+        self.groups = game.all_sprites, game.items
+        pg.sprite.Sprite.__init__(self, self.groups)
+        self.game = game
+        self.image = image
+        self.rect = self.image.get_rect()
+        self.type = Type
+        self.pos = pos
+        self.rect.center = pos
+        self.tween = tween.easeInOutSine
+        self.step = 0
+        self.dir = 1
+        self.item = item
+
+    def update(self):
+        # bobbing motion
+        offset = s.BOB_RANGE * (self.tween(self.step / s.BOB_RANGE) - 0.5)
+        self.rect.centery = self.pos.y + offset * self.dir
+        self.step += s.BOB_SPEED
+        if self.step > s.BOB_RANGE:
+            self.step = 0
+            self.dir *= -1
+
+    def activate(self):
+        if self.type == 'Item':
+            self.game.player.add_item(self.item)
+        else:
+            self.game.player.health += 1
+            if self.game.player.health > self.game.player.max_health:
+                self.game.player.health -= 1
+        self.kill()

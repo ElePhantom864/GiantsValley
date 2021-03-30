@@ -11,13 +11,15 @@ class Direction(Enum):
 
 class Items(Enum):
     SWORD = 'sword'
+    RESPAWN_ORB = 'respawn_orb'
     HEALTH_POTION = 'health_potion'
 
     @classmethod
     def item_by_name(cls, name):
         return cls(name)
 
-        # define some colors (R, G, B)
+
+# define some colors (R, G, B)
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 DARKGREY = (40, 40, 40)
@@ -78,7 +80,13 @@ PLAYER_SOUNDS = {
 # mob settings
 SOUND_RADIUS = 32 * 3
 
+# item settings
+BOB_RANGE = 15
+BOB_SPEED = 0.4
+
 # layers
+ITEMS_LAYER = 1
+SPAWNER_LAYER = 0
 PLAYER_LAYER = 0
 PUSH_LAYER = -2
 ENEMY_LAYER = -2

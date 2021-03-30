@@ -9,8 +9,11 @@ import Zsettings as s
 import Zsprites as spr
 from Ztilemap import TiledMap, Camera
 from os import path
+import pygame_gui
 from pygame_gui.ui_manager import UIManager
 from pygame_gui.elements.ui_text_box import UITextBox
+from pygame_gui.elements.ui_button import UIButton
+from pygame_gui.core import ObjectID
 from pygame_gui.core import IncrementalThreadedResourceLoader
 from pygame_gui import UI_TEXT_BOX_LINK_CLICKED
 from itertools import chain
@@ -34,17 +37,20 @@ class Game:
         self.load_data()
 
     def load_data(self):
-        game_folder = path.dirname(__file__)
-        snd_folder = path.join(game_folder, 'snd')
-        self.music_folder = path.join(game_folder, 'music')
-        self.img_folder = path.join(game_folder, 'img')
-        self.map_folder = path.join(game_folder, 'maps')
+        self.game_folder = path.dirname(__file__)
+        snd_folder = path.join(self.game_folder, 'snd')
+        self.music_folder = path.join(self.game_folder, 'music')
+        self.img_folder = path.join(self.game_folder, 'img')
+        self.map_folder = path.join(self.game_folder, 'maps')
 
         # Image Loading
         self.sword_img = pg.image.load(path.join(self.img_folder, 'TempSword.png')).convert_alpha()
         self.heart_img = pg.image.load(path.join(self.img_folder, 'Heart.png')).convert_alpha()
         self.half_heart_img = pg.image.load(path.join(self.img_folder, 'Half_Heart.png')).convert_alpha()
         self.empty_heart_img = pg.image.load(path.join(self.img_folder, 'Empty_Heart.png')).convert_alpha()
+        self.orb_img = pg.image.load(path.join(self.img_folder, 'Orb.png')).convert_alpha()
+        self.UI_orb_img = pg.image.load(path.join(self.img_folder, 'Full_Orb.png')).convert_alpha()
+        self.empty_orb_img = pg.image.load(path.join(self.img_folder, 'Empty_Orb.png')).convert_alpha()
         self.player_images = {}
         for direction, images in s.PLAYER_IMAGES.items():
             self.player_images[direction] = list(map(lambda img: pg.image.load(
@@ -52,13 +58,13 @@ class Game:
         self.mob_images = {}
 
         loader = IncrementalThreadedResourceLoader()
-        self.ui_manager = UIManager((s.WIDTH, s.HEIGHT), path.join(game_folder, 'data/themes/theme_1.json'),
+        self.ui_manager = UIManager((s.WIDTH, s.HEIGHT), path.join(self.game_folder, 'data/themes/theme_1.json'),
                                     resource_loader=loader)
         self.ui_manager.add_font_paths("Montserrat",
-                                       path.join(game_folder, "data/fonts/Montserrat-Regular.ttf"),
-                                       path.join(game_folder, "data/fonts/Montserrat-Bold.ttf"),
-                                       path.join(game_folder, "data/fonts/Montserrat-Italic.ttf"),
-                                       path.join(game_folder, "data/fonts/Montserrat-BoldItalic.ttf"))
+                                       path.join(self.game_folder, "data/fonts/Montserrat-Regular.ttf"),
+                                       path.join(self.game_folder, "data/fonts/Montserrat-Bold.ttf"),
+                                       path.join(self.game_folder, "data/fonts/Montserrat-Italic.ttf"),
+                                       path.join(self.game_folder, "data/fonts/Montserrat-BoldItalic.ttf"))
 
         self.ui_manager.preload_fonts([{'name': 'Montserrat', 'html_size': 4.5, 'style': 'bold'},
                                        {'name': 'Montserrat', 'html_size': 4.5, 'style': 'regular'},
@@ -78,6 +84,7 @@ class Game:
         finished_loading = False
         while not finished_loading:
             finished_loading, progress = loader.update()
+        self.ui = UI(self)
 
     def new(self):
         # initialize all variables and do all the setup for a new game
@@ -90,12 +97,14 @@ class Game:
         self.activators = pg.sprite.Group()
         self.pushers = pg.sprite.Group()
         self.sounds = pg.sprite.Group()
+        self.items = pg.sprite.Group()
         self.player = spr.Player(
             self, 0, 0)
         self.current_music = None
         self.sound_cache = {}
         self.current_sounds = pg.sprite.Group()
         self.load_map('Zelda.tmx', 'playerCenter')
+        self.current_map = ['Zelda.tmx', 'playerCenter']
 
     def load_map(self, map_name, playerLocation):
         self.all_sprites.empty()
@@ -107,7 +116,10 @@ class Game:
         self.activators.empty()
         self.pushers.empty()
         self.sounds.empty()
+        self.items.empty()
         self.player.add([self.pushers, self.all_sprites])
+
+        self.current_map = [map_name, playerLocation]
 
         self.current_interactable = None
         self.map = TiledMap(path.join(self.map_folder, map_name))
@@ -134,7 +146,8 @@ class Game:
                     tile_object.height, False)
                 self.objects_by_id[tile_object.id] = obstacle
             if tile_object.name == 'activator':
-                sounds = tile_object.properties['sounds'].split(',')
+                # sounds = tile_object.properties['sound'].split(',')
+                sounds = ['silence.mp3']
                 activator = spr.Activator(
                     self, obj_center.x, obj_center.y, tile_object.width,
                     tile_object.height, tile_object.image, tile_object.type, sounds)
@@ -211,12 +224,21 @@ class Game:
 
     def update(self):
         # update portion of the game loop
+        # if True:
+        #     new_state = self.ui.run(self.ui.game_over)
+        #     if new_state == 'NEW_GAME':
+        #         pass
+
         if not self.pause_game:
             self.all_sprites.update()
         self.camera.update(self.player)
         hits = pg.sprite.spritecollide(self.player, self.teleports, False)
         for hit in hits:
             self.load_map(hit.destination, hit.location)
+            return
+        hits = pg.sprite.spritecollide(self.player, self.items, False)
+        for hit in hits:
+            hit.activate()
             return
         hits = pg.sprite.spritecollide(self.player, self.sounds, False)
         for hit in hits:
@@ -363,10 +385,70 @@ class Game:
                         print("Mob image is missing", e)
 
 
+class UI:
+    def __init__(self, game):
+        self.game = game
+
+    def game_over(self):
+        self.game.screen.fill(s.BLACK)
+        UIButton(
+            pg.Rect((0, 100), (s.WIDTH, 50)),
+            'Game Over',
+            manager=self.game.ui_manager, object_id='#game_over')
+        UIButton(
+            pg.Rect((40, 200), (s.WIDTH - 80, 50)),
+            'New Game',
+            manager=self.game.ui_manager, object_id=ObjectID('#new_game', '@ok_button'))
+        UIButton(
+            pg.Rect((40, 255), (s.WIDTH - 80, 50)),
+            'QUIT',
+            manager=self.game.ui_manager, object_id=ObjectID('#quit_game', '@ok_button'))
+
+    def new_game(self):
+        self.game.screen.fill(s.BLACK)
+        text = UITextBox(
+            '<font face=Montserrat size=4 color=#FF0000> New Game', pg.Rect((0, 0), (s.WIDTH, s.HEIGHT)),
+            manager=self.game.ui_manager, object_id='#text_box_3')
+
+    def run(self, draw_screen):
+        # game loop - set self.playing = False to end the game
+        self.state = None
+        pg.mixer.music.stop()
+        self.playing = True
+        self.ui_manager = UIManager((s.WIDTH, s.HEIGHT), path.join(self.game.game_folder, 'data/themes/theme_1.json'))
+        draw_screen()
+        while self.playing:
+            self.dt = self.game.clock.tick(s.FPS) / 1000
+            self.events()
+            self.game.ui_manager.update(self.dt)
+            self.game.ui_manager.draw_ui(self.game.screen)
+            pg.display.update()
+
+        return self.state
+
+    def events(self):
+        # catch all events here
+        for event in pg.event.get():
+            if event.type == pg.USEREVENT:
+                if event.user_type == pygame_gui.UI_BUTTON_PRESSED:
+                    if event.ui_object_id == '#new_game':
+                        print('New game button pressed')
+                    if event.ui_object_id == '#quit_game':
+                        print('QUIT game button pressed')
+            if event.type == pg.QUIT:
+                self.game.quit()
+            if event.type == pg.KEYUP and event.key != pg:
+                self.playing = False
+                self.state = 'NEW_GAME'
+            if event.type == pg.KEYDOWN:
+                if event.key == pg.K_ESCAPE:
+                    self.quit()
+            self.game.ui_manager.process_events(event)
+
+
 # create the game object
 g = Game()
 g.show_start_screen()
 while True:
     g.new()
     g.run()
-    g.show_go_screen()

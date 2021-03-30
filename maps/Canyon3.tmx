@@ -515,46 +515,55 @@
   </object>
   <object id="123" name="activator" gid="56" x="864" y="416" width="32" height="32">
    <properties>
+    <property name="sound" value="fireflower.mp3"/>
     <property name="speed" type="int" value="50"/>
    </properties>
   </object>
   <object id="124" name="activator" gid="56" x="864" y="544" width="32" height="32">
    <properties>
+    <property name="sound" value="fireflower.mp3"/>
     <property name="speed" type="int" value="50"/>
    </properties>
   </object>
   <object id="126" name="activator" gid="56" x="608" y="416" width="32" height="32">
    <properties>
+    <property name="sound" value="fireflower.mp3"/>
     <property name="speed" type="int" value="50"/>
    </properties>
   </object>
   <object id="128" name="activator" gid="56" x="544" y="512" width="32" height="32">
    <properties>
+    <property name="sound" value="fireflower.mp3"/>
     <property name="speed" type="int" value="50"/>
    </properties>
   </object>
   <object id="129" name="activator" gid="56" x="416" y="544" width="32" height="32">
    <properties>
+    <property name="sound" value="fireflower.mp3"/>
     <property name="speed" type="int" value="50"/>
    </properties>
   </object>
   <object id="130" name="activator" gid="56" x="416" y="416" width="32" height="32">
    <properties>
+    <property name="sound" value="fireflower.mp3"/>
     <property name="speed" type="int" value="50"/>
    </properties>
   </object>
   <object id="133" name="activator" gid="56" x="192" y="480" width="32" height="32">
    <properties>
+    <property name="sound" value="fireflower.mp3"/>
     <property name="speed" type="int" value="50"/>
    </properties>
   </object>
   <object id="134" name="activator" gid="56" x="160" y="416" width="32" height="32">
    <properties>
+    <property name="sound" value="fireflower.mp3"/>
     <property name="speed" type="int" value="50"/>
    </properties>
   </object>
   <object id="135" name="activator" gid="56" x="64" y="544" width="32" height="32">
    <properties>
+    <property name="sound" value="fireflower.mp3"/>
     <property name="speed" type="int" value="50"/>
    </properties>
   </object>

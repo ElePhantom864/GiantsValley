@@ -312,12 +312,14 @@
   </object>
   <object id="146" name="Interact" type="Lever" x="784" y="832" width="64" height="48">
    <properties>
+    <property name="sound" value="lever.mp3"/>
     <property name="text" value="You flip the switch"/>
    </properties>
   </object>
   <object id="147" name="Interact" type="Activator" x="216" y="256" width="40" height="40">
    <properties>
     <property name="activator" type="object" value="146"/>
+    <property name="sound" value="lever.mp3"/>
     <property name="text" value="You flip the switch"/>
    </properties>
   </object>
@@ -328,6 +330,7 @@
   </object>
   <object id="152" name="Interact" type="Lever" x="480" y="288" width="48" height="48">
    <properties>
+    <property name="sound" value="lever.mp3"/>
     <property name="text" value="You flip the switch"/>
    </properties>
   </object>

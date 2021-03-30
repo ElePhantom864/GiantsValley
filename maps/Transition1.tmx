@@ -177,7 +177,7 @@
     <property name="playerLocation" value="playerRight"/>
    </properties>
   </object>
-  <object id="39" name="Cobra" type="mob" x="872" y="424" width="16" height="16">
+  <object id="39" name="Bush" type="mob" x="840" y="400" width="16" height="16">
    <properties>
     <property name="damage" type="int" value="0"/>
     <property name="health" type="int" value="1"/>
@@ -185,7 +185,7 @@
     <property name="speed" type="int" value="1"/>
    </properties>
   </object>
-  <object id="45" name="Cobra" type="mob" x="872" y="456" width="16" height="16">
+  <object id="45" name="Bush" type="mob" x="840" y="432" width="16" height="16">
    <properties>
     <property name="damage" type="int" value="0"/>
     <property name="health" type="int" value="1"/>
@@ -193,7 +193,7 @@
     <property name="speed" type="int" value="1"/>
    </properties>
   </object>
-  <object id="46" name="Cobra" type="mob" x="872" y="488" width="16" height="16">
+  <object id="46" name="Bush" type="mob" x="840" y="464" width="16" height="16">
    <properties>
     <property name="damage" type="int" value="0"/>
     <property name="health" type="int" value="1"/>
@@ -201,7 +201,7 @@
     <property name="speed" type="int" value="1"/>
    </properties>
   </object>
-  <object id="47" name="Cobra" type="mob" x="872" y="520" width="16" height="16">
+  <object id="47" name="Bush" type="mob" x="840" y="496" width="16" height="16">
    <properties>
     <property name="damage" type="int" value="0"/>
     <property name="health" type="int" value="1"/>
@@ -209,7 +209,7 @@
     <property name="speed" type="int" value="1"/>
    </properties>
   </object>
-  <object id="48" name="Cobra" type="mob" x="872" y="552" width="16" height="16">
+  <object id="48" name="Bush" type="mob" x="840" y="528" width="16" height="16">
    <properties>
     <property name="damage" type="int" value="0"/>
     <property name="health" type="int" value="1"/>
@@ -217,7 +217,7 @@
     <property name="speed" type="int" value="1"/>
    </properties>
   </object>
-  <object id="49" name="Cobra" type="mob" x="872" y="584" width="16" height="16">
+  <object id="49" name="Bush" type="mob" x="840" y="560" width="16" height="16">
    <properties>
     <property name="damage" type="int" value="0"/>
     <property name="health" type="int" value="1"/>
@@ -225,7 +225,7 @@
     <property name="speed" type="int" value="1"/>
    </properties>
   </object>
-  <object id="50" name="Cobra" type="mob" x="872" y="616" width="16" height="16">
+  <object id="50" name="Bush" type="mob" x="840" y="592" width="16" height="16">
    <properties>
     <property name="damage" type="int" value="0"/>
     <property name="health" type="int" value="1"/>
