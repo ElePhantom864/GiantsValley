@@ -116,6 +116,7 @@ class Player(pg.sprite.Sprite):
                 self.health = self.max_health
                 return
             self.kill()
+            new_state = self.game.ui.run(self.game.ui.game_over)
 
     def draw_health(self, surface):
         if (self.health % 2) == 0:
@@ -406,7 +407,7 @@ class TextBox(pg.sprite.Sprite):
 class Enemy(pg.sprite.Sprite):
     def __init__(self, game, x, y, images, health, speed, damage, knockback, routes, name):
         self._layer = s.ENEMY_LAYER
-        self.groups = game.enemies, game.all_sprites
+        self.groups = game.enemies, game.all_sprites, game.walls
         pg.sprite.Sprite.__init__(self, self.groups)
         self.game = game
         self.facing = s.Direction.DOWN
@@ -491,8 +492,11 @@ class Enemy(pg.sprite.Sprite):
         self.rect.center = self.pos
         self.animate_movement()
         player_dist = self.game.player.pos - self.pos
-        if player_dist.length_squared() < s.SOUND_RADIUS**2 and random.randrange(0, 300) == 0:
+        if player_dist.length_squared() < s.SOUND_RADIUS**2 and random.randrange(0, 100) == 0:
             self.play_sound('')
+
+    def push(self):
+        pass
 
 
 class Activator(pg.sprite.Sprite):

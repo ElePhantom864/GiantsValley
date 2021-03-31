@@ -73,6 +73,9 @@ class Game:
                                        {'name': 'Montserrat', 'html_size': 6, 'style': 'bold'},
                                        {'name': 'Montserrat', 'html_size': 6, 'style': 'regular'},
                                        {'name': 'Montserrat', 'html_size': 6, 'style': 'bold_italic'},
+                                       {'name': 'Montserrat', 'html_size': 36, 'style': 'bold'},
+                                       {'name': 'Montserrat', 'html_size': 36, 'style': 'regular'},
+                                       {'name': 'Montserrat', 'html_size': 36, 'style': 'bold_italic'},
                                        {'name': 'Montserrat', 'html_size': 4, 'style': 'bold'},
                                        {'name': 'Montserrat', 'html_size': 4, 'style': 'regular'},
                                        {'name': 'Montserrat', 'html_size': 4, 'style': 'italic'},
@@ -104,7 +107,6 @@ class Game:
         self.sound_cache = {}
         self.current_sounds = pg.sprite.Group()
         self.load_map('Zelda.tmx', 'playerCenter')
-        self.current_map = ['Zelda.tmx', 'playerCenter']
 
     def load_map(self, map_name, playerLocation):
         self.all_sprites.empty()
@@ -224,10 +226,6 @@ class Game:
 
     def update(self):
         # update portion of the game loop
-        # if True:
-        #     new_state = self.ui.run(self.ui.game_over)
-        #     if new_state == 'NEW_GAME':
-        #         pass
 
         if not self.pause_game:
             self.all_sprites.update()
@@ -353,7 +351,7 @@ class Game:
         return self.sound_cache[sound]
 
     def show_start_screen(self):
-        pass
+        new_state = self.ui.run(self.ui.start_game)
 
     def show_go_screen(self):
         pass
@@ -391,16 +389,36 @@ class UI:
 
     def game_over(self):
         self.game.screen.fill(s.BLACK)
-        UIButton(
+        self.title = UIButton(
             pg.Rect((0, 100), (s.WIDTH, 50)),
             'Game Over',
             manager=self.game.ui_manager, object_id='#game_over')
-        UIButton(
+        self.new = UIButton(
             pg.Rect((40, 200), (s.WIDTH - 80, 50)),
             'New Game',
             manager=self.game.ui_manager, object_id=ObjectID('#new_game', '@ok_button'))
-        UIButton(
+        self.quit = UIButton(
             pg.Rect((40, 255), (s.WIDTH - 80, 50)),
+            'QUIT',
+            manager=self.game.ui_manager, object_id=ObjectID('#quit_game', '@ok_button'))
+
+    def start_game(self):
+        start_bg = pg.Surface((0, 0))
+        image = pg.image.load(path.join(self.game.img_folder, 'Start.png')).convert_alpha()
+        image = pg.transform.scale(image, (s.WIDTH, s.HEIGHT))
+        image_rect = image.get_rect()
+        self.game.screen.blit(image, image_rect)
+        self.title = UIButton(
+            pg.Rect((0, 100), (s.WIDTH, 75)),
+            'Insert Title',
+            manager=self.game.ui_manager, object_id='#start_game')
+        self.title.disable()
+        self.new = UIButton(
+            pg.Rect((100, 200), (s.WIDTH - 200, 50)),
+            'New Game',
+            manager=self.game.ui_manager, object_id=ObjectID('#new_game', '@ok_button'))
+        self.quit = UIButton(
+            pg.Rect((100, 255), (s.WIDTH - 200, 50)),
             'QUIT',
             manager=self.game.ui_manager, object_id=ObjectID('#quit_game', '@ok_button'))
 
@@ -432,17 +450,18 @@ class UI:
             if event.type == pg.USEREVENT:
                 if event.user_type == pygame_gui.UI_BUTTON_PRESSED:
                     if event.ui_object_id == '#new_game':
-                        print('New game button pressed')
+                        self.game.new()
+                        self.playing = False
+                        self.title.kill()
+                        self.new.kill()
+                        self.quit.kill()
                     if event.ui_object_id == '#quit_game':
-                        print('QUIT game button pressed')
+                        self.game.quit()
             if event.type == pg.QUIT:
                 self.game.quit()
-            if event.type == pg.KEYUP and event.key != pg:
-                self.playing = False
-                self.state = 'NEW_GAME'
             if event.type == pg.KEYDOWN:
                 if event.key == pg.K_ESCAPE:
-                    self.quit()
+                    self.game.quit()
             self.game.ui_manager.process_events(event)
 
 
