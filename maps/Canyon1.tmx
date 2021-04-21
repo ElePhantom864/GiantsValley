@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="109">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="114">
  <properties>
   <property name="music" value="Overworld1.mp3"/>
  </properties>
@@ -8,7 +8,7 @@
  <tileset firstgid="4137" source="Wires.tsx"/>
  <tileset firstgid="4179" source="Boxes.tsx"/>
  <tileset firstgid="4188" source="Buttons-1.png.tsx"/>
- <tileset firstgid="4197" source="Door.tsx"/>
+ <tileset firstgid="4200" source="Door.tsx"/>
  <layer id="1" name="Ground" width="30" height="30">
   <data encoding="csv">
 6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,
@@ -132,14 +132,14 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,52,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,57,0,0,0,0,0,0,52,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4204,4144,4144,4172,0,862,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4207,4144,4144,4172,0,862,0,0,0,0,
 0,0,52,0,0,0,0,165,0,227,0,52,0,0,165,0,0,0,0,0,0,0,0,4189,0,0,0,311,0,0,
 0,0,0,0,0,165,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,65,0,0,0,
 165,0,0,0,0,0,0,0,52,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,51,0,0,0,0,0,0,0,0,57,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,52,
 64,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,165,0,0,
-72,0,0,408,0,0,0,57,0,0,0,0,0,0,0,0,65,0,0,0,0,0,0,0,863,0,0,0,0,0,
-0,66,0,416,236,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+72,0,0,0,0,0,0,57,0,0,0,0,0,0,0,0,65,0,0,0,0,0,0,0,863,0,0,0,0,0,
+0,66,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,52,0,0,0,0,0,336,0,0,0,
 0,46,0,0,0,0,0,0,0,0,0,57,0,0,0,0,0,57,0,0,0,0,0,51,0,0,0,0,52,0,
 66,0,52,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
@@ -177,7 +177,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,44,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 15,16,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-23,24,0,0,0,44,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+23,24,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
@@ -258,7 +258,6 @@
   <object id="53" name="wall" x="8" y="864" width="32" height="32"/>
   <object id="54" name="wall" x="32" y="896" width="32" height="32"/>
   <object id="55" name="wall" x="0" y="928" width="32" height="32"/>
-  <object id="56" name="wall" x="168" y="888" width="16" height="8"/>
   <object id="57" name="wall" x="360" y="824" width="16" height="8"/>
   <object id="58" name="wall" x="936" y="632" width="16" height="8"/>
   <object id="60" name="wall" x="616" y="248" width="16" height="8"/>
@@ -291,14 +290,14 @@
     <property name="playerLocation" value="playerRightUp"/>
    </properties>
   </object>
-  <object id="74" name="door" gid="4203" x="640" y="640" width="31" height="32">
+  <object id="74" name="door" gid="4206" x="640" y="640" width="31" height="32">
    <properties>
     <property name="activator" type="object" value="75"/>
    </properties>
   </object>
   <object id="75" name="activator" gid="4188" x="736" y="661" width="30" height="21">
    <properties>
-    <property name="sound" value="piston.mp3"/>
+    <property name="sound" value="silence.mp3"/>
    </properties>
   </object>
   <object id="76" name="pushable" gid="4187" x="768" y="672" width="30" height="29"/>
@@ -446,7 +445,7 @@
   <object id="105" x="80" y="720">
    <point/>
   </object>
-  <object id="106" name="Golem" type="mob" x="232" y="872" width="16" height="16">
+  <object id="106" name="Golem" type="mob" x="392" y="872" width="16" height="16">
    <properties>
     <property name="damage" type="int" value="3"/>
     <property name="health" type="int" value="10"/>
@@ -461,6 +460,20 @@
   </object>
   <object id="108" x="720" y="912">
    <point/>
+  </object>
+  <object id="109" name="Teleport" type="mob" x="104" y="824" width="16" height="16">
+   <properties>
+    <property name="damage" type="int" value="0"/>
+    <property name="health" type="int" value="10000"/>
+    <property name="knockback" type="int" value="0"/>
+    <property name="speed" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="112" name="wall" x="64" y="768" width="88" height="112"/>
+  <object id="113" name="LavaDungeon.tmx" type="Teleport" x="64" y="880" width="88" height="8">
+   <properties>
+    <property name="playerLocation" value="player"/>
+   </properties>
   </object>
  </objectgroup>
 </map>

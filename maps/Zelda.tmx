@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="17" nextobjectid="487">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="17" nextobjectid="671">
  <properties>
   <property name="music" value="Overworld1.mp3"/>
  </properties>
@@ -11,6 +11,7 @@
  <tileset firstgid="1737" source="[A]Grass_pipo.tsx"/>
  <tileset firstgid="2265" source="Door.tsx"/>
  <tileset firstgid="2274" source="Shadows.tsx"/>
+ <tileset firstgid="2292" source="Icon.tsx"/>
  <layer id="1" name="Ground" width="30" height="30">
   <data encoding="csv">
 577,577,577,577,577,577,577,577,577,577,577,577,577,577,577,577,577,577,577,577,577,577,577,577,577,577,577,577,577,577,
@@ -237,7 +238,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,1194,1196,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1186,1196,855,856,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1449,0,863,864,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2292,0,1449,0,863,864,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,1194,1196,805,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,1194,1196,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,823,824,0,0,0,0,0,
@@ -427,5 +428,7 @@ Signed - Kronus Poryphyron</property>
   <object id="434" x="592" y="376">
    <point/>
   </object>
+  <object id="669" name="wall" x="320" y="928" width="352" height="32"/>
+  <object id="670" name="wall" x="928" y="384" width="32" height="256"/>
  </objectgroup>
 </map>

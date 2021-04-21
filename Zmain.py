@@ -106,7 +106,7 @@ class Game:
         self.current_music = None
         self.sound_cache = {}
         self.current_sounds = pg.sprite.Group()
-        self.load_map('Zelda.tmx', 'playerCenter')
+        self.load_map('LavaDungeon.tmx', 'player')
 
     def load_map(self, map_name, playerLocation):
         self.all_sprites.empty()
@@ -136,7 +136,6 @@ class Game:
         self.map_top_img, self.map_bottom_img = self.map.make_map()
         self.map_rect = self.map_bottom_img.get_rect()
         self.objects_by_id = {}
-
         for tile_object in self.map.tmxdata.objects:
             obj_center = vec(tile_object.x + tile_object.width / 2,
                              tile_object.y + tile_object.height / 2)
@@ -148,8 +147,7 @@ class Game:
                     tile_object.height, False)
                 self.objects_by_id[tile_object.id] = obstacle
             if tile_object.name == 'activator':
-                # sounds = tile_object.properties['sound'].split(',')
-                sounds = ['silence.mp3']
+                sounds = tile_object.properties['sound']
                 activator = spr.Activator(
                     self, obj_center.x, obj_center.y, tile_object.width,
                     tile_object.height, tile_object.image, tile_object.type, sounds)
@@ -166,6 +164,9 @@ class Game:
                 self.objects_by_id[tile_object.id] = door
             if tile_object.type == 'mob':
                 routes = []
+                passive = False
+                if 'passive' in tile_object.properties:
+                    passive = True
                 for i in range(1, 100):
                     route_name = 'route' + str(i)
                     if route_name not in tile_object.properties:
@@ -181,11 +182,11 @@ class Game:
                     activator_id = tile_object.properties['activator']
                     spr.Spawner(
                         self, obj_center.x, obj_center.y, self.mob_images[tile_object.name], health, speed, damage,
-                        knockback, routes, activator_id, tile_object.name)
+                        knockback, routes, activator_id, tile_object.name, passive)
                 else:
                     spr.Enemy(
                         self, obj_center.x, obj_center.y, self.mob_images[tile_object.name], health, speed, damage,
-                        knockback, routes, tile_object.name)
+                        knockback, routes, tile_object.name, passive)
             if tile_object.type == 'Teleport':
                 spr.Teleport(
                     self, tile_object.x, tile_object.y,
@@ -209,6 +210,8 @@ class Game:
                     self, tile_object.x, tile_object.y,
                     tile_object.width, tile_object.height,
                     tile_object.properties['sound'], tile_object.properties['chance'], tile_object.id)
+            if tile_object.name == 'Boss':
+                spr.LavaBoss(self)
 
     def run(self):
         # game loop - set self.playing = False to end the game
@@ -254,8 +257,11 @@ class Game:
                 self.current_sounds.remove(sound)
 
         hits = pg.sprite.spritecollide(self.player, self.enemies, False)
+        die_on_hit = ['Fire', 'Homing']
         for enemy in hits:
             self.player.hit(enemy)
+            if enemy.name in die_on_hit:
+                enemy.kill()
         hits = pg.sprite.spritecollide(self.player, self.interactables, False)
         if not hits and self.current_interactable:
             self.current_interactable.text.kill()

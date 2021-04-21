@@ -338,6 +338,7 @@
     <property name="damage" type="int" value="1"/>
     <property name="health" type="int" value="10000000"/>
     <property name="knockback" type="int" value="0"/>
+    <property name="passive" value=""/>
     <property name="route1" type="object" value="108"/>
     <property name="speed" type="int" value="240"/>
    </properties>
@@ -347,6 +348,7 @@
     <property name="damage" type="int" value="1"/>
     <property name="health" type="int" value="10000000"/>
     <property name="knockback" type="int" value="0"/>
+    <property name="passive" value=""/>
     <property name="route1" type="object" value="109"/>
     <property name="speed" type="int" value="240"/>
    </properties>
@@ -356,6 +358,7 @@
     <property name="damage" type="int" value="1"/>
     <property name="health" type="int" value="10000000"/>
     <property name="knockback" type="int" value="0"/>
+    <property name="passive" value=""/>
     <property name="route1" type="object" value="110"/>
     <property name="speed" type="int" value="240"/>
    </properties>
@@ -365,6 +368,7 @@
     <property name="damage" type="int" value="1"/>
     <property name="health" type="int" value="10000000"/>
     <property name="knockback" type="int" value="0"/>
+    <property name="passive" value=""/>
     <property name="route1" type="object" value="111"/>
     <property name="speed" type="int" value="240"/>
    </properties>
@@ -374,6 +378,7 @@
     <property name="damage" type="int" value="1"/>
     <property name="health" type="int" value="10000000"/>
     <property name="knockback" type="int" value="0"/>
+    <property name="passive" value=""/>
     <property name="route1" type="object" value="112"/>
     <property name="speed" type="int" value="240"/>
    </properties>
@@ -383,6 +388,7 @@
     <property name="damage" type="int" value="1"/>
     <property name="health" type="int" value="10000000"/>
     <property name="knockback" type="int" value="0"/>
+    <property name="passive" value=""/>
     <property name="route1" type="object" value="113"/>
     <property name="speed" type="int" value="240"/>
    </properties>
@@ -392,6 +398,7 @@
     <property name="damage" type="int" value="1"/>
     <property name="health" type="int" value="10000000"/>
     <property name="knockback" type="int" value="0"/>
+    <property name="passive" value=""/>
     <property name="route1" type="object" value="114"/>
     <property name="speed" type="int" value="240"/>
    </properties>
@@ -401,6 +408,7 @@
     <property name="damage" type="int" value="1"/>
     <property name="health" type="int" value="10000000"/>
     <property name="knockback" type="int" value="0"/>
+    <property name="passive" value=""/>
     <property name="route1" type="object" value="115"/>
     <property name="speed" type="int" value="240"/>
    </properties>
@@ -410,6 +418,7 @@
     <property name="damage" type="int" value="1"/>
     <property name="health" type="int" value="10000000"/>
     <property name="knockback" type="int" value="0"/>
+    <property name="passive" value=""/>
     <property name="route1" type="object" value="116"/>
     <property name="speed" type="int" value="240"/>
    </properties>
@@ -419,6 +428,7 @@
     <property name="damage" type="int" value="1"/>
     <property name="health" type="int" value="10000000"/>
     <property name="knockback" type="int" value="0"/>
+    <property name="passive" value=""/>
     <property name="route1" type="object" value="117"/>
     <property name="speed" type="int" value="240"/>
    </properties>
@@ -428,6 +438,7 @@
     <property name="damage" type="int" value="1"/>
     <property name="health" type="int" value="10000000"/>
     <property name="knockback" type="int" value="0"/>
+    <property name="passive" value=""/>
     <property name="route1" type="object" value="118"/>
     <property name="speed" type="int" value="240"/>
    </properties>
@@ -437,6 +448,7 @@
     <property name="damage" type="int" value="1"/>
     <property name="health" type="int" value="10000000"/>
     <property name="knockback" type="int" value="0"/>
+    <property name="passive" value=""/>
     <property name="route1" type="object" value="119"/>
     <property name="speed" type="int" value="240"/>
    </properties>
@@ -446,6 +458,7 @@
     <property name="damage" type="int" value="1"/>
     <property name="health" type="int" value="10000000"/>
     <property name="knockback" type="int" value="0"/>
+    <property name="passive" value=""/>
     <property name="route1" type="object" value="120"/>
     <property name="speed" type="int" value="240"/>
    </properties>
@@ -455,6 +468,7 @@
     <property name="damage" type="int" value="1"/>
     <property name="health" type="int" value="10000000"/>
     <property name="knockback" type="int" value="0"/>
+    <property name="passive" value=""/>
     <property name="route1" type="object" value="121"/>
     <property name="speed" type="int" value="240"/>
    </properties>
@@ -464,6 +478,7 @@
     <property name="damage" type="int" value="1"/>
     <property name="health" type="int" value="10000000"/>
     <property name="knockback" type="int" value="0"/>
+    <property name="passive" value=""/>
     <property name="route1" type="object" value="122"/>
     <property name="speed" type="int" value="240"/>
    </properties>
@@ -699,7 +714,7 @@
     <property name="speed" type="int" value="50"/>
    </properties>
   </object>
-  <object id="150" name="Fire" type="mob" x="272" y="456" width="16" height="16">
+  <object id="150" name="Fire" type="mob" x="264" y="456" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="133"/>
     <property name="damage" type="int" value="1"/>
@@ -771,7 +786,7 @@
    </properties>
    <point/>
   </object>
-  <object id="159" x="280" y="464">
+  <object id="159" x="272" y="464">
    <properties>
     <property name="speed" type="int" value="50"/>
    </properties>

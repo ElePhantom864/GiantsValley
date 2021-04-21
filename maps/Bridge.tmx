@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="50">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="51">
  <properties>
   <property name="music" value="Overworld1.mp3"/>
  </properties>
@@ -189,7 +189,7 @@
   <object id="11" name="wall" x="312" y="184" width="32" height="32"/>
   <object id="12" name="wall" x="344" y="152" width="64" height="32"/>
   <object id="13" name="wall" x="192" y="928" width="32" height="32"/>
-  <object id="14" name="wall" x="408" y="0" width="56" height="152"/>
+  <object id="14" name="wall" x="400" y="0" width="56" height="152"/>
   <object id="15" name="wall" x="864" y="144" width="96" height="200"/>
   <object id="16" name="wall" x="528" y="0" width="336" height="152"/>
   <object id="17" name="wall" x="672" y="928" width="32" height="32"/>
@@ -223,5 +223,6 @@
   <object id="47" name="wall" x="480" y="504" width="32" height="8"/>
   <object id="48" name="wall" x="480" y="248" width="32" height="8"/>
   <object id="49" name="wall" x="160" y="600" width="32" height="8"/>
+  <object id="50" name="wall" x="328" y="-152" width="336" height="152"/>
  </objectgroup>
 </map>

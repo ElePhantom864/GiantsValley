@@ -417,7 +417,7 @@
     <property name="text" value="You flip the switch"/>
    </properties>
   </object>
-  <object id="100" name="firewall" type="mob" x="-520" y="584" width="32" height="320">
+  <object id="100" name="firewall" type="mob" x="-480" y="640" width="32" height="320">
    <properties>
     <property name="activator" type="object" value="83"/>
     <property name="damage" type="int" value="100"/>

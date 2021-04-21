@@ -9,7 +9,7 @@
  <tileset firstgid="1084" source="Wires.tsx"/>
  <tileset firstgid="1126" source="Door.tsx"/>
  <tileset firstgid="1135" source="Buttons-1.png.tsx"/>
- <tileset firstgid="1144" source="Boxes.tsx"/>
+ <tileset firstgid="1147" source="Boxes.tsx"/>
  <layer id="1" name="Ground" width="30" height="30">
   <data encoding="csv">
 6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,
@@ -383,11 +383,11 @@
     <property name="activator" type="object" value="91"/>
    </properties>
   </object>
-  <object id="91" name="activator" gid="1135" x="416" y="404" width="30" height="21">
+  <object id="91" name="activator" gid="1135" x="416" y="405" width="30" height="21">
    <properties>
-    <property name="sound" value="piston.mp3"/>
+    <property name="sound" value="silence.mp3"/>
    </properties>
   </object>
-  <object id="93" name="pushable" gid="1152" x="256" y="544" width="30" height="29"/>
+  <object id="93" name="pushable" gid="1155" x="257.273" y="542.909" width="30" height="29"/>
  </objectgroup>
 </map>
