@@ -393,7 +393,7 @@ class Game:
             self.mob_images[mob_name] = {}
             for direction in [s.Direction.UP, s.Direction.DOWN, s.Direction.LEFT, s.Direction.RIGHT]:
                 self.mob_images[mob_name][direction] = []
-                for i in [1, 2]:
+                for i in [1, 2, 3]:
                     img = mob_name + direction.value + str(i) + ".png"
                     try:
                         loaded_image = pg.image.load(

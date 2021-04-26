@@ -374,12 +374,12 @@
   </object>
   <object id="168" name="door" gid="863" x="128" y="864" width="32" height="32">
    <properties>
-    <property name="activator" type="object" value="164"/>
+    <property name="activator" type="object" value="167"/>
    </properties>
   </object>
   <object id="169" name="door" type="Opposite" gid="871" x="128" y="864" width="32" height="32">
    <properties>
-    <property name="activator" type="object" value="164"/>
+    <property name="activator" type="object" value="167"/>
    </properties>
   </object>
  </objectgroup>

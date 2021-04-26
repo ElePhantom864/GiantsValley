@@ -16,6 +16,7 @@ class Direction(Enum):
 
 class Items(str, Enum):
     SWORD = 'sword'
+    MAGMA_BOOTS = 'magma_boots'
     RESPAWN_ORB = 'respawn_orb'
     HEALTH_POTION = 'health_potion'
     PHOENIX_GEM = 'phoenix_gem'

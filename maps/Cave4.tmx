@@ -370,22 +370,22 @@
   <object id="108" name="pushable" gid="1161" x="897" y="671" width="30" height="29"/>
   <object id="109" name="activator" type="1" gid="1143" x="896" y="788" width="30" height="21">
    <properties>
-    <property name="sound" value="piston.mp3"/>
+    <property name="sound" value="silence.mp3"/>
    </properties>
   </object>
   <object id="110" name="activator" type="2" gid="1145" x="864" y="788" width="30" height="21">
    <properties>
-    <property name="sound" value="piston.mp3"/>
+    <property name="sound" value="silence.mp3"/>
    </properties>
   </object>
   <object id="111" name="activator" type="3" gid="1149" x="832" y="789" width="30" height="21">
    <properties>
-    <property name="sound" value="piston.mp3"/>
+    <property name="sound" value="silence.mp3"/>
    </properties>
   </object>
   <object id="112" name="activator" type="4" gid="1147" x="800" y="789" width="30" height="21">
    <properties>
-    <property name="sound" value="piston.mp3"/>
+    <property name="sound" value="silence.mp3"/>
    </properties>
   </object>
   <object id="113" name="door" gid="1132" x="768" y="672" width="31" height="32">
@@ -410,7 +410,7 @@
   </object>
   <object id="117" name="activator" type="parrot" gid="1141" x="32" y="405" width="30" height="21">
    <properties>
-    <property name="sound" value="piston.mp3"/>
+    <property name="sound" value="silence.mp3"/>
    </properties>
   </object>
   <object id="118" name="door" gid="1130" x="352" y="480" width="31" height="32">
@@ -420,7 +420,7 @@
   </object>
   <object id="119" name="activator" type="peacock" gid="1141" x="128" y="405" width="30" height="21">
    <properties>
-    <property name="sound" value="piston.mp3"/>
+    <property name="sound" value="silence.mp3"/>
    </properties>
   </object>
   <object id="120" name="door" gid="1130" x="352" y="480" width="31" height="32">
@@ -430,7 +430,7 @@
   </object>
   <object id="121" name="activator" type="dove" gid="1141" x="224" y="405" width="30" height="21">
    <properties>
-    <property name="sound" value="piston.mp3"/>
+    <property name="sound" value="silence.mp3"/>
    </properties>
   </object>
   <object id="122" name="door" gid="1130" x="352" y="480" width="31" height="32">
@@ -440,7 +440,7 @@
   </object>
   <object id="123" name="activator" type="eagle" gid="1141" x="320" y="405" width="30" height="21">
    <properties>
-    <property name="sound" value="piston.mp3"/>
+    <property name="sound" value="silence.mp3"/>
    </properties>
   </object>
   <object id="124" name="door" gid="1130" x="352" y="480" width="31" height="32">

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="90" height="90" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="948">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="90" height="90" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="1018">
  <tileset firstgid="1" source="Base.tsx"/>
  <tileset firstgid="1065" source="Magma.tsx"/>
  <tileset firstgid="1113" source="Door.tsx"/>
@@ -793,7 +793,7 @@
   <object id="330" name="wall" x="1912" y="1112" width="400" height="32"/>
   <object id="331" name="wall" x="2312" y="1144" width="32" height="400"/>
   <object id="332" name="wall" x="1912" y="1544" width="400" height="32"/>
-  <object id="335" name="door" gid="1119" x="2016" y="2592" width="31" height="32">
+  <object id="335" name="door" type="Opposite" gid="1119" x="2016" y="2592" width="31" height="32">
    <properties>
     <property name="activator" type="object" value="927"/>
    </properties>
@@ -1905,7 +1905,7 @@ Be careful however, they'll surely attack when you approach their homes!</proper
     <property name="speed" type="int" value="50"/>
    </properties>
   </object>
-  <object id="536" name="player" x="1432" y="2808" width="16" height="16"/>
+  <object id="536" name="player" x="1432" y="2792" width="16" height="16"/>
   <object id="537" name="Fire" type="mob" x="2152" y="1384" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="524"/>
@@ -2893,17 +2893,17 @@ Be careful however, they'll surely attack when you approach their homes!</proper
     <property name="speed" type="int" value="50"/>
    </properties>
   </object>
-  <object id="864" name="door" type="Opposite" gid="1140" x="16" y="1704" width="32" height="23">
+  <object id="864" name="door" type="Opposite" gid="1140" x="16" y="1736" width="32" height="23">
    <properties>
     <property name="activator" type="object" value="866"/>
    </properties>
   </object>
-  <object id="865" name="door" gid="1141" x="16" y="1704" width="32" height="23">
+  <object id="865" name="door" gid="1141" x="16" y="1736" width="32" height="23">
    <properties>
     <property name="activator" type="object" value="866"/>
    </properties>
   </object>
-  <object id="866" name="Interact" type="Lever" x="8" y="1672" width="48" height="48">
+  <object id="866" name="Interact" type="Lever" x="8" y="1704" width="48" height="48">
    <properties>
     <property name="sound" value="lever.mp3"/>
     <property name="text" value="You flip the switch"/>
@@ -3080,7 +3080,7 @@ Be careful however, they'll surely attack when you approach their homes!</proper
     <property name="sound" value="silence.mp3"/>
    </properties>
   </object>
-  <object id="928" name="door" type="Opposite" gid="1119" x="2048" y="2496" width="31" height="32">
+  <object id="928" name="door" gid="1119" x="2048" y="2496" width="31" height="32">
    <properties>
     <property name="activator" type="object" value="927"/>
    </properties>
@@ -3184,6 +3184,240 @@ It seems to fit perfectly into one of the small holes in your amulet.</property>
   <object id="947" name="door" type="Opposite" gid="871" x="32" y="192" width="32" height="32">
    <properties>
     <property name="activator" type="object" value="945"/>
+   </properties>
+  </object>
+  <object id="948" name="Dragon" type="mob" x="1624" y="120" width="16" height="16">
+   <properties>
+    <property name="damage" type="int" value="1"/>
+    <property name="health" type="int" value="20"/>
+    <property name="knockback" type="int" value="0"/>
+    <property name="route1" type="object" value="961"/>
+    <property name="route2" type="object" value="955"/>
+    <property name="route3" type="object" value="963"/>
+    <property name="route4" type="object" value="959"/>
+    <property name="route5" type="object" value="968"/>
+    <property name="route6" type="object" value="953"/>
+    <property name="route7" type="object" value="960"/>
+    <property name="route8" type="object" value="957"/>
+    <property name="route9" type="object" value="966"/>
+    <property name="speed" type="int" value="30"/>
+   </properties>
+  </object>
+  <object id="953" x="1504" y="128">
+   <point/>
+  </object>
+  <object id="955" x="1408" y="128">
+   <point/>
+  </object>
+  <object id="957" x="1312" y="128">
+   <point/>
+  </object>
+  <object id="959" x="1184" y="128">
+   <point/>
+  </object>
+  <object id="960" x="1504" y="224">
+   <point/>
+  </object>
+  <object id="961" x="1632" y="224">
+   <point/>
+  </object>
+  <object id="963" x="1408" y="224">
+   <point/>
+  </object>
+  <object id="966" x="1312" y="224">
+   <point/>
+  </object>
+  <object id="968" x="1184" y="224">
+   <point/>
+  </object>
+  <object id="971" name="Dragon" type="mob" x="1400" y="120" width="16" height="16">
+   <properties>
+    <property name="damage" type="int" value="1"/>
+    <property name="health" type="int" value="20"/>
+    <property name="knockback" type="int" value="0"/>
+    <property name="route1" type="object" value="961"/>
+    <property name="route2" type="object" value="955"/>
+    <property name="route3" type="object" value="963"/>
+    <property name="route4" type="object" value="959"/>
+    <property name="route5" type="object" value="968"/>
+    <property name="route6" type="object" value="953"/>
+    <property name="route7" type="object" value="960"/>
+    <property name="route8" type="object" value="957"/>
+    <property name="route9" type="object" value="966"/>
+    <property name="speed" type="int" value="30"/>
+   </properties>
+  </object>
+  <object id="972" name="Dragon" type="mob" x="1176" y="120" width="16" height="16">
+   <properties>
+    <property name="damage" type="int" value="1"/>
+    <property name="health" type="int" value="20"/>
+    <property name="knockback" type="int" value="0"/>
+    <property name="route1" type="object" value="961"/>
+    <property name="route2" type="object" value="955"/>
+    <property name="route3" type="object" value="963"/>
+    <property name="route4" type="object" value="959"/>
+    <property name="route5" type="object" value="968"/>
+    <property name="route6" type="object" value="953"/>
+    <property name="route7" type="object" value="960"/>
+    <property name="route8" type="object" value="957"/>
+    <property name="route9" type="object" value="966"/>
+    <property name="speed" type="int" value="30"/>
+   </properties>
+  </object>
+  <object id="974" name="Dragon" type="mob" x="2776" y="2616" width="16" height="16">
+   <properties>
+    <property name="damage" type="int" value="1"/>
+    <property name="health" type="int" value="20"/>
+    <property name="knockback" type="int" value="0"/>
+    <property name="route1" type="object" value="980"/>
+    <property name="route2" type="object" value="982"/>
+    <property name="route3" type="object" value="977"/>
+    <property name="route4" type="object" value="979"/>
+    <property name="route5" type="object" value="975"/>
+    <property name="route6" type="object" value="981"/>
+    <property name="route7" type="object" value="976"/>
+    <property name="route8" type="object" value="978"/>
+    <property name="route9" type="object" value="983"/>
+    <property name="speed" type="int" value="30"/>
+   </properties>
+  </object>
+  <object id="975" x="2656" y="2528">
+   <point/>
+  </object>
+  <object id="976" x="2560" y="2528">
+   <point/>
+  </object>
+  <object id="977" x="2464" y="2528">
+   <point/>
+  </object>
+  <object id="978" x="2336" y="2624">
+   <point/>
+  </object>
+  <object id="979" x="2720" y="2624">
+   <point/>
+  </object>
+  <object id="980" x="2784" y="2528">
+   <point/>
+  </object>
+  <object id="981" x="2560" y="2624">
+   <point/>
+  </object>
+  <object id="982" x="2464" y="2624">
+   <point/>
+  </object>
+  <object id="983" x="2336" y="2528">
+   <point/>
+  </object>
+  <object id="986" name="Dragon" type="mob" x="2552" y="2616" width="16" height="16">
+   <properties>
+    <property name="damage" type="int" value="1"/>
+    <property name="health" type="int" value="20"/>
+    <property name="knockback" type="int" value="0"/>
+    <property name="route1" type="object" value="980"/>
+    <property name="route2" type="object" value="982"/>
+    <property name="route3" type="object" value="977"/>
+    <property name="route4" type="object" value="979"/>
+    <property name="route5" type="object" value="975"/>
+    <property name="route6" type="object" value="981"/>
+    <property name="route7" type="object" value="976"/>
+    <property name="route8" type="object" value="978"/>
+    <property name="route9" type="object" value="983"/>
+    <property name="speed" type="int" value="30"/>
+   </properties>
+  </object>
+  <object id="987" name="Dragon" type="mob" x="2328" y="2616" width="16" height="16">
+   <properties>
+    <property name="damage" type="int" value="1"/>
+    <property name="health" type="int" value="20"/>
+    <property name="knockback" type="int" value="0"/>
+    <property name="route1" type="object" value="980"/>
+    <property name="route2" type="object" value="982"/>
+    <property name="route3" type="object" value="977"/>
+    <property name="route4" type="object" value="979"/>
+    <property name="route5" type="object" value="975"/>
+    <property name="route6" type="object" value="981"/>
+    <property name="route7" type="object" value="976"/>
+    <property name="route8" type="object" value="978"/>
+    <property name="route9" type="object" value="983"/>
+    <property name="speed" type="int" value="30"/>
+   </properties>
+  </object>
+  <object id="1002" x="128" y="1632">
+   <point/>
+  </object>
+  <object id="1003" x="128" y="1504">
+   <point/>
+  </object>
+  <object id="1008" x="128" y="1728">
+   <point/>
+  </object>
+  <object id="1009" x="224" y="1728">
+   <point/>
+  </object>
+  <object id="1010" x="224" y="1632">
+   <point/>
+  </object>
+  <object id="1011" x="224" y="1504">
+   <point/>
+  </object>
+  <object id="1012" x="128" y="1824">
+   <point/>
+  </object>
+  <object id="1013" x="224" y="1824">
+   <point/>
+  </object>
+  <object id="1014" x="224" y="1920">
+   <point/>
+  </object>
+  <object id="1015" name="Dragon" type="mob" x="120" y="1912" width="16" height="16">
+   <properties>
+    <property name="damage" type="int" value="1"/>
+    <property name="health" type="int" value="20"/>
+    <property name="knockback" type="int" value="0"/>
+    <property name="route1" type="object" value="1014"/>
+    <property name="route2" type="object" value="1008"/>
+    <property name="route3" type="object" value="1009"/>
+    <property name="route4" type="object" value="1003"/>
+    <property name="route5" type="object" value="1011"/>
+    <property name="route6" type="object" value="1002"/>
+    <property name="route7" type="object" value="1010"/>
+    <property name="route8" type="object" value="1012"/>
+    <property name="route9" type="object" value="1013"/>
+    <property name="speed" type="int" value="30"/>
+   </properties>
+  </object>
+  <object id="1016" name="Dragon" type="mob" x="120" y="1720" width="16" height="16">
+   <properties>
+    <property name="damage" type="int" value="1"/>
+    <property name="health" type="int" value="20"/>
+    <property name="knockback" type="int" value="0"/>
+    <property name="route1" type="object" value="1014"/>
+    <property name="route2" type="object" value="1008"/>
+    <property name="route3" type="object" value="1009"/>
+    <property name="route4" type="object" value="1003"/>
+    <property name="route5" type="object" value="1011"/>
+    <property name="route6" type="object" value="1002"/>
+    <property name="route7" type="object" value="1010"/>
+    <property name="route8" type="object" value="1012"/>
+    <property name="route9" type="object" value="1013"/>
+    <property name="speed" type="int" value="30"/>
+   </properties>
+  </object>
+  <object id="1017" name="Dragon" type="mob" x="120" y="1496" width="16" height="16">
+   <properties>
+    <property name="damage" type="int" value="1"/>
+    <property name="health" type="int" value="20"/>
+    <property name="knockback" type="int" value="0"/>
+    <property name="route1" type="object" value="1014"/>
+    <property name="route2" type="object" value="1008"/>
+    <property name="route3" type="object" value="1009"/>
+    <property name="route4" type="object" value="1003"/>
+    <property name="route5" type="object" value="1011"/>
+    <property name="route6" type="object" value="1002"/>
+    <property name="route7" type="object" value="1010"/>
+    <property name="route8" type="object" value="1012"/>
+    <property name="route9" type="object" value="1013"/>
+    <property name="speed" type="int" value="30"/>
    </properties>
   </object>
  </objectgroup>

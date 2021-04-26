@@ -60,6 +60,7 @@ class Player(pg.sprite.Sprite):
         self.next_animation_tick = 0
         self.animation_phase = 0
         self.is_sword = False
+        self.stomp_cooldown = 0
         self.max_health = s.PLAYER_HEALTH
         self.health = s.PLAYER_HEALTH
         self.max_lives = 3
@@ -166,26 +167,34 @@ class Player(pg.sprite.Sprite):
         return self.items[item] > 0
 
     def sword(self):
-        if self.has_item(s.Items.SWORD):
-            self.is_sword = True
-            snd = self.game.get_sound(random.choice(s.PLAYER_SOUNDS['SWORD']))
-            snd.play()
-            if self.facing == s.Direction.DOWN:
-                pos = vec(self.rect.centerx, self.rect.bottom - 10)
-                rot = 45
-                Sword(self.game, pos, rot, (self._layer + 2))
-            if self.facing == s.Direction.UP:
-                pos = vec(self.rect.centerx, self.rect.top + 10)
-                rot = -135
-                Sword(self.game, pos, rot, (self._layer - 2))
-            if self.facing == s.Direction.RIGHT:
-                pos = vec(self.rect.right - 10, self.rect.centery)
-                rot = 135
-                Sword(self.game, pos, rot, (self._layer - 2))
-            if self.facing == s.Direction.LEFT:
-                pos = vec(self.rect.left + 10, self.rect.centery)
-                rot = -45
-                Sword(self.game, pos, rot, (self._layer - 2))
+        self.is_sword = True
+        snd = self.game.get_sound(random.choice(s.PLAYER_SOUNDS['SWORD']))
+        snd.play()
+        if self.facing == s.Direction.DOWN:
+            pos = vec(self.rect.centerx, self.rect.bottom - 10)
+            rot = 45
+            Sword(self.game, pos, rot, (self._layer + 2))
+        if self.facing == s.Direction.UP:
+            pos = vec(self.rect.centerx, self.rect.top + 10)
+            rot = -135
+            Sword(self.game, pos, rot, (self._layer - 2))
+        if self.facing == s.Direction.RIGHT:
+            pos = vec(self.rect.right - 10, self.rect.centery)
+            rot = 135
+            Sword(self.game, pos, rot, (self._layer - 2))
+        if self.facing == s.Direction.LEFT:
+            pos = vec(self.rect.left + 10, self.rect.centery)
+            rot = -45
+            Sword(self.game, pos, rot, (self._layer - 2))
+
+    def stomp(self):
+        snd = self.game.get_sound('stomp.mp3')
+        snd.play()
+        self.stomp_cooldown = 120
+        for enemy in self.game.enemies:
+            enemy_dist = enemy.pos - self.pos
+            if enemy_dist.length_squared() < 80**2:
+                enemy.hit(None)
 
     def animate_movement(self):
         if pg.time.get_ticks() < self.next_animation_tick:
@@ -246,13 +255,18 @@ class Player(pg.sprite.Sprite):
                 if event.type == pg.KEYDOWN:
                     self.vel.y = s.PLAYER_SPEED
 
-            if event.key == pg.K_SPACE and not self.is_sword:
+            if event.key == pg.K_SPACE and self.has_item(s.Items.SWORD) and not self.is_sword:
                 self.sword()
+
+            if event.key == pg.K_r and self.has_item(s.Items.MAGMA_BOOTS) and self.stomp_cooldown <= 0:
+                self.stomp()
 
         if self.vel.x != 0 and self.vel.y != 0:
             self.vel *= 0.7071
 
     def update(self):
+        if self.stomp_cooldown != 0:
+            self.stomp_cooldown -= 1
         keys = pg.key.get_pressed()
         if keys[pg.K_LEFT] or keys[pg.K_a]:
             self.facing = s.Direction.LEFT
@@ -450,20 +464,25 @@ class Enemy(pg.sprite.Sprite):
         self.health -= 1
         if self.health <= 0:
             self.play_sound('Death')
-            if random.randrange(0, 10) == 0:
+            if random.randrange(0, 8) == 0:
                 Item(self.game, self.pos, self.game.heart_img, 'Health')
-            elif random.randrange(0, 10) == 0:
+            elif random.randrange(0, 9) == 0:
                 Item(self.game, self.pos, self.game.orb_img, 'Item', s.Items.RESPAWN_ORB)
             self.kill()
         self.play_sound('Hit')
-        if facing == s.Direction.RIGHT:
-            self.pos.x += self.knockback
-        if facing == s.Direction.LEFT:
-            self.pos.x -= self.knockback
-        if facing == s.Direction.UP:
-            self.pos.y -= self.knockback
-        if facing == s.Direction.DOWN:
-            self.pos.y += self.knockback
+        if facing is None:
+            v = self.pos - self.game.player.pos
+            angle = math.atan2(v[1], v[0])
+            self.pos += vec(50 * math.cos(angle), 50 * math.sin(angle))
+        else:
+            if facing == s.Direction.RIGHT:
+                self.pos.x += self.knockback
+            if facing == s.Direction.LEFT:
+                self.pos.x -= self.knockback
+            if facing == s.Direction.UP:
+                self.pos.y -= self.knockback
+            if facing == s.Direction.DOWN:
+                self.pos.y += self.knockback
 
     def play_sound(self, sound):
         snd = self.game.get_sound(str(self.name) + sound + '.mp3')
@@ -494,8 +513,9 @@ class Enemy(pg.sprite.Sprite):
             self.target += 1
             if self.target == len(self.routes):
                 self.target = 0
-        self.rect.center = self.pos
         self.animate_movement()
+        self.rect = self.image.get_rect()
+        self.rect.center = self.pos
         player_dist = self.game.player.pos - self.pos
         if player_dist.length_squared() < s.SOUND_RADIUS**2 and random.randrange(0, 100) == 0:
             self.play_sound('')

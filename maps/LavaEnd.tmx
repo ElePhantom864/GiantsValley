@@ -97,7 +97,7 @@
   <object id="14" name="wall" x="24" y="0" width="496" height="24"/>
   <object id="15" name="Interact" type="Item" x="248" y="440" width="48" height="48">
    <properties>
-    <property name="item" value="phoenix_gem"/>
+    <property name="item" value="magma_boots"/>
     <property name="sound" value="lever.mp3"/>
     <property name="text">Inside the box you find masterfully crafted boots made out of a shimmering red metal.
 You can barely pick them up but as soon as you put them on they feel lighter than air. 

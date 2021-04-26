@@ -361,7 +361,7 @@
   </object>
   <object id="78" name="CaveGRight" x="856" y="808" width="16" height="16"/>
   <object id="81" name="CaveALeft" x="16" y="328" width="16" height="16"/>
-  <object id="82" name="CaveABonus" x="8" y="632" width="16" height="16"/>
+  <object id="82" name="CaveABonus" x="24" y="632" width="16" height="16"/>
   <object id="83" name="Cave2.tmx" type="Teleport" x="-8" y="280" width="8" height="104">
    <properties>
     <property name="playerLocation" value="CaveARight"/>
@@ -399,12 +399,12 @@ It seems to fit perfectly into one of the small holes in your amulet.</property>
   </object>
   <object id="96" name="door" gid="862" x="32" y="608" width="32" height="32">
    <properties>
-    <property name="activator" type="object" value="671"/>
+    <property name="activator" type="object" value="95"/>
    </properties>
   </object>
   <object id="97" name="door" type="Opposite" gid="870" x="32" y="608" width="32" height="32">
    <properties>
-    <property name="activator" type="object" value="671"/>
+    <property name="activator" type="object" value="95"/>
    </properties>
   </object>
  </objectgroup>
