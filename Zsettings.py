@@ -2,6 +2,11 @@ import pygame as pg
 from enum import Enum
 
 
+class UIGameState(Enum):
+    NEW = 'NEW'
+    LOAD = 'LOAD'
+
+
 class Direction(Enum):
     UP = 'Up'
     DOWN = 'Down'
@@ -9,10 +14,12 @@ class Direction(Enum):
     RIGHT = 'Right'
 
 
-class Items(Enum):
+class Items(str, Enum):
     SWORD = 'sword'
     RESPAWN_ORB = 'respawn_orb'
     HEALTH_POTION = 'health_potion'
+    PHOENIX_GEM = 'phoenix_gem'
+    DRAGON_SCALE = 'dragon_scale'
 
     @classmethod
     def item_by_name(cls, name):

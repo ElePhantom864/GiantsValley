@@ -62,10 +62,10 @@ class Player(pg.sprite.Sprite):
         self.is_sword = False
         self.max_health = s.PLAYER_HEALTH
         self.health = s.PLAYER_HEALTH
-        self.max_lives = 10
+        self.max_lives = 3
         self.damaged = False
         self.items = defaultdict(int)
-        self.add_item(s.Items.SWORD)
+        self.add_item(s.Items.RESPAWN_ORB)
 
     def set_pos(self, x, y):
         self.pos = vec(x, y)
@@ -108,17 +108,17 @@ class Player(pg.sprite.Sprite):
         self.damage_alpha = chain(s.DAMAGE_ALPHA * 2)
         self.health -= enemy.damage
         if self.health <= 0:
-            self.health = 0
-            if self.items[s.Items.RESPAWN_ORB] > 0:
-                self.items[s.Items.RESPAWN_ORB] -= 1
-                self.add_item(s.Items.SWORD)
-                self.game.load_map(self.game.current_map[0], self.game.current_map[1])
-                self.health = self.max_health
-                return
             self.kill()
             new_state = self.game.ui.run(self.game.ui.game_over)
 
     def draw_health(self, surface):
+        if self.items[s.Items.PHOENIX_GEM] >= 4:
+            self.max_lives += 1
+            self.items[s.Items.PHOENIX_GEM] -= 4
+        if self.items[s.Items.DRAGON_SCALE] >= 4:
+            self.items[s.Items.DRAGON_SCALE] -= 4
+            self.max_health += 2
+            self.health += 2
         if (self.health % 2) == 0:
             x = 2
             ran = self.health // 2
@@ -387,7 +387,8 @@ class Sword(pg.sprite.Sprite):
 
 
 class TextBox(pg.sprite.Sprite):
-    def __init__(self, game, x, y, w, h, texts, sound, typ=None, activator_id=None, item=None):
+    def __init__(self, game, x, y, w, h, texts, sound, typ=None, activator_id=None, item=None, used=False,
+                 activated=False):
         self.groups = game.interactables
         pg.sprite.Sprite.__init__(self, self.groups)
         self.game = game
@@ -399,9 +400,11 @@ class TextBox(pg.sprite.Sprite):
         self.texts = texts
         self.type = typ
         self.activator_id = activator_id
-        self.activated = False
+        self.activated = activated
+        self.used = False
         self.item = item
         self.sound = sound
+        self.used = used
 
 
 class Enemy(pg.sprite.Sprite):
@@ -447,9 +450,9 @@ class Enemy(pg.sprite.Sprite):
         self.health -= 1
         if self.health <= 0:
             self.play_sound('Death')
-            if random.randrange(0, 15) == 0:
+            if random.randrange(0, 10) == 0:
                 Item(self.game, self.pos, self.game.heart_img, 'Health')
-            elif random.randrange(0, 20) == 0:
+            elif random.randrange(0, 10) == 0:
                 Item(self.game, self.pos, self.game.orb_img, 'Item', s.Items.RESPAWN_ORB)
             self.kill()
         self.play_sound('Hit')

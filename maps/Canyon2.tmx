@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="115">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="124">
  <properties>
   <property name="music" value="Overworld1.mp3"/>
  </properties>
@@ -115,7 +115,7 @@
 130,130,130,130,130,130,130,130,130,130,130,130,130,130,130,130,130,130,130,130,130,130,130,130,58,130,130,130,867,130,
 98,98,98,98,98,98,98,98,98,98,98,98,98,98,98,98,98,98,139,98,98,98,98,98,98,98,98,98,98,98,
 106,106,106,177,106,106,106,106,106,106,106,106,106,106,106,106,106,106,147,106,106,106,106,106,106,106,106,106,106,106,
-0,0,0,177,0,0,52,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1510,55,864,68,864,1525,1519,53,0,
+0,0,0,177,0,0,52,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1510,55,0,68,0,1525,1519,53,0,
 0,0,0,177,0,0,0,0,0,0,0,0,0,0,51,0,0,0,0,58,0,1518,1526,1511,0,1525,54,0,0,0,
 0,0,179,188,0,0,52,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1518,1519,1519,1520,0,0,0,0,
 130,130,186,130,130,130,130,130,130,130,130,130,130,130,130,130,130,130,58,130,130,130,130,130,130,130,130,130,130,165,
@@ -197,7 +197,7 @@
   <object id="18" name="wall" x="72" y="408" width="48" height="200"/>
   <object id="19" name="wall" x="120" y="424" width="64" height="176"/>
   <object id="20" name="wall" x="40" y="552" width="32" height="56"/>
-  <object id="21" name="wall" x="736" y="160" width="96" height="32"/>
+  <object id="21" name="wall" x="768" y="160" width="32" height="32"/>
   <object id="24" name="Canyon1.tmx" type="Teleport" x="960" y="344" width="8" height="256">
    <properties>
     <property name="playerLocation" value="playerLeft"/>
@@ -525,6 +525,42 @@
     <property name="text">Here Lies Sir Larry
 &quot;How was I supposed to know this was a dead end?&quot;
 May he Rest in Peace</property>
+   </properties>
+  </object>
+  <object id="115" name="Interact" type="Item" x="728" y="160" width="48" height="48">
+   <properties>
+    <property name="item" value="phoenix_gem"/>
+    <property name="sound" value="lever.mp3"/>
+    <property name="text">You open the chest and find a crimson colored gem, it appears to be a small shard of a Phoenix Gem, 
+It seems to fit perfectly into one of the small holes in your amulet... you feel ashamed to be robbing a grave</property>
+   </properties>
+  </object>
+  <object id="116" name="door" gid="864" x="736" y="192" width="32" height="32">
+   <properties>
+    <property name="activator" type="object" value="115"/>
+   </properties>
+  </object>
+  <object id="117" name="door" type="Opposite" gid="872" x="736" y="192" width="32" height="32">
+   <properties>
+    <property name="activator" type="object" value="115"/>
+   </properties>
+  </object>
+  <object id="121" name="Interact" type="Item" x="792" y="160" width="48" height="48">
+   <properties>
+    <property name="item" value="phoenix_gem"/>
+    <property name="sound" value="lever.mp3"/>
+    <property name="text">You open the chest and find a crimson colored gem, it appears to be a small shard of a Phoenix Gem, 
+It seems to fit perfectly into one of the small holes in your amulet... you feel ashamed to be robbing a grave</property>
+   </properties>
+  </object>
+  <object id="122" name="door" gid="864" x="800" y="192" width="32" height="32">
+   <properties>
+    <property name="activator" type="object" value="115"/>
+   </properties>
+  </object>
+  <object id="123" name="door" type="Opposite" gid="872" x="800" y="192" width="32" height="32">
+   <properties>
+    <property name="activator" type="object" value="115"/>
    </properties>
   </object>
  </objectgroup>

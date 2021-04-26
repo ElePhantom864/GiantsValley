@@ -5,6 +5,7 @@
 # Video link: https://youtu.be/3UxnelT9aCo
 import pygame as pg
 import sys
+import json
 import Zsettings as s
 import Zsprites as spr
 from Ztilemap import TiledMap, Camera
@@ -89,7 +90,7 @@ class Game:
             finished_loading, progress = loader.update()
         self.ui = UI(self)
 
-    def new(self):
+    def new(self, load=False):
         # initialize all variables and do all the setup for a new game
         self.all_sprites = pg.sprite.Group()
         self.walls = pg.sprite.Group()
@@ -104,9 +105,11 @@ class Game:
         self.player = spr.Player(
             self, 0, 0)
         self.current_music = None
+        self.open_chests = []
         self.sound_cache = {}
         self.current_sounds = pg.sprite.Group()
-        self.load_map('LavaDungeon.tmx', 'player')
+        if not load:
+            self.load_map('Zelda.tmx', 'playerCenter')
 
     def load_map(self, map_name, playerLocation):
         self.all_sprites.empty()
@@ -196,14 +199,19 @@ class Game:
                 txt: str = tile_object.properties["text"]
                 activator_id = 0
                 snd = tile_object.properties['sound'].split(',')
+                used = False
+                activated = False
                 item: str = ""
                 if 'item' in tile_object.properties:
                     item = tile_object.properties['item']
                 if 'activator' in tile_object.properties:
                     activator_id = tile_object.properties['activator']
+                if [tile_object.x, tile_object.y] in self.open_chests:
+                    used = True
+                    activated = True
                 text = spr.TextBox(
                     self, tile_object.x, tile_object.y, tile_object.width,
-                    tile_object.height, txt, snd, tile_object.type, activator_id, item)
+                    tile_object.height, txt, snd, tile_object.type, activator_id, item, used, activated)
                 self.objects_by_id[tile_object.id] = text
             if tile_object.name == 'Sound':
                 spr.SoundBox(
@@ -296,6 +304,8 @@ class Game:
 
     def start_presenting_text(self):
         self.pause_game = True
+        self.current_interactable.used = True
+        self.open_chests.append([self.current_interactable.x, self.current_interactable.y])
         sounds = self.current_interactable.sound
         snd = self.get_sound(random.choice(sounds))
         snd.play()
@@ -320,10 +330,9 @@ class Game:
 
     def stop_presenting_text(self):
         self.current_interactable.text.kill()
+        self.current_interactable.activated = not self.current_interactable.activated
         if self.current_interactable.type == "Item":
             self.player.add_item_by_name(self.current_interactable.item)
-        elif self.current_interactable.type == "Lever":
-            self.current_interactable.activated = not self.current_interactable.activated
         elif self.current_interactable.type == "Activator":
             self.objects_by_id[self.current_interactable.activator_id].activated\
                 = not self.objects_by_id[self.current_interactable.activator_id].activated
@@ -337,10 +346,15 @@ class Game:
                 self.quit()
             if event.type == pg.KEYUP and event.key != pg and self.current_interactable:
                 self.present_text()
+            if event.type == pg.KEYUP:
+                if event.key == pg.K_F5 and self.player.items[s.Items.RESPAWN_ORB] > 0:
+                    self.player.items[s.Items.RESPAWN_ORB] -= 1
+                    self.save()
+
             if event.type == pg.KEYDOWN:
                 if event.key == pg.K_ESCAPE:
                     self.quit()
-                if event.key == pg.K_e and self.current_interactable:
+                if event.key == pg.K_e and self.current_interactable and not self.current_interactable.used:
                     self.start_presenting_text()
                     # self.present_text()
             if not self.pause_game:
@@ -357,7 +371,7 @@ class Game:
         return self.sound_cache[sound]
 
     def show_start_screen(self):
-        new_state = self.ui.run(self.ui.start_game)
+        return self.ui.run(self.ui.start_game)
 
     def show_go_screen(self):
         pass
@@ -388,6 +402,28 @@ class Game:
                     except FileNotFoundError as e:
                         print("Mob image is missing", e)
 
+    def save(self):
+        save_file = path.join(self.game_folder, 'saves', 'save.json')
+        state = {
+            'map': [self.current_map[0], self.current_map[1]],
+            'player': [self.player.health, self.player.max_health, self.player.items, self.player.max_lives],
+            'chests': self.open_chests
+        }
+        with open(save_file, 'w') as outfile:
+            json.dump(state, outfile)
+
+    def load(self):
+        save_file = path.join(self.game_folder, 'saves', 'save.json')
+        with open(save_file, 'r') as infile:
+            state = json.load(infile)
+        self.new(load=True)
+        self.player.health = state['player'][0]
+        self.player.max_health = state['player'][1]
+        self.player.items = state['player'][2]
+        self.player.max_lives = state['player'][3]
+        self.open_chests = state['chests']
+        self.load_map(state['map'][0], state['map'][1])
+
 
 class UI:
     def __init__(self, game):
@@ -399,12 +435,16 @@ class UI:
             pg.Rect((0, 100), (s.WIDTH, 50)),
             'Game Over',
             manager=self.game.ui_manager, object_id='#game_over')
-        self.new = UIButton(
+        self.load = UIButton(
             pg.Rect((40, 200), (s.WIDTH - 80, 50)),
+            'Load Game',
+            manager=self.game.ui_manager, object_id=ObjectID('#load_game', '@ok_button'))
+        self.new = UIButton(
+            pg.Rect((40, 255), (s.WIDTH - 80, 50)),
             'New Game',
             manager=self.game.ui_manager, object_id=ObjectID('#new_game', '@ok_button'))
         self.quit = UIButton(
-            pg.Rect((40, 255), (s.WIDTH - 80, 50)),
+            pg.Rect((40, 310), (s.WIDTH - 80, 50)),
             'QUIT',
             manager=self.game.ui_manager, object_id=ObjectID('#quit_game', '@ok_button'))
 
@@ -419,12 +459,16 @@ class UI:
             'Insert Title',
             manager=self.game.ui_manager, object_id='#start_game')
         self.title.disable()
-        self.new = UIButton(
+        self.load = UIButton(
             pg.Rect((100, 200), (s.WIDTH - 200, 50)),
+            'Load Game',
+            manager=self.game.ui_manager, object_id=ObjectID('#load_game', '@ok_button'))
+        self.new = UIButton(
+            pg.Rect((100, 255), (s.WIDTH - 200, 50)),
             'New Game',
             manager=self.game.ui_manager, object_id=ObjectID('#new_game', '@ok_button'))
         self.quit = UIButton(
-            pg.Rect((100, 255), (s.WIDTH - 200, 50)),
+            pg.Rect((100, 310), (s.WIDTH - 200, 50)),
             'QUIT',
             manager=self.game.ui_manager, object_id=ObjectID('#quit_game', '@ok_button'))
 
@@ -455,10 +499,26 @@ class UI:
         for event in pg.event.get():
             if event.type == pg.USEREVENT:
                 if event.user_type == pygame_gui.UI_BUTTON_PRESSED:
-                    if event.ui_object_id == '#new_game':
-                        self.game.new()
+                    if event.ui_object_id == '#load_game':
+                        try:
+                            self.game.load()
+                            self.state = s.UIGameState.LOAD
+                        except FileNotFoundError:
+                            print('No save exists, starting new game')
+                            self.game.new()
+                            self.game.save()
                         self.playing = False
                         self.title.kill()
+                        self.load.kill()
+                        self.new.kill()
+                        self.quit.kill()
+                    if event.ui_object_id == '#new_game':
+                        self.state = s.UIGameState.NEW
+                        self.game.new()
+                        self.game.save()
+                        self.playing = False
+                        self.title.kill()
+                        self.load.kill()
                         self.new.kill()
                         self.quit.kill()
                     if event.ui_object_id == '#quit_game':
@@ -475,5 +535,5 @@ class UI:
 g = Game()
 g.show_start_screen()
 while True:
-    g.new()
     g.run()
+    g.new()

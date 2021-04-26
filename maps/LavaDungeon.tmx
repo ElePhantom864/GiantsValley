@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="90" height="90" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="939">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="90" height="90" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="948">
  <tileset firstgid="1" source="Base.tsx"/>
  <tileset firstgid="1065" source="Magma.tsx"/>
  <tileset firstgid="1113" source="Door.tsx"/>
@@ -360,7 +360,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,165,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,65,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,925,0,925,0,0,0,0,0,0,0,0,0,0,0,0,863,0,0,0,0,0,0,0,0,0,0,0,0,0,71,0,0,0,71,0,0,0,71,0,0,0,71,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,65,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,925,0,925,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,71,0,0,0,71,0,0,0,71,0,0,0,71,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,933,0,933,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,925,925,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,933,933,0,0,0,0,0,0,0,0,0,0,71,0,0,0,71,0,0,0,71,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,65,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -368,10 +368,10 @@
 0,0,0,0,65,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,51,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,65,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,165,0,0,0,0,0,0,51,0,0,0,0,0,0,0,0,0,0,51,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,51,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1118,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,51,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1120,0,0,0,0,1118,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,51,0,0,0,65,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1120,1116,1120,1116,1120,0,0,0,0,1120,1116,1120,1116,1120,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,51,0,0,0,0,0,165,0,0,0,0,0,0,0,0,0,0,0,1120,1116,1120,1116,1120,0,0,0,0,1120,1116,1120,1116,1120,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,165,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,165,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,862,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,165,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,165,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1120,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,165,0,0,0,0,0,0,0,0,0,0,0,165,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,51,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -793,7 +793,7 @@
   <object id="330" name="wall" x="1912" y="1112" width="400" height="32"/>
   <object id="331" name="wall" x="2312" y="1144" width="32" height="400"/>
   <object id="332" name="wall" x="1912" y="1544" width="400" height="32"/>
-  <object id="335" name="door" gid="1119" x="2048" y="2496" width="31" height="32">
+  <object id="335" name="door" gid="1119" x="2016" y="2592" width="31" height="32">
    <properties>
     <property name="activator" type="object" value="927"/>
    </properties>
@@ -1589,8 +1589,6 @@
   <object id="481" x="1936" y="2320">
    <point/>
   </object>
-  <object id="482" name="wall" x="1920" y="2208" width="32" height="32"/>
-  <object id="483" name="wall" x="1920" y="2560" width="32" height="32"/>
   <object id="484" name="Fire" type="mob" x="1960" y="1768" width="16" height="16">
    <properties>
     <property name="damage" type="int" value="1"/>
@@ -3082,7 +3080,7 @@ Be careful however, they'll surely attack when you approach their homes!</proper
     <property name="sound" value="silence.mp3"/>
    </properties>
   </object>
-  <object id="928" name="door" gid="1119" x="2016" y="2592" width="31" height="32">
+  <object id="928" name="door" type="Opposite" gid="1119" x="2048" y="2496" width="31" height="32">
    <properties>
     <property name="activator" type="object" value="927"/>
    </properties>
@@ -3134,6 +3132,58 @@ Be careful however, they'll surely attack when you approach their homes!</proper
   <object id="938" name="LavaBoss.tmx" type="Teleport" x="1400" y="2472" width="80" height="8">
    <properties>
     <property name="playerLocation" value="playerCenter"/>
+   </properties>
+  </object>
+  <object id="939" name="Interact" type="Item" x="1904" y="2208" width="64" height="48">
+   <properties>
+    <property name="item" value="dragon_scale"/>
+    <property name="sound" value="lever.mp3"/>
+    <property name="text" value="You open the chest and find a dragon's scale, with enough of these you can make an amulet to harden your skin"/>
+   </properties>
+  </object>
+  <object id="940" name="door" gid="863" x="1920" y="2240" width="32" height="32">
+   <properties>
+    <property name="activator" type="object" value="939"/>
+   </properties>
+  </object>
+  <object id="941" name="door" type="Opposite" gid="871" x="1920" y="2240" width="32" height="32">
+   <properties>
+    <property name="activator" type="object" value="939"/>
+   </properties>
+  </object>
+  <object id="942" name="Interact" type="Item" x="1912" y="2528" width="48" height="48">
+   <properties>
+    <property name="item" value="phoenix_gem"/>
+    <property name="sound" value="lever.mp3"/>
+    <property name="text">You open the chest and find a crimson colored gem, it appears to be a small shard of a Phoenix Gem, 
+It seems to fit perfectly into one of the small holes in your amulet.</property>
+   </properties>
+  </object>
+  <object id="943" name="door" gid="862" x="1920" y="2560" width="32" height="32">
+   <properties>
+    <property name="activator" type="object" value="942"/>
+   </properties>
+  </object>
+  <object id="944" name="door" type="Opposite" gid="870" x="1920" y="2560" width="32" height="32">
+   <properties>
+    <property name="activator" type="object" value="942"/>
+   </properties>
+  </object>
+  <object id="945" name="Interact" type="Item" x="24" y="160" width="40" height="48">
+   <properties>
+    <property name="item" value="dragon_scale"/>
+    <property name="sound" value="lever.mp3"/>
+    <property name="text" value="You open the chest and find a dragon's scale, with enough of these you can make an amulet to harden your skin"/>
+   </properties>
+  </object>
+  <object id="946" name="door" gid="863" x="32" y="192" width="32" height="32">
+   <properties>
+    <property name="activator" type="object" value="945"/>
+   </properties>
+  </object>
+  <object id="947" name="door" type="Opposite" gid="871" x="32" y="192" width="32" height="32">
+   <properties>
+    <property name="activator" type="object" value="945"/>
    </properties>
   </object>
  </objectgroup>

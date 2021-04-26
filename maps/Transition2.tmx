@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="161">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="170">
  <properties>
   <property name="music" value="Overworld1.mp3"/>
  </properties>
@@ -364,6 +364,23 @@
   </object>
   <object id="160" x="176" y="144">
    <point/>
+  </object>
+  <object id="167" name="Interact" type="Item" x="112" y="816" width="64" height="64">
+   <properties>
+    <property name="item" value="dragon_scale"/>
+    <property name="sound" value="lever.mp3"/>
+    <property name="text" value="You open the chest and find a dragon's scale, with enough of these you can make an amulet to harden your skin"/>
+   </properties>
+  </object>
+  <object id="168" name="door" gid="863" x="128" y="864" width="32" height="32">
+   <properties>
+    <property name="activator" type="object" value="164"/>
+   </properties>
+  </object>
+  <object id="169" name="door" type="Opposite" gid="871" x="128" y="864" width="32" height="32">
+   <properties>
+    <property name="activator" type="object" value="164"/>
+   </properties>
   </object>
  </objectgroup>
 </map>
