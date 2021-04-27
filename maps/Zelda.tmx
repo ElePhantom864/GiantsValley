@@ -431,24 +431,5 @@ Signed - Kronus Poryphyron</property>
   </object>
   <object id="669" name="wall" x="320" y="928" width="352" height="32"/>
   <object id="670" name="wall" x="928" y="384" width="32" height="256"/>
-  <object id="688" name="Interact" type="Item" x="600" y="416" width="48" height="48">
-   <properties>
-    <property name="item" value="magma_boots"/>
-    <property name="sound" value="lever.mp3"/>
-    <property name="text">Inside the box you find masterfully crafted boots made out of a shimmering red metal.
-You can barely pick them up but as soon as you put them on they feel lighter than air. 
-It seems their weight activates with [R].</property>
-   </properties>
-  </object>
-  <object id="689" name="door" gid="1437" x="608" y="448" width="32" height="32">
-   <properties>
-    <property name="activator" type="object" value="688"/>
-   </properties>
-  </object>
-  <object id="690" name="door" type="Opposite" gid="1445" x="608" y="448" width="32" height="32">
-   <properties>
-    <property name="activator" type="object" value="688"/>
-   </properties>
-  </object>
  </objectgroup>
 </map>
