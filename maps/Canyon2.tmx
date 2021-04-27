@@ -555,12 +555,12 @@ It seems to fit perfectly into one of the small holes in your amulet... you feel
   </object>
   <object id="122" name="door" gid="864" x="800" y="192" width="32" height="32">
    <properties>
-    <property name="activator" type="object" value="115"/>
+    <property name="activator" type="object" value="121"/>
    </properties>
   </object>
   <object id="123" name="door" type="Opposite" gid="872" x="800" y="192" width="32" height="32">
    <properties>
-    <property name="activator" type="object" value="115"/>
+    <property name="activator" type="object" value="121"/>
    </properties>
   </object>
  </objectgroup>

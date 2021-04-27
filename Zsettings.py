@@ -84,6 +84,8 @@ PLAYER_SOUNDS = {
         'walk.mp3',
     ]
 }
+STOMP_COOLDOWN = 120
+STOMP_RANGE = 90
 
 # mob settings
 SOUND_RADIUS = 32 * 3

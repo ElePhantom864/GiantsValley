@@ -52,6 +52,8 @@ class Game:
         self.orb_img = pg.image.load(path.join(self.img_folder, 'Orb.png')).convert_alpha()
         self.UI_orb_img = pg.image.load(path.join(self.img_folder, 'Full_Orb.png')).convert_alpha()
         self.empty_orb_img = pg.image.load(path.join(self.img_folder, 'Empty_Orb.png')).convert_alpha()
+        self.boot_img = pg.image.load(path.join(self.img_folder, 'Boot.png')).convert_alpha()
+        self.stomp_img = pg.image.load(path.join(self.img_folder, 'Stomp.png')).convert_alpha()
         self.player_images = {}
         for direction, images in s.PLAYER_IMAGES.items():
             self.player_images[direction] = list(map(lambda img: pg.image.load(
@@ -294,12 +296,12 @@ class Game:
     def draw(self):
         pg.display.set_caption("{:.2f}".format(self.clock.get_fps()))
         self.screen.blit(self.map_bottom_img, self.camera.apply_rect(self.map_rect))
+        self.player.draw_ui(self.screen)
         sprites = sorted(self.all_sprites, key=lambda spr: spr._layer)
         for sprite in sprites:
             self.screen.blit(sprite.image, self.camera.apply(sprite))
         self.screen.blit(self.map_top_img, self.camera.apply_rect(self.map_rect))
         self.ui_manager.draw_ui(self.screen)
-        self.player.draw_health(self.screen)
         pg.display.flip()
 
     def start_presenting_text(self):

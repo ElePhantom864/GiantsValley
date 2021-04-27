@@ -60,7 +60,7 @@ class Player(pg.sprite.Sprite):
         self.next_animation_tick = 0
         self.animation_phase = 0
         self.is_sword = False
-        self.stomp_cooldown = 0
+        self.stomp_cooldown = s.STOMP_COOLDOWN
         self.max_health = s.PLAYER_HEALTH
         self.health = s.PLAYER_HEALTH
         self.max_lives = 3
@@ -112,7 +112,7 @@ class Player(pg.sprite.Sprite):
             self.kill()
             new_state = self.game.ui.run(self.game.ui.game_over)
 
-    def draw_health(self, surface):
+    def draw_ui(self, surface):
         if self.items[s.Items.PHOENIX_GEM] >= 4:
             self.max_lives += 1
             self.items[s.Items.PHOENIX_GEM] -= 4
@@ -142,6 +142,7 @@ class Player(pg.sprite.Sprite):
             for i in range(ran1):
                 surface.blit(self.game.empty_heart_img, (x, 2))
                 x += 37
+
         if self.items[s.Items.RESPAWN_ORB] > self.max_lives:
             self.items[s.Items.RESPAWN_ORB] -= 1
         x = 2
@@ -153,6 +154,18 @@ class Player(pg.sprite.Sprite):
         for i in range(ran1):
             surface.blit(self.game.empty_orb_img, (x, 37))
             x += 12
+
+        if self.stomp_cooldown <= 20:
+            img = pg.transform.scale(self.game.stomp_img, (s.STOMP_RANGE * 2, s.STOMP_RANGE * 2))
+            surface.blit(img, (self.game.camera.apply_point(self.stomp_location)))
+        if self.items[s.Items.MAGMA_BOOTS] > 0:
+            col = s.RED
+            if self.stomp_cooldown >= s.STOMP_COOLDOWN:
+                col = s.GREEN
+            width = int(0.5 * self.stomp_cooldown)
+            stomp_cooldown = pg.Rect(410, 10, width, 7)
+            surface.blit(self.game.boot_img, (393, 5))
+            pg.draw.rect(surface, col, stomp_cooldown)
 
     def add_item(self, item, qty=1):
         self.items[item] += qty
@@ -188,12 +201,13 @@ class Player(pg.sprite.Sprite):
             Sword(self.game, pos, rot, (self._layer - 2))
 
     def stomp(self):
+        self.stomp_location = [self.rect.centerx - 90, self.rect.centery - 90]
         snd = self.game.get_sound('stomp.mp3')
         snd.play()
-        self.stomp_cooldown = 120
+        self.stomp_cooldown = 0
         for enemy in self.game.enemies:
             enemy_dist = enemy.pos - self.pos
-            if enemy_dist.length_squared() < 80**2:
+            if enemy_dist.length_squared() < s.STOMP_RANGE**2:
                 enemy.hit(None)
 
     def animate_movement(self):
@@ -258,15 +272,15 @@ class Player(pg.sprite.Sprite):
             if event.key == pg.K_SPACE and self.has_item(s.Items.SWORD) and not self.is_sword:
                 self.sword()
 
-            if event.key == pg.K_r and self.has_item(s.Items.MAGMA_BOOTS) and self.stomp_cooldown <= 0:
+            if event.key == pg.K_r and self.has_item(s.Items.MAGMA_BOOTS) and self.stomp_cooldown >= s.STOMP_COOLDOWN:
                 self.stomp()
 
         if self.vel.x != 0 and self.vel.y != 0:
             self.vel *= 0.7071
 
     def update(self):
-        if self.stomp_cooldown != 0:
-            self.stomp_cooldown -= 1
+        if self.stomp_cooldown <= s.STOMP_COOLDOWN:
+            self.stomp_cooldown += 1
         keys = pg.key.get_pressed()
         if keys[pg.K_LEFT] or keys[pg.K_a]:
             self.facing = s.Direction.LEFT
