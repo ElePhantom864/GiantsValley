@@ -70,12 +70,12 @@
             "normal_border": "#FF000000",
             "hovered_border": "#FF000000",
             "selected_border": "#FF000000",
-            "normal_text": "#FF0000",
-            "hovered_text": "#FF0000"
+            "normal_text": "#800000",
+            "hovered_text": "#800000"
         },
         "font": {
             "name": "Montserrat",
-            "size": "36",
+            "size": "48",
             "italic": "1"
         },
         "misc": {

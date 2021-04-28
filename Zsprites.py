@@ -712,6 +712,41 @@ class Item(pg.sprite.Sprite):
         self.kill()
 
 
+class Animation(pg.sprite.Sprite):
+    def __init__(self, game, images, animation_speed, repeats, x, y):
+        self._layer = s.ANIMATION_LAYER
+        self.groups = game.all_sprites
+        pg.sprite.Sprite.__init__(self, self.groups)
+        self.images = images
+        self.image = images[0]
+        self.rect = self.image.get_rect()
+        self.pos = vec(x, y)
+        self.rect.center = self.pos
+        self.animation_speed = animation_speed
+        self.animation_count = 0
+        self.countdown = 0
+        self.repeats = repeats
+        self.animation_phase = 0
+
+    def animate(self):
+        self.image = self.images[self.animation_phase]
+        self.animation_phase += 1
+        if self.animation_phase >= len(self.images):
+            self.animation_count += 1
+            self.animation_phase = 0
+
+    def update(self):
+        self.rect = self.image.get_rect()
+        self.rect.center = self.pos
+        self.countdown += 1
+        if self.countdown >= self.animation_speed:
+            self.countdown = 0
+            if not self.animation_count >= self.repeats:
+                self.animate()
+            else:
+                self.kill()
+
+
 class LavaBoss(pg.sprite.Sprite):
     def __init__(self, game):
         self._layer = -10
@@ -725,6 +760,8 @@ class LavaBoss(pg.sprite.Sprite):
         self.active_attack = []
         self.health = 3
         self.phase = 0
+        self.dying = False
+        self.explode_count = 0
         self.game.load_mob_images('Cobra')
         routes = [vec(240, 240), vec(688, 240), vec(240, 688), vec(688, 688)]
         random.shuffle(routes)
@@ -733,29 +770,46 @@ class LavaBoss(pg.sprite.Sprite):
             50, routes, 'Cobra', True)
 
     def update(self):
-        self.counter += 1
-        if self.vulnerable.health == 0:
-            self.health -= 1
-            if self.health <= 0:
-                print('win')
+        if self.dying:
+            self.counter += 1
+            if self.counter % 20 == 0:
+                self.explode_count += 1
+                snd = self.game.get_sound('explosion.mp3')
+                snd.play()
+                for i in range(40):
+                    Animation(self.game, self.game.explosions, 10, 1, random.randrange(0, s.WIDTH * 2),
+                              random.randrange(0, s.HEIGHT * 2))
+            if self.explode_count == 5:
+                snd = self.game.get_sound('LavaGiant.mp3')
+                snd.play()
+            if self.explode_count == 8:
+                self.game.load_map('LavaEnd.tmx', 'playerCenter')
                 self.kill()
-            self.phase += 1
-            routes = [vec(240, 240), vec(688, 240), vec(240, 688), vec(688, 688)]
-            random.shuffle(routes)
-            self.vulnerable = Enemy(
-                self.game, 464, 464, self.game.mob_images['Cobra'], 10, 50, 1,
-                50, routes, 'Cobra', True)
-        if self.counter >= self.cooldown * 60:
-            self.counter = 0
-            attack = random.randrange(0, 7)
-            if attack < 2:
-                self.attack1()
-            elif attack < 4:
-                self.attack2()
-            elif attack == 5:
-                self.attack3()
-            elif attack == 6:
-                self.attack4()
+        else:
+            self.counter += 1
+            if self.vulnerable.health == 0:
+                self.health -= 1
+                if self.health <= 0:
+                    self.dying = True
+                    self.counter == 0
+                    return
+                self.phase += 1
+                routes = [vec(240, 240), vec(688, 240), vec(240, 688), vec(688, 688)]
+                random.shuffle(routes)
+                self.vulnerable = Enemy(
+                    self.game, 464, 464, self.game.mob_images['Cobra'], 10, 50, 1,
+                    50, routes, 'Cobra', True)
+            if self.counter >= self.cooldown * 60:
+                self.counter = 0
+                attack = random.randrange(0, 7)
+                if attack < 2:
+                    self.attack1()
+                elif attack < 4:
+                    self.attack2()
+                elif attack == 5:
+                    self.attack3()
+                elif attack == 6:
+                    self.attack4()
 
     def attack1(self):
         for mob in self.active_attack:

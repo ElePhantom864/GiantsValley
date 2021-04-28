@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="90" height="90" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="1018">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="90" height="90" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="1019">
  <tileset firstgid="1" source="Base.tsx"/>
  <tileset firstgid="1065" source="Magma.tsx"/>
  <tileset firstgid="1113" source="Door.tsx"/>
@@ -1819,16 +1819,16 @@ Be careful however, they'll surely attack when you approach their homes!</proper
     <property name="text" value="You flip the switch"/>
    </properties>
   </object>
-  <object id="525" name="Fire" type="mob" x="2104" y="1240" width="16" height="16">
+  <object id="525" name="Demon" type="mob" x="2104" y="1240" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="524"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="526"/>
     <property name="route2" type="object" value="527"/>
     <property name="route3" type="object" value="528"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
   <object id="526" x="2016" y="1344">
@@ -1843,93 +1843,93 @@ Be careful however, they'll surely attack when you approach their homes!</proper
   <object id="529" x="2112" y="1248">
    <point/>
   </object>
-  <object id="530" name="Fire" type="mob" x="2056" y="1288" width="16" height="16">
+  <object id="530" name="Demon" type="mob" x="2056" y="1288" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="524"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="526"/>
     <property name="route2" type="object" value="527"/>
     <property name="route3" type="object" value="528"/>
     <property name="route4" type="object" value="529"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
-  <object id="532" name="Fire" type="mob" x="2008" y="1336" width="16" height="16">
+  <object id="532" name="Demon" type="mob" x="2008" y="1336" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="524"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="527"/>
     <property name="route2" type="object" value="528"/>
     <property name="route3" type="object" value="529"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
-  <object id="533" name="Fire" type="mob" x="2104" y="1432" width="16" height="16">
+  <object id="533" name="Demon" type="mob" x="2104" y="1432" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="524"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="528"/>
     <property name="route2" type="object" value="529"/>
     <property name="route3" type="object" value="526"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
-  <object id="534" name="Fire" type="mob" x="2200" y="1336" width="16" height="16">
+  <object id="534" name="Demon" type="mob" x="2200" y="1336" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="524"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="529"/>
     <property name="route2" type="object" value="526"/>
     <property name="route3" type="object" value="527"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
-  <object id="535" name="Fire" type="mob" x="2056" y="1384" width="16" height="16">
+  <object id="535" name="Demon" type="mob" x="2056" y="1384" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="524"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="527"/>
     <property name="route2" type="object" value="528"/>
     <property name="route3" type="object" value="529"/>
     <property name="route4" type="object" value="526"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
   <object id="536" name="player" x="1432" y="2792" width="16" height="16"/>
-  <object id="537" name="Fire" type="mob" x="2152" y="1384" width="16" height="16">
+  <object id="537" name="Demon" type="mob" x="2152" y="1384" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="524"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="528"/>
     <property name="route2" type="object" value="529"/>
     <property name="route3" type="object" value="526"/>
     <property name="route4" type="object" value="527"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
-  <object id="538" name="Fire" type="mob" x="2152" y="1288" width="16" height="16">
+  <object id="538" name="Demon" type="mob" x="2152" y="1288" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="524"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="529"/>
     <property name="route2" type="object" value="526"/>
     <property name="route3" type="object" value="527"/>
     <property name="route4" type="object" value="528"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
   <object id="540" name="Fire" type="mob" x="1816" y="1784" width="16" height="16">
@@ -2000,54 +2000,54 @@ Be careful however, they'll surely attack when you approach their homes!</proper
     <property name="speed" type="int" value="50"/>
    </properties>
   </object>
-  <object id="553" name="Fire" type="mob" x="904" y="1512" width="16" height="16">
+  <object id="553" name="Demon" type="mob" x="904" y="1512" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="551"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="558"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
-  <object id="554" name="Fire" type="mob" x="936" y="1512" width="16" height="16">
+  <object id="554" name="Demon" type="mob" x="936" y="1512" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="551"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="562"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
-  <object id="555" name="Fire" type="mob" x="904" y="1544" width="16" height="16">
+  <object id="555" name="Demon" type="mob" x="904" y="1544" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="551"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="564"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
-  <object id="556" name="Fire" type="mob" x="936" y="1544" width="16" height="16">
+  <object id="556" name="Demon" type="mob" x="936" y="1544" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="551"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="563"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
-  <object id="557" name="Fire" type="mob" x="920" y="1528" width="16" height="16">
+  <object id="557" name="Demon" type="mob" x="920" y="1528" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="551"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="560"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
   <object id="558" x="848" y="1520">
@@ -2071,24 +2071,24 @@ Be careful however, they'll surely attack when you approach their homes!</proper
   <object id="564" x="848" y="1648">
    <point/>
   </object>
-  <object id="565" name="Fire" type="mob" x="904" y="1528" width="16" height="16">
+  <object id="565" name="Demon" type="mob" x="904" y="1528" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="551"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="559"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
-  <object id="566" name="Fire" type="mob" x="936" y="1528" width="16" height="16">
+  <object id="566" name="Demon" type="mob" x="936" y="1528" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="551"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="561"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
   <object id="567" name="activator" gid="1121" x="1056" y="1776" width="96" height="208">
@@ -2097,44 +2097,44 @@ Be careful however, they'll surely attack when you approach their homes!</proper
     <property name="speed" type="int" value="50"/>
    </properties>
   </object>
-  <object id="568" name="Fire" type="mob" x="1096" y="1608" width="16" height="16">
+  <object id="568" name="Demon" type="mob" x="1096" y="1608" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="567"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="572"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
-  <object id="569" name="Fire" type="mob" x="1096" y="1624" width="16" height="16">
+  <object id="569" name="Demon" type="mob" x="1096" y="1624" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="567"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="573"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
-  <object id="570" name="Fire" type="mob" x="1096" y="1672" width="16" height="16">
+  <object id="570" name="Demon" type="mob" x="1096" y="1672" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="567"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="574"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
-  <object id="571" name="Fire" type="mob" x="1096" y="1656" width="16" height="16">
+  <object id="571" name="Demon" type="mob" x="1096" y="1656" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="567"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="575"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
   <object id="572" x="1040" y="1552">
@@ -2149,14 +2149,14 @@ Be careful however, they'll surely attack when you approach their homes!</proper
   <object id="575" x="1040" y="1776">
    <point/>
   </object>
-  <object id="576" name="Fire" type="mob" x="648" y="1800" width="16" height="16">
+  <object id="576" name="Demon" type="mob" x="648" y="1800" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="577"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="581"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
   <object id="577" name="activator" gid="1121" x="608" y="1912" width="128" height="152">
@@ -2165,14 +2165,14 @@ Be careful however, they'll surely attack when you approach their homes!</proper
     <property name="speed" type="int" value="50"/>
    </properties>
   </object>
-  <object id="579" name="Fire" type="mob" x="680" y="1800" width="16" height="16">
+  <object id="579" name="Demon" type="mob" x="680" y="1800" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="577"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="580"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
   <object id="580" x="784" y="1840">
@@ -2191,50 +2191,50 @@ Be careful however, they'll surely attack when you approach their homes!</proper
    <properties>
     <property name="activator" type="object" value="582"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="588"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
-  <object id="584" name="Fire" type="mob" x="168" y="2184" width="16" height="16">
+  <object id="584" name="Demon" type="mob" x="168" y="2184" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="582"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="591"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
-  <object id="585" name="Fire" type="mob" x="200" y="2184" width="16" height="16">
+  <object id="585" name="Demon" type="mob" x="200" y="2184" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="582"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="590"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
-  <object id="586" name="Fire" type="mob" x="184" y="2184" width="16" height="16">
+  <object id="586" name="Demon" type="mob" x="184" y="2184" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="582"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="592"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
-  <object id="587" name="Fire" type="mob" x="216" y="2184" width="16" height="16">
+  <object id="587" name="Demon" type="mob" x="216" y="2184" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="582"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="589"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
   <object id="588" x="240" y="2128">
@@ -2252,14 +2252,14 @@ Be careful however, they'll surely attack when you approach their homes!</proper
   <object id="592" x="208" y="2320">
    <point/>
   </object>
-  <object id="593" name="Fire" type="mob" x="232" y="2344" width="16" height="16">
+  <object id="593" name="Demon" type="mob" x="232" y="2344" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="594"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="602"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
   <object id="594" name="activator" gid="1121" x="192" y="2456" width="192" height="152">
@@ -2268,44 +2268,44 @@ Be careful however, they'll surely attack when you approach their homes!</proper
     <property name="speed" type="int" value="50"/>
    </properties>
   </object>
-  <object id="596" name="Fire" type="mob" x="280" y="2344" width="16" height="16">
+  <object id="596" name="Demon" type="mob" x="280" y="2344" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="594"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="604"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
-  <object id="597" name="Fire" type="mob" x="328" y="2344" width="16" height="16">
+  <object id="597" name="Demon" type="mob" x="328" y="2344" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="594"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="600"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
-  <object id="598" name="Fire" type="mob" x="256" y="2344" width="16" height="16">
+  <object id="598" name="Demon" type="mob" x="256" y="2344" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="594"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="603"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
-  <object id="599" name="Fire" type="mob" x="304" y="2344" width="16" height="16">
+  <object id="599" name="Demon" type="mob" x="304" y="2344" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="594"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="592"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
   <object id="600" x="320" y="2304">
@@ -2320,14 +2320,14 @@ Be careful however, they'll surely attack when you approach their homes!</proper
   <object id="604" x="408" y="2456">
    <point/>
   </object>
-  <object id="605" name="Fire" type="mob" x="488" y="2376" width="16" height="16">
+  <object id="605" name="Demon" type="mob" x="488" y="2376" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="606"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="609"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
   <object id="606" name="activator" gid="1121" x="480" y="2472" width="64" height="104">
@@ -2336,24 +2336,24 @@ Be careful however, they'll surely attack when you approach their homes!</proper
     <property name="speed" type="int" value="50"/>
    </properties>
   </object>
-  <object id="607" name="Fire" type="mob" x="488" y="2408" width="16" height="16">
+  <object id="607" name="Demon" type="mob" x="488" y="2408" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="606"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="610"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
-  <object id="608" name="Fire" type="mob" x="488" y="2440" width="16" height="16">
+  <object id="608" name="Demon" type="mob" x="488" y="2440" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="606"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="611"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
   <object id="609" x="592" y="2384">
@@ -2365,14 +2365,14 @@ Be careful however, they'll surely attack when you approach their homes!</proper
   <object id="611" x="592" y="2480">
    <point/>
   </object>
-  <object id="612" name="Fire" type="mob" x="208" y="2624" width="16" height="16">
+  <object id="612" name="Demon" type="mob" x="208" y="2624" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="613"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="618"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
   <object id="613" name="activator" gid="1121" x="160" y="2736" width="96" height="144">
@@ -2381,34 +2381,34 @@ Be careful however, they'll surely attack when you approach their homes!</proper
     <property name="speed" type="int" value="50"/>
    </properties>
   </object>
-  <object id="614" name="Fire" type="mob" x="192" y="2624" width="16" height="16">
+  <object id="614" name="Demon" type="mob" x="192" y="2624" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="613"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="617"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
-  <object id="615" name="Fire" type="mob" x="192" y="2640" width="16" height="16">
+  <object id="615" name="Demon" type="mob" x="192" y="2640" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="613"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="619"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
-  <object id="616" name="Fire" type="mob" x="208" y="2640" width="16" height="16">
+  <object id="616" name="Demon" type="mob" x="208" y="2640" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="613"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="620"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
   <object id="617" x="160" y="2592">
@@ -2424,14 +2424,14 @@ Be careful however, they'll surely attack when you approach their homes!</proper
    <point/>
   </object>
   <object id="621" name="wall" x="416" y="2560" width="32" height="80"/>
-  <object id="622" name="Fire" type="mob" x="432" y="2560" width="16" height="16">
+  <object id="622" name="Demon" type="mob" x="432" y="2560" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="623"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="628"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
   <object id="623" name="activator" gid="1121" x="384" y="2672" width="96" height="112">
@@ -2440,34 +2440,34 @@ Be careful however, they'll surely attack when you approach their homes!</proper
     <property name="speed" type="int" value="50"/>
    </properties>
   </object>
-  <object id="624" name="Fire" type="mob" x="416" y="2560" width="16" height="16">
+  <object id="624" name="Demon" type="mob" x="416" y="2560" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="623"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="627"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
-  <object id="625" name="Fire" type="mob" x="416" y="2576" width="16" height="16">
+  <object id="625" name="Demon" type="mob" x="416" y="2576" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="623"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="629"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
-  <object id="626" name="Fire" type="mob" x="432" y="2576" width="16" height="16">
+  <object id="626" name="Demon" type="mob" x="432" y="2576" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="623"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="630"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
   <object id="627" x="384" y="2528">
@@ -2483,14 +2483,14 @@ Be careful however, they'll surely attack when you approach their homes!</proper
    <point/>
   </object>
   <object id="631" name="wall" x="1024" y="2560" width="32" height="80"/>
-  <object id="632" name="Fire" type="mob" x="1040" y="2560" width="16" height="16">
+  <object id="632" name="Demon" type="mob" x="1040" y="2560" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="633"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="638"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
   <object id="633" name="activator" gid="1121" x="992" y="2672" width="96" height="112">
@@ -2499,34 +2499,34 @@ Be careful however, they'll surely attack when you approach their homes!</proper
     <property name="speed" type="int" value="50"/>
    </properties>
   </object>
-  <object id="634" name="Fire" type="mob" x="1024" y="2560" width="16" height="16">
+  <object id="634" name="Demon" type="mob" x="1024" y="2560" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="633"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="637"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
-  <object id="635" name="Fire" type="mob" x="1024" y="2576" width="16" height="16">
+  <object id="635" name="Demon" type="mob" x="1024" y="2576" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="633"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="639"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
-  <object id="636" name="Fire" type="mob" x="1040" y="2576" width="16" height="16">
+  <object id="636" name="Demon" type="mob" x="1040" y="2576" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="633"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="640"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
   <object id="637" x="992" y="2528">
@@ -2547,44 +2547,44 @@ Be careful however, they'll surely attack when you approach their homes!</proper
     <property name="speed" type="int" value="50"/>
    </properties>
   </object>
-  <object id="642" name="Fire" type="mob" x="592" y="2624" width="16" height="16">
+  <object id="642" name="Demon" type="mob" x="592" y="2624" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="641"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="646"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
-  <object id="643" name="Fire" type="mob" x="552" y="2624" width="16" height="16">
+  <object id="643" name="Demon" type="mob" x="552" y="2624" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="641"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="647"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
-  <object id="644" name="Fire" type="mob" x="576" y="2640" width="16" height="16">
+  <object id="644" name="Demon" type="mob" x="576" y="2640" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="641"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="649"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
-  <object id="645" name="Fire" type="mob" x="592" y="2640" width="16" height="16">
+  <object id="645" name="Demon" type="mob" x="592" y="2640" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="641"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="648"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
   <object id="646" x="592" y="2576">
@@ -2605,44 +2605,44 @@ Be careful however, they'll surely attack when you approach their homes!</proper
     <property name="speed" type="int" value="50"/>
    </properties>
   </object>
-  <object id="651" name="Fire" type="mob" x="816" y="2536" width="16" height="16">
+  <object id="651" name="Demon" type="mob" x="816" y="2536" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="650"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="656"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
-  <object id="652" name="Fire" type="mob" x="832" y="2536" width="16" height="16">
+  <object id="652" name="Demon" type="mob" x="832" y="2536" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="650"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="657"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
-  <object id="653" name="Fire" type="mob" x="840" y="2560" width="16" height="16">
+  <object id="653" name="Demon" type="mob" x="840" y="2560" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="650"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="658"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
-  <object id="654" name="Fire" type="mob" x="808" y="2560" width="16" height="16">
+  <object id="654" name="Demon" type="mob" x="808" y="2560" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="650"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="4"/>
+    <property name="knockback" type="int" value="40"/>
     <property name="route1" type="object" value="655"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="120"/>
    </properties>
   </object>
   <object id="655" x="736" y="2640">

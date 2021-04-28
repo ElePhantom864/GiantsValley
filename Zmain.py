@@ -54,6 +54,10 @@ class Game:
         self.empty_orb_img = pg.image.load(path.join(self.img_folder, 'Empty_Orb.png')).convert_alpha()
         self.boot_img = pg.image.load(path.join(self.img_folder, 'Boot.png')).convert_alpha()
         self.stomp_img = pg.image.load(path.join(self.img_folder, 'Stomp.png')).convert_alpha()
+        self.explosions = []
+        for i in range(1, 7):
+            self.explosions.append(
+                pg.image.load(path.join(self.img_folder, 'Explosion' + str(i) + ".png")).convert_alpha())
         self.player_images = {}
         for direction, images in s.PLAYER_IMAGES.items():
             self.player_images[direction] = list(map(lambda img: pg.image.load(
@@ -458,7 +462,7 @@ class UI:
         self.game.screen.blit(image, image_rect)
         self.title = UIButton(
             pg.Rect((0, 100), (s.WIDTH, 75)),
-            'Insert Title',
+            "Giant's Valley",
             manager=self.game.ui_manager, object_id='#start_game')
         self.title.disable()
         self.load = UIButton(
