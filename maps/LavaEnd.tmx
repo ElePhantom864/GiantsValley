@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="17" height="17" tilewidth="32" tileheight="32" infinite="0" nextlayerid="4" nextobjectid="36">
+ <properties>
+  <property name="music" value="silence.mp3"/>
+ </properties>
  <tileset firstgid="1" source="Base.tsx"/>
  <tileset firstgid="1065" source="Magma.tsx"/>
  <layer id="1" name="Ground" width="17" height="17">
@@ -128,41 +131,41 @@ It seems their weight activates with [R].</property>
     <property name="playerLocation" value="playerCenter"/>
    </properties>
   </object>
-  <object id="24" name="Interact" type="Item" x="88" y="192" width="40" height="48">
+  <object id="24" name="Interact" type="Item" x="56" y="192" width="48" height="48">
    <properties>
     <property name="item" value="dragon_scale"/>
     <property name="sound" value="lever.mp3"/>
     <property name="text" value="You open the chest and find a dragon's scale, with enough of these you can make an amulet to harden your skin"/>
    </properties>
   </object>
-  <object id="25" name="door" gid="863" x="96" y="224" width="32" height="32">
+  <object id="25" name="door" gid="863" x="64" y="224" width="32" height="32">
    <properties>
     <property name="activator" type="object" value="24"/>
    </properties>
   </object>
-  <object id="26" name="door" type="Opposite" gid="871" x="96" y="224" width="32" height="32">
+  <object id="26" name="door" type="Opposite" gid="871" x="64" y="224" width="32" height="32">
    <properties>
     <property name="activator" type="object" value="24"/>
    </properties>
   </object>
-  <object id="27" name="Interact" type="Item" x="128" y="192" width="40" height="48">
+  <object id="27" name="Interact" type="Item" x="152" y="192" width="48" height="48">
    <properties>
     <property name="item" value="dragon_scale"/>
     <property name="sound" value="lever.mp3"/>
     <property name="text" value="You open the chest and find a dragon's scale, with enough of these you can make an amulet to harden your skin"/>
    </properties>
   </object>
-  <object id="28" name="door" gid="863" x="128" y="224" width="32" height="32">
+  <object id="28" name="door" gid="863" x="160" y="224" width="32" height="32">
    <properties>
     <property name="activator" type="object" value="27"/>
    </properties>
   </object>
-  <object id="29" name="door" type="Opposite" gid="871" x="128" y="224" width="32" height="32">
+  <object id="29" name="door" type="Opposite" gid="871" x="160" y="224" width="32" height="32">
    <properties>
     <property name="activator" type="object" value="27"/>
    </properties>
   </object>
-  <object id="30" name="Interact" type="Item" x="376" y="192" width="40" height="48">
+  <object id="30" name="Interact" type="Item" x="344" y="192" width="48" height="48">
    <properties>
     <property name="item" value="phoenix_gem"/>
     <property name="sound" value="lever.mp3"/>
@@ -170,17 +173,17 @@ It seems their weight activates with [R].</property>
 It seems to fit perfectly into one of the small holes in your amulet.</property>
    </properties>
   </object>
-  <object id="31" name="door" gid="862" x="384" y="224" width="32" height="32">
+  <object id="31" name="door" gid="862" x="352" y="224" width="32" height="32">
    <properties>
     <property name="activator" type="object" value="30"/>
    </properties>
   </object>
-  <object id="32" name="door" type="Opposite" gid="870" x="384" y="224" width="32" height="32">
+  <object id="32" name="door" type="Opposite" gid="870" x="352" y="224" width="32" height="32">
    <properties>
     <property name="activator" type="object" value="30"/>
    </properties>
   </object>
-  <object id="33" name="Interact" type="Item" x="416" y="192" width="40" height="48">
+  <object id="33" name="Interact" type="Item" x="440" y="192" width="48" height="48">
    <properties>
     <property name="item" value="phoenix_gem"/>
     <property name="sound" value="lever.mp3"/>
@@ -188,12 +191,12 @@ It seems to fit perfectly into one of the small holes in your amulet.</property>
 It seems to fit perfectly into one of the small holes in your amulet.</property>
    </properties>
   </object>
-  <object id="34" name="door" gid="862" x="416" y="224" width="32" height="32">
+  <object id="34" name="door" gid="862" x="448" y="224" width="32" height="32">
    <properties>
     <property name="activator" type="object" value="33"/>
    </properties>
   </object>
-  <object id="35" name="door" type="Opposite" gid="870" x="416" y="224" width="32" height="32">
+  <object id="35" name="door" type="Opposite" gid="870" x="448" y="224" width="32" height="32">
    <properties>
     <property name="activator" type="object" value="33"/>
    </properties>

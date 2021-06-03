@@ -113,13 +113,6 @@ class Player(pg.sprite.Sprite):
             new_state = self.game.ui.run(self.game.ui.game_over)
 
     def draw_ui(self, surface):
-        if self.items[s.Items.PHOENIX_GEM] >= 4:
-            self.max_lives += 1
-            self.items[s.Items.PHOENIX_GEM] -= 4
-        if self.items[s.Items.DRAGON_SCALE] >= 4:
-            self.items[s.Items.DRAGON_SCALE] -= 4
-            self.max_health += 2
-            self.health += 2
         if (self.health % 2) == 0:
             x = 2
             ran = self.health // 2
@@ -158,7 +151,7 @@ class Player(pg.sprite.Sprite):
         if self.stomp_cooldown <= 20:
             img = pg.transform.scale(self.game.stomp_img, (s.STOMP_RANGE * 2, s.STOMP_RANGE * 2))
             surface.blit(img, (self.game.camera.apply_point(self.stomp_location)))
-        if self.items[s.Items.MAGMA_BOOTS] > 0:
+        if self.has_item(s.Items.MAGMA_BOOTS):
             col = s.RED
             if self.stomp_cooldown >= s.STOMP_COOLDOWN:
                 col = s.GREEN
@@ -177,7 +170,7 @@ class Player(pg.sprite.Sprite):
         self.items[item] -= qty
 
     def has_item(self, item):
-        return self.items[item] > 0
+        return item in self.items and self.items[item] > 0
 
     def sword(self):
         self.is_sword = True
@@ -762,12 +755,17 @@ class LavaBoss(pg.sprite.Sprite):
         self.phase = 0
         self.dying = False
         self.explode_count = 0
-        self.game.load_mob_images('Cobra')
+        self.game.load_mob_images('LavaDemon')
+        self.game.load_mob_images('Spike')
+        self.game.load_mob_images('Fire')
+        self.game.load_mob_images('Tornado')
+        self.game.load_mob_images('FireBall')
+        self.game.load_mob_images('Slime')
         routes = [vec(240, 240), vec(688, 240), vec(240, 688), vec(688, 688)]
         random.shuffle(routes)
         self.vulnerable = Enemy(
-            self.game, 464, 464, self.game.mob_images['Cobra'], 10, 50, 1,
-            50, routes, 'Cobra', True)
+            self.game, 464, 464, self.game.mob_images['LavaDemon'], 10, 50, 1,
+            20, routes, 'LavaDemon', True)
 
     def update(self):
         if self.dying:
@@ -777,7 +775,8 @@ class LavaBoss(pg.sprite.Sprite):
                 snd = self.game.get_sound('explosion.mp3')
                 snd.play()
                 for i in range(40):
-                    Animation(self.game, self.game.explosions, 10, 1, random.randrange(0, s.WIDTH * 2),
+                    img = self.game.load_animation_images('Explosion', 6)
+                    Animation(self.game, img, 10, 1, random.randrange(0, s.WIDTH * 2),
                               random.randrange(0, s.HEIGHT * 2))
             if self.explode_count == 5:
                 snd = self.game.get_sound('LavaGiant.mp3')
@@ -788,17 +787,24 @@ class LavaBoss(pg.sprite.Sprite):
         else:
             self.counter += 1
             if self.vulnerable.health == 0:
+                snd = self.game.get_sound('explosion.mp3')
+                snd.play()
+                img = self.game.load_animation_images('Explosion', 6)
+                Animation(self.game, img, 10, 1, self.vulnerable.pos.x,
+                          self.vulnerable.pos.y)
+                self.game.player.health = self.game.player.max_health
                 self.health -= 1
                 if self.health <= 0:
                     self.dying = True
+                    self.game.player.health = self.game.player.max_health
                     self.counter == 0
                     return
                 self.phase += 1
                 routes = [vec(240, 240), vec(688, 240), vec(240, 688), vec(688, 688)]
                 random.shuffle(routes)
                 self.vulnerable = Enemy(
-                    self.game, 464, 464, self.game.mob_images['Cobra'], 10, 50, 1,
-                    50, routes, 'Cobra', True)
+                    self.game, 464, 464, self.game.mob_images['LavaDemon'], 10 - self.phase, 50, 1,
+                    50, routes, 'LavaDemon', True)
             if self.counter >= self.cooldown * 60:
                 self.counter = 0
                 attack = random.randrange(0, 7)
@@ -814,98 +820,103 @@ class LavaBoss(pg.sprite.Sprite):
     def attack1(self):
         for mob in self.active_attack:
             mob.kill()
+        snd = self.game.get_sound('Fireball.mp3')
+        snd.play()
         self.cooldown = 2
-        bubble = [816, 584]
-        arm = [1688, 584, vec(0, 584)]
+        warning = [464, 584]
+        fire = [1784, 584, vec(400, 584)]
         if random.randrange(0, 2) == 0:
-            bubble = [112, 344]
-            arm = [-760, 344, vec(928, 344)]
-        self.game.load_mob_images('Fire')
-        bubble = Enemy(
-            self.game, bubble[0], bubble[1], self.game.mob_images['Fire'], 0, 0, 0,
-            0, [], 'Fire', True)
-        arm = Enemy(
-            self.game, arm[0], arm[1], self.game.mob_images['Fire'], 1000, 1000, 1,
-            0, [arm[2]], 'Fire', True)
-        self.active_attack.append(bubble)
-        self.active_attack.append(arm)
+            warning = [464, 344]
+            fire = [-856, 344, vec(528, 344)]
+        img = self.game.load_animation_images('HorizontalWarning', 3)
+        warning = Animation(
+            self.game, img, 10, 2, warning[0], warning[1])
+        fire = Enemy(
+            self.game, fire[0], fire[1], self.game.mob_images['FireBall'], 1000, 1000, 1,
+            0, [fire[2]], 'FireBall', True)
+        self.active_attack.append(warning)
+        self.active_attack.append(fire)
 
     def attack2(self):
         for mob in self.active_attack:
             mob.kill()
+        snd = self.game.get_sound('stomp.mp3')
+        snd.play()
         self.cooldown = 2
-        bubble = [344, 112]
-        leg = [344, -856, vec(344, 928)]
+        warning = [344, 464]
+        spikes = [344, -856, vec(344, 928)]
         if random.randrange(0, 2) == 0:
-            bubble = [584, 112]
-            leg = [584, -856, vec(584, 928)]
-        self.game.load_mob_images('Fire')
-        bubble = Enemy(
-            self.game, bubble[0], bubble[1], self.game.mob_images['Fire'], 0, 0, 0,
-            0, [], 'Fire', True)
-        leg = Enemy(
-            self.game, leg[0], leg[1], self.game.mob_images['Fire'], 1000, 1000, 1,
-            0, [leg[2]], 'Fire', True)
-        self.active_attack.append(bubble)
-        self.active_attack.append(leg)
+            warning = [584, 464]
+            spikes = [584, -856, vec(584, 928)]
+        img = self.game.load_animation_images('VerticalWarning', 3)
+        warning = Animation(
+            self.game, img, 10, 2, warning[0], warning[1])
+        spikes = Enemy(
+            self.game, spikes[0], spikes[1], self.game.mob_images['Spike'], 1000, 1000, 1,
+            0, [spikes[2]], 'Spike', True)
+        self.active_attack.append(warning)
+        self.active_attack.append(spikes)
 
     def attack3(self):
         for mob in self.active_attack:
             mob.kill()
-        self.cooldown = 10 - self.phase * 2
-        self.game.load_mob_images('Fire')
+        self.cooldown = 8 - self.phase
+        snd = self.game.get_sound('Spell1.mp3')
+        snd.play()
         enemy1 = Enemy(
-            self.game, 464, 368, self.game.mob_images['Fire'], 9, 40, 1,
-            10, [], 'Fire', False)
+            self.game, 464, 368, self.game.mob_images['Slime'], 9, 40, 1,
+            10, [], 'Slime', False)
         enemy1.hit(s.Direction.DOWN)
         self.active_attack.append(enemy1)
         enemy2 = Enemy(
-            self.game, 384, 400, self.game.mob_images['Fire'], 5, 50, 1,
-            30, [vec(464, 368)], 'Fire', False)
+            self.game, 384, 400, self.game.mob_images['Tornado'], 5, 50, 1,
+            30, [vec(464, 368)], 'Tornado', True)
         self.active_attack.append(enemy2)
         enemy3 = Enemy(
-            self.game, 352, 464, self.game.mob_images['Fire'], 5, 50, 1,
-            30, [vec(384, 400)], 'Fire', False)
+            self.game, 352, 464, self.game.mob_images['Tornado'], 5, 50, 1,
+            30, [vec(384, 400)], 'Tornado', True)
         self.active_attack.append(enemy3)
         enemy4 = Enemy(
-            self.game, 384, 528, self.game.mob_images['Fire'], 5, 50, 1,
-            30, [vec(352, 464)], 'Fire', False)
+            self.game, 384, 528, self.game.mob_images['Tornado'], 5, 50, 1,
+            30, [vec(352, 464)], 'Tornado', True)
         self.active_attack.append(enemy4)
         enemy5 = Enemy(
-            self.game, 464, 560, self.game.mob_images['Fire'], 5, 50, 1,
-            30, [vec(384, 528)], 'Fire', False)
+            self.game, 464, 560, self.game.mob_images['Tornado'], 5, 50, 1,
+            30, [vec(384, 528)], 'Tornado', True)
         self.active_attack.append(enemy5)
         enemy6 = Enemy(
-            self.game, 544, 528, self.game.mob_images['Fire'], 5, 50, 1,
-            30, [vec(464, 560)], 'Fire', False)
+            self.game, 544, 528, self.game.mob_images['Tornado'], 5, 50, 1,
+            30, [vec(464, 560)], 'Tornado', True)
         self.active_attack.append(enemy6)
         enemy7 = Enemy(
-            self.game, 576, 464, self.game.mob_images['Fire'], 5, 50, 1,
-            30, [vec(544, 528)], 'Fire', False)
+            self.game, 576, 464, self.game.mob_images['Tornado'], 5, 50, 1,
+            30, [vec(544, 528)], 'Tornado', True)
         self.active_attack.append(enemy7)
         enemy8 = Enemy(
-            self.game, 544, 400, self.game.mob_images['Fire'], 5, 50, 1,
-            30, [vec(576, 464)], 'Fire', False)
+            self.game, 544, 400, self.game.mob_images['Tornado'], 5, 50, 1,
+            30, [vec(576, 464)], 'Tornado', True)
         self.active_attack.append(enemy8)
+        Item(self.game, vec(464, 464), self.game.heart_img, 'Health')
 
     def attack4(self):
         for mob in self.active_attack:
             mob.kill()
+        snd = self.game.get_sound('Spell2.mp3')
+        snd.play()
         self.cooldown = 5 - self.phase
-        self.game.load_mob_images('Fire')
         enemy1 = Enemy(
-            self.game, 240, 240, self.game.mob_images['Fire'], 9, 70, 1,
+            self.game, 240, 240, self.game.mob_images['Fire'], 3, 90, 1,
             10, [], 'Fire', False)
         enemy1.hit(s.Direction.DOWN)
         enemy2 = Enemy(
-            self.game, 688, 240, self.game.mob_images['Fire'], 9, 70, 1,
+            self.game, 688, 240, self.game.mob_images['Fire'], 3, 90, 1,
             10, [], 'Fire', False)
         enemy2.hit(s.Direction.DOWN)
         enemy3 = Enemy(
-            self.game, 240, 688, self.game.mob_images['Fire'], 9, 70, 1,
+            self.game, 240, 688, self.game.mob_images['Fire'], 3, 90, 1,
             10, [], 'Fire', False)
         enemy3.hit(s.Direction.DOWN)
         enemy4 = Enemy(
-            self.game, 688, 688, self.game.mob_images['Fire'], 9, 70, 1,
+            self.game, 688, 688, self.game.mob_images['Fire'], 3, 90, 1,
             10, [], 'Fire', False)
         enemy4.hit(s.Direction.DOWN)

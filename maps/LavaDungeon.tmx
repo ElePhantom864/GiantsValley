@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="90" height="90" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="1019">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="90" height="90" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="1020">
+ <properties>
+  <property name="music" value="LavaDungeon.mp3"/>
+ </properties>
  <tileset firstgid="1" source="Base.tsx"/>
  <tileset firstgid="1065" source="Magma.tsx"/>
  <tileset firstgid="1113" source="Door.tsx"/>
@@ -1112,11 +1115,12 @@
    </properties>
    <point/>
   </object>
-  <object id="389" name="Fire" type="mob" x="168" y="72" width="16" height="16">
+  <object id="389" name="Tornado" type="mob" x="168" y="72" width="16" height="16">
    <properties>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="10000"/>
+    <property name="knockback" type="int" value="10"/>
+    <property name="passive" type="object" value="0"/>
     <property name="route1" type="object" value="390"/>
     <property name="speed" type="int" value="50"/>
    </properties>
@@ -1127,11 +1131,12 @@
    </properties>
    <point/>
   </object>
-  <object id="393" name="Fire" type="mob" x="72" y="1000" width="16" height="16">
+  <object id="393" name="Tornado" type="mob" x="72" y="1000" width="16" height="16">
    <properties>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="10000"/>
+    <property name="knockback" type="int" value="10"/>
+    <property name="passive" type="object" value="0"/>
     <property name="route1" type="object" value="394"/>
     <property name="speed" type="int" value="50"/>
    </properties>
@@ -1142,11 +1147,12 @@
    </properties>
    <point/>
   </object>
-  <object id="395" name="Fire" type="mob" x="296" y="1064" width="16" height="16">
+  <object id="395" name="Tornado" type="mob" x="296" y="1064" width="16" height="16">
    <properties>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="10000"/>
+    <property name="knockback" type="int" value="10"/>
+    <property name="passive" type="object" value="0"/>
     <property name="route1" type="object" value="396"/>
     <property name="speed" type="int" value="50"/>
    </properties>
@@ -1157,11 +1163,12 @@
    </properties>
    <point/>
   </object>
-  <object id="397" name="Fire" type="mob" x="392" y="72" width="16" height="16">
+  <object id="397" name="Tornado" type="mob" x="392" y="72" width="16" height="16">
    <properties>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="10000"/>
+    <property name="knockback" type="int" value="10"/>
+    <property name="passive" type="object" value="0"/>
     <property name="route1" type="object" value="398"/>
     <property name="speed" type="int" value="50"/>
    </properties>
@@ -1172,11 +1179,12 @@
    </properties>
    <point/>
   </object>
-  <object id="399" name="Fire" type="mob" x="488" y="1096" width="16" height="16">
+  <object id="399" name="Tornado" type="mob" x="488" y="1096" width="16" height="16">
    <properties>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="10000"/>
+    <property name="knockback" type="int" value="10"/>
+    <property name="passive" type="object" value="0"/>
     <property name="route1" type="object" value="401"/>
     <property name="speed" type="int" value="50"/>
    </properties>
@@ -1193,20 +1201,22 @@
    </properties>
    <point/>
   </object>
-  <object id="403" name="Fire" type="mob" x="584" y="8" width="16" height="16">
+  <object id="403" name="Tornado" type="mob" x="584" y="8" width="16" height="16">
    <properties>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="10000"/>
+    <property name="knockback" type="int" value="10"/>
+    <property name="passive" type="object" value="0"/>
     <property name="route1" type="object" value="402"/>
     <property name="speed" type="int" value="50"/>
    </properties>
   </object>
-  <object id="404" name="Fire" type="mob" x="680" y="1128" width="16" height="16">
+  <object id="404" name="Tornado" type="mob" x="680" y="1128" width="16" height="16">
    <properties>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="10000"/>
+    <property name="knockback" type="int" value="10"/>
+    <property name="passive" type="object" value="0"/>
     <property name="route1" type="object" value="405"/>
     <property name="speed" type="int" value="50"/>
    </properties>
@@ -1217,11 +1227,12 @@
    </properties>
    <point/>
   </object>
-  <object id="406" name="Fire" type="mob" x="680" y="8" width="16" height="16">
+  <object id="406" name="Tornado" type="mob" x="680" y="8" width="16" height="16">
    <properties>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="10000"/>
+    <property name="knockback" type="int" value="10"/>
+    <property name="passive" type="object" value="0"/>
     <property name="route1" type="object" value="405"/>
     <property name="speed" type="int" value="50"/>
    </properties>
@@ -1232,20 +1243,22 @@
    </properties>
    <point/>
   </object>
-  <object id="408" name="Fire" type="mob" x="776" y="8" width="16" height="16">
+  <object id="408" name="Tornado" type="mob" x="776" y="8" width="16" height="16">
    <properties>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="10000"/>
+    <property name="knockback" type="int" value="10"/>
+    <property name="passive" type="object" value="0"/>
     <property name="route1" type="object" value="407"/>
     <property name="speed" type="int" value="50"/>
    </properties>
   </object>
-  <object id="409" name="Fire" type="mob" x="776" y="1128" width="16" height="16">
+  <object id="409" name="Tornado" type="mob" x="776" y="1128" width="16" height="16">
    <properties>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="10000"/>
+    <property name="knockback" type="int" value="10"/>
+    <property name="passive" type="object" value="0"/>
     <property name="route1" type="object" value="407"/>
     <property name="speed" type="int" value="50"/>
    </properties>
@@ -1256,20 +1269,22 @@
    </properties>
    <point/>
   </object>
-  <object id="411" name="Fire" type="mob" x="872" y="8" width="15.3239" height="15.3239">
+  <object id="411" name="Tornado" type="mob" x="872" y="8" width="15.3239" height="15.3239">
    <properties>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="10000"/>
+    <property name="knockback" type="int" value="10"/>
+    <property name="passive" type="object" value="0"/>
     <property name="route1" type="object" value="410"/>
     <property name="speed" type="int" value="50"/>
    </properties>
   </object>
-  <object id="413" name="Fire" type="mob" x="872" y="1128" width="16" height="16">
+  <object id="413" name="Tornado" type="mob" x="872" y="1128" width="16" height="16">
    <properties>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="10000"/>
+    <property name="knockback" type="int" value="10"/>
+    <property name="passive" type="object" value="0"/>
     <property name="route1" type="object" value="410"/>
     <property name="speed" type="int" value="50"/>
    </properties>
@@ -1280,11 +1295,12 @@
    </properties>
    <point/>
   </object>
-  <object id="415" name="Fire" type="mob" x="968" y="1144" width="16" height="16">
+  <object id="415" name="Tornado" type="mob" x="968" y="1144" width="16" height="16">
    <properties>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="10000"/>
+    <property name="knockback" type="int" value="10"/>
+    <property name="passive" type="object" value="0"/>
     <property name="route1" type="object" value="414"/>
     <property name="speed" type="int" value="50"/>
    </properties>
@@ -1295,11 +1311,12 @@
    </properties>
    <point/>
   </object>
-  <object id="417" name="Fire" type="mob" x="1064" y="1192" width="16" height="16">
+  <object id="417" name="Tornado" type="mob" x="1064" y="1192" width="16" height="16">
    <properties>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="10000"/>
+    <property name="knockback" type="int" value="10"/>
+    <property name="passive" type="object" value="0"/>
     <property name="route1" type="object" value="416"/>
     <property name="speed" type="int" value="50"/>
    </properties>
@@ -1310,14 +1327,16 @@
     <property name="text" value="In the corner of fence you spot a small switch, which you activate"/>
    </properties>
   </object>
-  <object id="419" name="Interact" x="824" y="840" width="8" height="16">
+  <object id="419" name="Interact" type="Item" x="824" y="840" width="8" height="16">
    <properties>
+    <property name="item" value="sword"/>
     <property name="sound" value="lever.mp3"/>
     <property name="text" value="Hidden in the cliff, you spot a button which you press"/>
    </properties>
   </object>
-  <object id="420" name="Interact" x="2472" y="1648" width="16" height="8">
+  <object id="420" name="Interact" type="Item" x="2472" y="1648" width="16" height="8">
    <properties>
+    <property name="item" value="sword"/>
     <property name="sound" value="lever.mp3"/>
     <property name="text" value="Under the rock you find a hole in which there is a button that you proceed to press"/>
    </properties>
@@ -1347,8 +1366,9 @@
     <property name="text" value="In the corner of the cliff, you spot a dusty button, which you press"/>
    </properties>
   </object>
-  <object id="427" name="Interact" x="240" y="2264" width="16" height="16">
+  <object id="427" name="Interact" type="Item" x="240" y="2264" width="16" height="16">
    <properties>
+    <property name="item" value="sword"/>
     <property name="sound" value="lever.mp3"/>
     <property name="text" value="In the corner of the cliff, you spot a small switch, which you flip"/>
    </properties>
@@ -1364,11 +1384,12 @@
   <object id="436" name="wall" x="1696" y="768" width="32" height="24"/>
   <object id="437" name="wall" x="1760" y="768" width="32" height="24"/>
   <object id="438" name="wall" x="2048" y="2272" width="64" height="24"/>
-  <object id="440" name="Fire" type="mob" x="1416" y="2216" width="16" height="16">
+  <object id="440" name="Tornado" type="mob" x="1416" y="2216" width="16" height="16">
    <properties>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="10000"/>
+    <property name="knockback" type="int" value="10"/>
+    <property name="passive" type="object" value="0"/>
     <property name="route1" type="object" value="441"/>
     <property name="route2" type="object" value="442"/>
     <property name="route3" type="object" value="443"/>
@@ -1384,11 +1405,12 @@
   <object id="443" x="1456" y="1936">
    <point/>
   </object>
-  <object id="444" name="Fire" type="mob" x="1448" y="1640" width="16" height="16">
+  <object id="444" name="Tornado" type="mob" x="1448" y="1640" width="16" height="16">
    <properties>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="10000"/>
+    <property name="knockback" type="int" value="10"/>
+    <property name="passive" type="object" value="0"/>
     <property name="route1" type="object" value="445"/>
     <property name="route2" type="object" value="446"/>
     <property name="speed" type="int" value="50"/>
@@ -1400,11 +1422,12 @@
   <object id="446" x="1520" y="1488">
    <point/>
   </object>
-  <object id="447" name="Fire" type="mob" x="1352" y="1416" width="16" height="16">
+  <object id="447" name="Tornado" type="mob" x="1352" y="1416" width="16" height="16">
    <properties>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="10000"/>
+    <property name="knockback" type="int" value="10"/>
+    <property name="passive" type="object" value="0"/>
     <property name="route1" type="object" value="449"/>
     <property name="route2" type="object" value="450"/>
     <property name="speed" type="int" value="50"/>
@@ -1416,11 +1439,12 @@
   <object id="450" x="1392" y="1232">
    <point/>
   </object>
-  <object id="451" name="Fire" type="mob" x="1480" y="872" width="16" height="16">
+  <object id="451" name="Tornado" type="mob" x="1480" y="872" width="16" height="16">
    <properties>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
-    <property name="knockback" type="int" value="20"/>
+    <property name="health" type="int" value="10000"/>
+    <property name="knockback" type="int" value="10"/>
+    <property name="passive" type="object" value="0"/>
     <property name="route1" type="object" value="452"/>
     <property name="route2" type="object" value="453"/>
     <property name="speed" type="int" value="50"/>
@@ -1432,110 +1456,110 @@
   <object id="453" x="1328" y="784">
    <point/>
   </object>
-  <object id="454" name="Fire" type="mob" x="2184" y="808" width="16" height="16">
+  <object id="454" name="Slime" type="mob" x="2184" y="808" width="16" height="16">
    <properties>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
+    <property name="health" type="int" value="6"/>
     <property name="knockback" type="int" value="20"/>
     <property name="route1" type="object" value="455"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="60"/>
    </properties>
   </object>
   <object id="455" x="2384" y="752">
    <point/>
   </object>
-  <object id="458" name="Fire" type="mob" x="2664" y="648" width="16" height="16">
+  <object id="458" name="Slime" type="mob" x="2664" y="648" width="16" height="16">
    <properties>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
+    <property name="health" type="int" value="6"/>
     <property name="knockback" type="int" value="20"/>
     <property name="route1" type="object" value="459"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="60"/>
    </properties>
   </object>
   <object id="459" x="2608" y="976">
    <point/>
   </object>
-  <object id="460" name="Fire" type="mob" x="2504" y="776" width="16" height="16">
+  <object id="460" name="Slime" type="mob" x="2504" y="776" width="16" height="16">
    <properties>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
+    <property name="health" type="int" value="6"/>
     <property name="knockback" type="int" value="20"/>
     <property name="route1" type="object" value="461"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="60"/>
    </properties>
   </object>
   <object id="461" x="2512" y="1040">
    <point/>
   </object>
-  <object id="462" name="Fire" type="mob" x="2456" y="1192" width="16" height="16">
+  <object id="462" name="Slime" type="mob" x="2456" y="1192" width="16" height="16">
    <properties>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
+    <property name="health" type="int" value="6"/>
     <property name="knockback" type="int" value="20"/>
     <property name="route1" type="object" value="463"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="60"/>
    </properties>
   </object>
   <object id="463" x="2480" y="1456">
    <point/>
   </object>
-  <object id="464" name="Fire" type="mob" x="2568" y="1128" width="16" height="16">
+  <object id="464" name="Slime" type="mob" x="2568" y="1128" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="421"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
+    <property name="health" type="int" value="6"/>
     <property name="knockback" type="int" value="20"/>
     <property name="route1" type="object" value="465"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="60"/>
    </properties>
   </object>
   <object id="465" x="2672" y="1232">
    <point/>
   </object>
-  <object id="466" name="Fire" type="mob" x="2504" y="1576" width="16" height="16">
+  <object id="466" name="Slime" type="mob" x="2504" y="1576" width="16" height="16">
    <properties>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
+    <property name="health" type="int" value="6"/>
     <property name="knockback" type="int" value="20"/>
     <property name="route1" type="object" value="467"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="60"/>
    </properties>
   </object>
   <object id="467" x="2512" y="1808">
    <point/>
   </object>
-  <object id="468" name="Fire" type="mob" x="2536" y="1800" width="16" height="16">
+  <object id="468" name="Slime" type="mob" x="2536" y="1800" width="16" height="16">
    <properties>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
+    <property name="health" type="int" value="6"/>
     <property name="knockback" type="int" value="20"/>
     <property name="route1" type="object" value="469"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="60"/>
    </properties>
   </object>
   <object id="469" x="2512" y="2000">
    <point/>
   </object>
-  <object id="470" name="Fire" type="mob" x="2600" y="1464" width="16" height="16">
+  <object id="470" name="Slime" type="mob" x="2600" y="1464" width="16" height="16">
    <properties>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
+    <property name="health" type="int" value="6"/>
     <property name="knockback" type="int" value="20"/>
     <property name="route1" type="object" value="471"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="60"/>
    </properties>
   </object>
   <object id="471" x="2640" y="1680">
    <point/>
   </object>
-  <object id="472" name="Fire" type="mob" x="2664" y="1768" width="16" height="16">
+  <object id="472" name="Slime" type="mob" x="2664" y="1768" width="16" height="16">
    <properties>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
+    <property name="health" type="int" value="6"/>
     <property name="knockback" type="int" value="20"/>
     <property name="route1" type="object" value="473"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="60"/>
    </properties>
   </object>
   <object id="473" x="2672" y="1968">
@@ -1732,14 +1756,14 @@ So stay far from those bats and look for what you need.</property>
 Be careful however, they'll surely attack when you approach their homes!</property>
    </properties>
   </object>
-  <object id="508" name="Fire" type="mob" x="2632" y="1280" width="16" height="16">
+  <object id="508" name="Slime" type="mob" x="2632" y="1280" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="421"/>
     <property name="damage" type="int" value="1"/>
-    <property name="health" type="int" value="2"/>
+    <property name="health" type="int" value="6"/>
     <property name="knockback" type="int" value="20"/>
     <property name="route1" type="object" value="509"/>
-    <property name="speed" type="int" value="50"/>
+    <property name="speed" type="int" value="60"/>
    </properties>
   </object>
   <object id="509" x="2640" y="1232">
@@ -1799,6 +1823,7 @@ Be careful however, they'll surely attack when you approach their homes!</proper
   </object>
   <object id="521" name="Interact" type="Lever" x="808" y="1256" width="48" height="40">
    <properties>
+    <property name="item" value="sword"/>
     <property name="sound" value="lever.mp3"/>
     <property name="text" value="You flip the switch"/>
    </properties>
@@ -1905,7 +1930,7 @@ Be careful however, they'll surely attack when you approach their homes!</proper
     <property name="speed" type="int" value="120"/>
    </properties>
   </object>
-  <object id="536" name="player" x="1432" y="2792" width="16" height="16"/>
+  <object id="536" name="playerCenter" x="1432" y="2792" width="16" height="16"/>
   <object id="537" name="Demon" type="mob" x="2152" y="1384" width="16" height="16">
    <properties>
     <property name="activator" type="object" value="524"/>
@@ -2669,8 +2694,9 @@ Be careful however, they'll surely attack when you approach their homes!</proper
     <property name="activator" type="object" value="813"/>
    </properties>
   </object>
-  <object id="813" name="Interact" type="Lever" x="1384" y="0" width="48" height="48">
+  <object id="813" name="Interact" type="Item" x="1384" y="0" width="48" height="48">
    <properties>
+    <property name="item" value="sword"/>
     <property name="sound" value="lever.mp3"/>
     <property name="text" value="You flip the switch"/>
    </properties>
@@ -2685,8 +2711,9 @@ Be careful however, they'll surely attack when you approach their homes!</proper
     <property name="activator" type="object" value="816"/>
    </properties>
   </object>
-  <object id="816" name="Interact" type="Lever" x="2536" y="2712" width="48" height="48">
+  <object id="816" name="Interact" type="Item" x="2536" y="2712" width="48" height="48">
    <properties>
+    <property name="item" value="sword"/>
     <property name="sound" value="lever.mp3"/>
     <property name="text" value="You flip the switch"/>
    </properties>
@@ -2903,8 +2930,9 @@ Be careful however, they'll surely attack when you approach their homes!</proper
     <property name="activator" type="object" value="866"/>
    </properties>
   </object>
-  <object id="866" name="Interact" type="Lever" x="8" y="1704" width="48" height="48">
+  <object id="866" name="Interact" type="Item" x="8" y="1704" width="48" height="48">
    <properties>
+    <property name="item" value="sword"/>
     <property name="sound" value="lever.mp3"/>
     <property name="text" value="You flip the switch"/>
    </properties>

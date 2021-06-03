@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="120">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="121">
  <properties>
   <property name="music" value="Overworld1.mp3"/>
   <property name="test" value="{&quot;gem&quot;: 10, &quot;heart&quot;: 2}"/>
@@ -507,6 +507,12 @@
   <object id="119" name="door" type="Opposite" gid="871" x="864" y="704" width="32" height="32">
    <properties>
     <property name="activator" type="object" value="117"/>
+   </properties>
+  </object>
+  <object id="120" name="Sound" x="0" y="768" width="288" height="200">
+   <properties>
+    <property name="chance" type="int" value="1"/>
+    <property name="sound" value="TeleportAmbience.mp3"/>
    </properties>
   </object>
  </objectgroup>

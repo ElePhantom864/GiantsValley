@@ -55,14 +55,12 @@ class Game:
         self.boot_img = pg.image.load(path.join(self.img_folder, 'Boot.png')).convert_alpha()
         self.stomp_img = pg.image.load(path.join(self.img_folder, 'Stomp.png')).convert_alpha()
         self.explosions = []
-        for i in range(1, 7):
-            self.explosions.append(
-                pg.image.load(path.join(self.img_folder, 'Explosion' + str(i) + ".png")).convert_alpha())
         self.player_images = {}
         for direction, images in s.PLAYER_IMAGES.items():
             self.player_images[direction] = list(map(lambda img: pg.image.load(
                 path.join(self.img_folder, img)).convert_alpha(), images))
         self.mob_images = {}
+        self.animation_images = {}
 
         loader = IncrementalThreadedResourceLoader()
         self.ui_manager = UIManager((s.WIDTH, s.HEIGHT), path.join(self.game_folder, 'data/themes/theme_1.json'),
@@ -82,6 +80,7 @@ class Game:
                                        {'name': 'Montserrat', 'html_size': 6, 'style': 'bold_italic'},
                                        {'name': 'Montserrat', 'html_size': 36, 'style': 'bold'},
                                        {'name': 'Montserrat', 'html_size': 36, 'style': 'regular'},
+                                       {'name': 'Montserrat', 'point_size': 36, 'style': 'regular'},
                                        {'name': 'Montserrat', 'html_size': 36, 'style': 'bold_italic'},
                                        {'name': 'Montserrat', 'html_size': 4, 'style': 'bold'},
                                        {'name': 'Montserrat', 'html_size': 4, 'style': 'regular'},
@@ -115,7 +114,7 @@ class Game:
         self.sound_cache = {}
         self.current_sounds = pg.sprite.Group()
         if not load:
-            self.load_map('Zelda.tmx', 'playerCenter')
+            self.load_map('LavaBoss.tmx', 'playerCenter')
 
     def load_map(self, map_name, playerLocation):
         self.all_sprites.empty()
@@ -226,6 +225,11 @@ class Game:
                     tile_object.properties['sound'], tile_object.properties['chance'], tile_object.id)
             if tile_object.name == 'Boss':
                 spr.LavaBoss(self)
+            if tile_object.name == 'Animation':
+                imgs = self.load_animation_images(tile_object.properties['image'],
+                                                  tile_object.properties['image_count'])
+                spr.Animation(self, imgs, tile_object.properties['animation_speed'],
+                              tile_object.properties['repeats'], obj_center.x, obj_center.y)
 
     def run(self):
         # game loop - set self.playing = False to end the game
@@ -271,7 +275,7 @@ class Game:
                 self.current_sounds.remove(sound)
 
         hits = pg.sprite.spritecollide(self.player, self.enemies, False)
-        die_on_hit = ['Fire', 'Homing']
+        die_on_hit = ['Fire', 'Spike']
         for enemy in hits:
             self.player.hit(enemy)
             if enemy.name in die_on_hit:
@@ -339,6 +343,13 @@ class Game:
         self.current_interactable.activated = not self.current_interactable.activated
         if self.current_interactable.type == "Item":
             self.player.add_item_by_name(self.current_interactable.item)
+            if self.player.items[s.Items.PHOENIX_GEM] >= 4:
+                self.player.max_lives += 1
+                self.player.items[s.Items.PHOENIX_GEM] -= 4
+            if self.player.items[s.Items.DRAGON_SCALE] >= 4:
+                self.player.items[s.Items.DRAGON_SCALE] -= 4
+                self.player.max_health += 2
+                self.player.health += 2
         elif self.current_interactable.type == "Activator":
             self.objects_by_id[self.current_interactable.activator_id].activated\
                 = not self.objects_by_id[self.current_interactable.activator_id].activated
@@ -408,6 +419,16 @@ class Game:
                     except FileNotFoundError as e:
                         print("Mob image is missing", e)
 
+    def load_animation_images(self, animation, number):
+        if animation not in self.animation_images:
+            self.animation_images[animation] = []
+            for i in range(1, number + 1):
+                img = animation + str(i) + ".png"
+                loaded_image = pg.image.load(
+                    path.join(self.img_folder, img)).convert_alpha()
+                self.animation_images[animation].append(loaded_image)
+        return self.animation_images[animation]
+
     def save(self):
         save_file = path.join(self.game_folder, 'saves', 'save.json')
         state = {
@@ -461,7 +482,7 @@ class UI:
         image_rect = image.get_rect()
         self.game.screen.blit(image, image_rect)
         self.title = UIButton(
-            pg.Rect((0, 100), (s.WIDTH, 75)),
+            pg.Rect((0, 100), (s.WIDTH, 100)),
             "Giant's Valley",
             manager=self.game.ui_manager, object_id='#start_game')
         self.title.disable()
@@ -477,12 +498,6 @@ class UI:
             pg.Rect((100, 310), (s.WIDTH - 200, 50)),
             'QUIT',
             manager=self.game.ui_manager, object_id=ObjectID('#quit_game', '@ok_button'))
-
-    def new_game(self):
-        self.game.screen.fill(s.BLACK)
-        text = UITextBox(
-            '<font face=Montserrat size=4 color=#FF0000> New Game', pg.Rect((0, 0), (s.WIDTH, s.HEIGHT)),
-            manager=self.game.ui_manager, object_id='#text_box_3')
 
     def run(self, draw_screen):
         # game loop - set self.playing = False to end the game

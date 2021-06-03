@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="29" height="29" tilewidth="32" tileheight="32" infinite="0" nextlayerid="4" nextobjectid="51">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="29" height="29" tilewidth="32" tileheight="32" infinite="0" nextlayerid="4" nextobjectid="53">
+ <properties>
+  <property name="music" value="LavaBoss.mp3"/>
+ </properties>
  <tileset firstgid="1" source="Base.tsx"/>
  <tileset firstgid="1065" source="Magma.tsx"/>
  <layer id="1" name="Ground" width="29" height="29">
@@ -69,11 +72,11 @@
 </data>
  </layer>
  <objectgroup id="3" name="Objects">
-  <object id="19" name="playerCenter" x="456" y="552" width="16" height="16"/>
+  <object id="19" name="playerCenter" x="456" y="584" width="16" height="16"/>
   <object id="46" name="wall" x="712" y="0" width="216" height="928"/>
   <object id="47" name="wall" x="0" y="0" width="216" height="928"/>
   <object id="48" name="wall" x="216" y="712" width="496" height="216"/>
   <object id="49" name="wall" x="216" y="0" width="496" height="216"/>
-  <object id="50" name="Boss" x="448" y="224" width="32" height="32"/>
+  <object id="50" name="Boss" x="448" y="448" width="32" height="32"/>
  </objectgroup>
 </map>
