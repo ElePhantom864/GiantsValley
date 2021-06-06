@@ -12,16 +12,18 @@ vec = pg.math.Vector2
 
 
 def collide_with_walls(sprite, group, dir):
+    collided = False
     if dir == 'x':
         hits = pg.sprite.spritecollide(
             sprite, group, False, collide_hit_rect)
         if hits:
             for hit in hits:
                 if hit != sprite:
+                    collided = True
                     if hit.rect.centerx > sprite.hit_rect.centerx:
-                        sprite.pos.x = hit.rect.left - sprite.hit_rect.width / 2
+                        sprite.pos.x = hit.rect.left - (sprite.hit_rect.width / 2) - 1
                     if hit.rect.centerx < sprite.hit_rect.centerx:
-                        sprite.pos.x = hit.rect.right + sprite.hit_rect.width / 2
+                        sprite.pos.x = hit.rect.right + (sprite.hit_rect.width / 2) + 1
 
                 if sprite.__class__ == Player:
                     hit.push()
@@ -33,16 +35,18 @@ def collide_with_walls(sprite, group, dir):
         if hits:
             for hit in hits:
                 if hit != sprite:
+                    collided = True
                     if hit.rect.centery > sprite.hit_rect.centery:
-                        sprite.pos.y = hit.rect.top - sprite.hit_rect.height / 2
+                        sprite.pos.y = hit.rect.top - (sprite.hit_rect.height / 2) - 1
                     if hit.rect.centery < sprite.hit_rect.centery:
                         sprite.pos.y = hit.rect.bottom + \
-                            sprite.hit_rect.height / 2
+                            (sprite.hit_rect.height / 2) + 1
 
                 if sprite.__class__ == Player:
                     hit.push()
             sprite.vel.y = 0
             sprite.hit_rect.centery = sprite.pos.y
+    return collided
 
 
 class Player(pg.sprite.Sprite):
@@ -78,31 +82,19 @@ class Player(pg.sprite.Sprite):
         if self.damaged:
             return
         if self.rect.left < enemy.rect.right and self.rect.right > enemy.rect.right:
-            self.pos.x += s.PLAYER_KNOCKBACK // 2
-            self.rect.center = self.pos
-            self.hit_rect.centerx = self.pos.x
-            collide_with_walls(self, self.game.walls, 'x')
+            self.pos.x += s.PLAYER_KNOCKBACK
         elif self.rect.right > enemy.rect.left and self.rect.left < enemy.rect.left:
-            self.pos.x -= s.PLAYER_KNOCKBACK // 2
-            self.rect.center = self.pos
-            self.hit_rect.centerx = self.pos.x
-            collide_with_walls(self, self.game.walls, 'x')
+            self.pos.x -= s.PLAYER_KNOCKBACK
         elif self.rect.top < enemy.rect.bottom and self.rect.bottom > enemy.rect.bottom:
-            self.pos.y += s.PLAYER_KNOCKBACK // 2
-            self.rect.center = self.pos
-            self.hit_rect.centery = self.pos.y
-            collide_with_walls(self, self.game.walls, 'y')
+            self.pos.y += s.PLAYER_KNOCKBACK
         elif self.rect.bottom > enemy.rect.top and self.rect.top < enemy.rect.top:
-            self.pos.y -= s.PLAYER_KNOCKBACK // 2
-            self.rect.center = self.pos
-            self.hit_rect.centerx = self.pos.x
-            collide_with_walls(self, self.game.walls, 'x')
+            self.pos.y -= s.PLAYER_KNOCKBACK
 
         self.rect.center = self.pos
         self.hit_rect.centerx = self.pos.x
-        collide_with_walls(self, self.game.walls, 'x')
-        self.hit_rect.centery = self.pos.y
-        collide_with_walls(self, self.game.walls, 'y')
+        if not collide_with_walls(self, self.game.walls, 'x'):
+            self.hit_rect.centery = self.pos.y
+            collide_with_walls(self, self.game.walls, 'y')
         self.rect.center = self.hit_rect.center
 
         self.damaged = True
@@ -298,15 +290,15 @@ class Player(pg.sprite.Sprite):
             except StopIteration:
                 self.damaged = False
                 self.image = self.game.player_images[self.facing][self.animation_phase]
-        if not self.is_sword and not self.damaged:
+        if not self.is_sword:
             self.animate_movement()
             self.pos += self.vel * self.game.dt
 
         self.rect.center = self.pos
         self.hit_rect.centerx = self.pos.x
-        collide_with_walls(self, self.game.walls, 'x')
-        self.hit_rect.centery = self.pos.y
-        collide_with_walls(self, self.game.walls, 'y')
+        if not collide_with_walls(self, self.game.walls, 'x'):
+            self.hit_rect.centery = self.pos.y
+            collide_with_walls(self, self.game.walls, 'y')
         self.rect.center = self.hit_rect.center
 
 
