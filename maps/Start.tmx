@@ -339,7 +339,11 @@
     <property name="playerLocation" value="playerRight"/>
    </properties>
   </object>
-  <object id="37" name="BottomTeleport" type="Teleport1" x="320" y="960" width="352" height="8"/>
+  <object id="37" name="Transition3.tmx" type="Teleport" x="320" y="960" width="352" height="8">
+   <properties>
+    <property name="playerLocation" value="playerTop"/>
+   </properties>
+  </object>
   <object id="39" name="wall" x="352" y="288" width="64" height="32"/>
   <object id="40" name="wall" x="448" y="384" width="64" height="32"/>
   <object id="41" name="wall" x="576" y="320" width="64" height="32"/>
@@ -429,7 +433,6 @@ Signed - Kronus Poryphyron</property>
   <object id="434" x="592" y="376">
    <point/>
   </object>
-  <object id="669" name="wall" x="320" y="928" width="352" height="32"/>
   <object id="670" name="wall" x="928" y="384" width="32" height="256"/>
  </objectgroup>
 </map>

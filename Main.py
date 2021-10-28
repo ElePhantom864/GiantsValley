@@ -6,9 +6,9 @@
 import pygame as pg
 import sys
 import json
-import Zsettings as s
-import Zsprites as spr
-from Ztilemap import TiledMap, Camera
+import Settings as s
+import Sprites as spr
+from Display import TiledMap, Camera
 from os import path
 import pygame_gui
 from pygame_gui.ui_manager import UIManager
@@ -114,7 +114,7 @@ class Game:
         self.sound_cache = {}
         self.current_sounds = pg.sprite.Group()
         if not load:
-            self.load_map('Zelda.tmx', 'playerCenter')
+            self.load_map('Start.tmx', 'playerCenter')
 
     def load_map(self, map_name, playerLocation):
         self.all_sprites.empty()
@@ -236,6 +236,8 @@ class Game:
         self.playing = True
         while self.playing:
             self.dt = self.clock.tick(s.FPS) / 1000
+            if self.dt > s.MAX_DT:
+                self.dt = s.MAX_DT
             self.events()
             self.ui_manager.update(self.dt)
             self.update()
@@ -247,13 +249,14 @@ class Game:
 
     def update(self):
         # update portion of the game loop
-
         if not self.pause_game:
             self.all_sprites.update()
         self.camera.update(self.player)
         hits = pg.sprite.spritecollide(self.player, self.teleports, False)
         for hit in hits:
+            self.player.is_sword = True
             self.load_map(hit.destination, hit.location)
+            self.player.is_sword = False
             return
         hits = pg.sprite.spritecollide(self.player, self.items, False)
         for hit in hits:
@@ -307,8 +310,8 @@ class Game:
         sprites = sorted(self.all_sprites, key=lambda spr: spr._layer)
         for sprite in sprites:
             self.screen.blit(sprite.image, self.camera.apply(sprite))
-        self.player.draw_ui(self.screen)
         self.screen.blit(self.map_top_img, self.camera.apply_rect(self.map_rect))
+        self.player.draw_ui(self.screen)
         self.ui_manager.draw_ui(self.screen)
         pg.display.flip()
 
@@ -360,7 +363,7 @@ class Game:
         # catch all events here
         for event in pg.event.get():
             if event.type == pg.QUIT:
-                self.quit()
+                self.ui.run(self.ui.warning)
             if event.type == pg.KEYUP and event.key != pg and self.current_interactable:
                 self.present_text()
             if event.type == pg.KEYUP:
@@ -370,7 +373,7 @@ class Game:
 
             if event.type == pg.KEYDOWN:
                 if event.key == pg.K_ESCAPE:
-                    self.quit()
+                    self.ui.run(self.ui.warning)
                 if event.key == pg.K_e and self.current_interactable and not self.current_interactable.used:
                     self.start_presenting_text()
                     # self.present_text()
@@ -499,8 +502,23 @@ class UI:
             'QUIT',
             manager=self.game.ui_manager, object_id=ObjectID('#quit_game', '@ok_button'))
 
+    def warning(self):
+        self.game.screen.fill(s.BLACK)
+        self.title = UIButton(
+            pg.Rect((0, 100), (s.WIDTH, 50)),
+            'Warning: All unsaved data will be lost',
+            manager=self.game.ui_manager, object_id='#game_over')
+        self.load = UIButton(
+            pg.Rect((40, 200), (s.WIDTH - 80, 50)),
+            'Continue Game',
+            manager=self.game.ui_manager, object_id=ObjectID('#continue_game', '@ok_button'))
+        self.quit = UIButton(
+            pg.Rect((40, 310), (s.WIDTH - 80, 50)),
+            'QUIT',
+            manager=self.game.ui_manager, object_id=ObjectID('#quit_game', '@ok_button'))
+
     def run(self, draw_screen):
-        # game loop - set self.playing = False to end the game
+        # game loop - set self.playing = False to end the UI
         self.state = None
         pg.mixer.music.stop()
         self.playing = True
@@ -542,13 +560,24 @@ class UI:
                         self.load.kill()
                         self.new.kill()
                         self.quit.kill()
+                    if event.ui_object_id == '#continue_game':
+                        self.state = s.UIGameState.CONTINUE
+                        self.current_music = self.game.map.tmxdata.properties['music']
+                        pg.mixer.music.load
+                        (path.join(self.game.music_folder, self.game.map.tmxdata.properties['music']))
+                        pg.mixer.music.play(-1)
+                        self.playing = False
+                        self.title.kill()
+                        self.load.kill()
+                        self.new.kill()
+                        self.quit.kill()
                     if event.ui_object_id == '#quit_game':
                         self.game.quit()
             if event.type == pg.QUIT:
                 self.game.quit()
-            if event.type == pg.KEYDOWN:
-                if event.key == pg.K_ESCAPE:
-                    self.game.quit()
+            # if event.type == pg.KEYDOWN:
+                # if event.key == pg.K_ESCAPE:
+                #     self.game.quit()
             self.game.ui_manager.process_events(event)
 
 

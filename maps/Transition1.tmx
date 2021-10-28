@@ -165,7 +165,7 @@
   <object id="19" name="wall" x="256" y="72" width="128" height="48"/>
   <object id="20" name="wall" x="128" y="56" width="128" height="32"/>
   <object id="21" name="wall" x="0" y="80" width="128" height="40"/>
-  <object id="22" name="Zelda.tmx" type="Teleport" x="960" y="408" width="8" height="200">
+  <object id="22" name="Start.tmx" type="Teleport" x="960" y="408" width="8" height="200">
    <properties>
     <property name="playerLocation" value="playerLeft"/>
    </properties>

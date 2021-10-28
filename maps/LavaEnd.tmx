@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="17" height="17" tilewidth="32" tileheight="32" infinite="0" nextlayerid="4" nextobjectid="36">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="17" height="17" tilewidth="32" tileheight="32" infinite="0" nextlayerid="4" nextobjectid="48">
  <properties>
   <property name="music" value="silence.mp3"/>
  </properties>
@@ -48,51 +48,6 @@
 </data>
  </layer>
  <objectgroup id="3" name="Objects">
-  <object id="1" name="door" gid="1105" x="224" y="544" width="32" height="32">
-   <properties>
-    <property name="activator" type="object" value="15"/>
-   </properties>
-  </object>
-  <object id="2" name="door" gid="1105" x="288" y="544" width="32" height="32">
-   <properties>
-    <property name="activator" type="object" value="15"/>
-   </properties>
-  </object>
-  <object id="3" name="door" gid="1077" x="288" y="512" width="32" height="32">
-   <properties>
-    <property name="activator" type="object" value="15"/>
-   </properties>
-  </object>
-  <object id="4" name="door" gid="1077" x="288" y="480" width="32" height="32">
-   <properties>
-    <property name="activator" type="object" value="15"/>
-   </properties>
-  </object>
-  <object id="5" name="door" gid="1074" x="288" y="448" width="32" height="32">
-   <properties>
-    <property name="activator" type="object" value="15"/>
-   </properties>
-  </object>
-  <object id="6" name="door" gid="1067" x="256" y="448" width="32" height="32">
-   <properties>
-    <property name="activator" type="object" value="15"/>
-   </properties>
-  </object>
-  <object id="7" name="door" gid="1073" x="224" y="448" width="32" height="32">
-   <properties>
-    <property name="activator" type="object" value="15"/>
-   </properties>
-  </object>
-  <object id="8" name="door" gid="1077" x="224" y="480" width="32" height="32">
-   <properties>
-    <property name="activator" type="object" value="15"/>
-   </properties>
-  </object>
-  <object id="9" name="door" gid="1077" x="224" y="512" width="32" height="32">
-   <properties>
-    <property name="activator" type="object" value="15"/>
-   </properties>
-  </object>
   <object id="10" name="playerCenter" x="264" y="488" width="16" height="16"/>
   <object id="11" name="wall" x="522.049" y="0" width="21.9512" height="544"/>
   <object id="12" name="wall" x="24" y="520" width="496" height="24"/>
@@ -199,6 +154,100 @@ It seems to fit perfectly into one of the small holes in your amulet.</property>
   <object id="35" name="door" type="Opposite" gid="870" x="448" y="224" width="32" height="32">
    <properties>
     <property name="activator" type="object" value="33"/>
+   </properties>
+  </object>
+  <object id="36" name="Rock" type="mob" x="200" y="472" width="16" height="16">
+   <properties>
+    <property name="damage" type="int" value="0"/>
+    <property name="health" type="int" value="100000"/>
+    <property name="knockback" type="int" value="0"/>
+    <property name="speed" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="37" name="Rock" type="mob" x="200" y="440" width="16" height="16">
+   <properties>
+    <property name="damage" type="int" value="0"/>
+    <property name="health" type="int" value="100000"/>
+    <property name="knockback" type="int" value="0"/>
+    <property name="speed" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="38" name="Rock" type="mob" x="200" y="408" width="16" height="16">
+   <properties>
+    <property name="damage" type="int" value="0"/>
+    <property name="health" type="int" value="100000"/>
+    <property name="knockback" type="int" value="0"/>
+    <property name="speed" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="39" name="Rock" type="mob" x="200" y="376" width="16" height="16">
+   <properties>
+    <property name="damage" type="int" value="0"/>
+    <property name="health" type="int" value="100000"/>
+    <property name="knockback" type="int" value="0"/>
+    <property name="speed" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="40" name="Rock" type="mob" x="232" y="376" width="16" height="16">
+   <properties>
+    <property name="damage" type="int" value="0"/>
+    <property name="health" type="int" value="100000"/>
+    <property name="knockback" type="int" value="0"/>
+    <property name="speed" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="41" name="Rock" type="mob" x="264" y="376" width="16" height="16">
+   <properties>
+    <property name="damage" type="int" value="0"/>
+    <property name="health" type="int" value="100000"/>
+    <property name="knockback" type="int" value="0"/>
+    <property name="speed" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="42" name="Rock" type="mob" x="296" y="376" width="16" height="16">
+   <properties>
+    <property name="damage" type="int" value="0"/>
+    <property name="health" type="int" value="100000"/>
+    <property name="knockback" type="int" value="0"/>
+    <property name="speed" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="43" name="Rock" type="mob" x="328" y="376" width="16" height="16">
+   <properties>
+    <property name="damage" type="int" value="0"/>
+    <property name="health" type="int" value="100000"/>
+    <property name="knockback" type="int" value="0"/>
+    <property name="speed" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="44" name="Rock" type="mob" x="328" y="408" width="16" height="16">
+   <properties>
+    <property name="damage" type="int" value="0"/>
+    <property name="health" type="int" value="100000"/>
+    <property name="knockback" type="int" value="0"/>
+    <property name="speed" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="45" name="Rock" type="mob" x="328" y="440" width="16" height="16">
+   <properties>
+    <property name="damage" type="int" value="0"/>
+    <property name="health" type="int" value="100000"/>
+    <property name="knockback" type="int" value="0"/>
+    <property name="speed" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="46" name="Rock" type="mob" x="328" y="472" width="16" height="16">
+   <properties>
+    <property name="damage" type="int" value="0"/>
+    <property name="health" type="int" value="100000"/>
+    <property name="knockback" type="int" value="0"/>
+    <property name="speed" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="47" name="Sound" x="128" y="24" width="288" height="200">
+   <properties>
+    <property name="chance" type="int" value="1"/>
+    <property name="sound" value="TeleportAmbience.mp3"/>
    </properties>
   </object>
  </objectgroup>

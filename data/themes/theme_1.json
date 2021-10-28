@@ -53,7 +53,7 @@
             "normal_bg": "#00000000",
             "hovered_bg": "#FF000000",
             "active_bg": "#FF000000",
-            "active_border": "00000000",
+            "active_border": "#00000000",
             "normal_border": "#00000000",
             "hovered_border": "#00000000",
             "normal_text": "#FF0000",

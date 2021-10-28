@@ -5,6 +5,7 @@ from enum import Enum
 class UIGameState(Enum):
     NEW = 'NEW'
     LOAD = 'LOAD'
+    CONTINUE = 'CONTINUE'
 
 
 class Direction(Enum):
@@ -40,6 +41,7 @@ YELLOW = (255, 255, 0)
 WIDTH = 15 * 32   # 16 * 64 or 32 * 32 or 64 * 16
 HEIGHT = 15 * 32  # 16 * 48 or 32 * 24 or 64 * 12
 FPS = 60
+MAX_DT = 1000.0 / (FPS - 20) / 1000.0
 TITLE = "Tilemap Demo"
 BGCOLOR = DARKGREY
 

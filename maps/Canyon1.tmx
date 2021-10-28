@@ -472,7 +472,7 @@
   <object id="112" name="wall" x="64" y="768" width="88" height="112"/>
   <object id="113" name="LavaDungeon.tmx" type="Teleport" x="64" y="880" width="88" height="8">
    <properties>
-    <property name="playerLocation" value="player"/>
+    <property name="playerLocation" value="playerCenter"/>
    </properties>
   </object>
   <object id="114" name="Interact" type="Item" x="752" y="784" width="64" height="64">

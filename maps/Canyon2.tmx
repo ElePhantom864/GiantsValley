@@ -527,7 +527,7 @@
 May he Rest in Peace</property>
    </properties>
   </object>
-  <object id="115" name="Interact" type="Item" x="728" y="160" width="48" height="48">
+  <object id="115" name="Interact" type="Item" x="712" y="160" width="48" height="48">
    <properties>
     <property name="item" value="phoenix_gem"/>
     <property name="sound" value="lever.mp3"/>
@@ -535,17 +535,17 @@ May he Rest in Peace</property>
 It seems to fit perfectly into one of the small holes in your amulet... you feel ashamed to be robbing a grave</property>
    </properties>
   </object>
-  <object id="116" name="door" gid="864" x="736" y="192" width="32" height="32">
+  <object id="116" name="door" gid="864" x="720" y="192" width="32" height="32">
    <properties>
     <property name="activator" type="object" value="115"/>
    </properties>
   </object>
-  <object id="117" name="door" type="Opposite" gid="872" x="736" y="192" width="32" height="32">
+  <object id="117" name="door" type="Opposite" gid="872" x="720" y="192" width="32" height="32">
    <properties>
     <property name="activator" type="object" value="115"/>
    </properties>
   </object>
-  <object id="121" name="Interact" type="Item" x="792" y="160" width="48" height="48">
+  <object id="121" name="Interact" type="Item" x="808" y="160" width="48" height="48">
    <properties>
     <property name="item" value="phoenix_gem"/>
     <property name="sound" value="lever.mp3"/>
@@ -553,12 +553,12 @@ It seems to fit perfectly into one of the small holes in your amulet... you feel
 It seems to fit perfectly into one of the small holes in your amulet... you feel ashamed to be robbing a grave</property>
    </properties>
   </object>
-  <object id="122" name="door" gid="864" x="800" y="192" width="32" height="32">
+  <object id="122" name="door" gid="864" x="816" y="192" width="32" height="32">
    <properties>
     <property name="activator" type="object" value="121"/>
    </properties>
   </object>
-  <object id="123" name="door" type="Opposite" gid="872" x="800" y="192" width="32" height="32">
+  <object id="123" name="door" type="Opposite" gid="872" x="816" y="192" width="32" height="32">
    <properties>
     <property name="activator" type="object" value="121"/>
    </properties>

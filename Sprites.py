@@ -1,7 +1,7 @@
 import time
 import pygame as pg
-import Zsettings as s
-from Ztilemap import collide_hit_rect
+import Settings as s
+from Display import collide_hit_rect
 from itertools import chain
 import pytweening as tween
 from os import path
@@ -423,7 +423,7 @@ class TextBox(pg.sprite.Sprite):
 class Enemy(pg.sprite.Sprite):
     def __init__(self, game, x, y, images, health, speed, damage, knockback, routes, name, passive):
         self._layer = s.ENEMY_LAYER
-        self.groups = game.enemies, game.all_sprites, game.walls
+        self.groups = game.enemies, game.all_sprites, game.walls, game.pushers
         pg.sprite.Sprite.__init__(self, self.groups)
         self.game = game
         self.facing = s.Direction.DOWN

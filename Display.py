@@ -1,6 +1,6 @@
 import pygame as pg
 import pytmx
-from Zsettings import WIDTH, HEIGHT
+from Settings import WIDTH, HEIGHT
 vec = pg.math.Vector2
 
 
